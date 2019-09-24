@@ -1,0 +1,8 @@
+:root {
+    --font-family-main: 'OpenSans', 'Arial', 'sans-serif';
+    --font-size-main: 30px;
+    --color-button-text: #000000;
+    --black: #000000;
+    --color-error-text: #FF0000;
+    --font-size-error: 25px;
+}

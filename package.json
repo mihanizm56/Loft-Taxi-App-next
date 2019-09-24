@@ -1,0 +1,58 @@
+{
+  "name": "windowing-ssr",
+  "version": "1.0.0",
+  "license": "ISC",
+  "scripts": {
+    "lint": "lint-staged",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "stop": "taskkill /F /IM node.exe",
+    "push": "git add . && git cz && git push",
+    "server": "cd server && npm start",
+    "install:all": "npm i && cd server && npm i && cd .."
+  },
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "isomorphic-unfetch": "^2.0.0",
+    "next": "latest",
+    "next-redux-saga": "4.0.0",
+    "next-redux-wrapper": "2.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "5.0.7",
+    "redux": "4.0.1",
+    "redux-batched-actions": "^0.4.1",
+    "redux-saga": "1.0.1",
+    "reselect": "^4.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^6.0.0",
+    "cz-customizable": "^6.2.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
+    "nodemon": "^1.19.2",
+    "prettier": "^1.18.2",
+    "redux-devtools-extension": "2.13.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "config/git/commitizen.js"
+    }
+  }
+}
