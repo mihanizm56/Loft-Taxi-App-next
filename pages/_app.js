@@ -1,8 +1,10 @@
-import App from "next/app";
+// disable lint because of next.js =)
+/* eslint-disable */
+import App, { Container } from "next/app";
 import React from "react";
-import { Provider } from "react-redux";
 import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
+import { Provider } from "react-redux";
 import "../static/empty.css";
 
 import { configureStore } from "../src/redux/store/store";

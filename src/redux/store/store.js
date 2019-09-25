@@ -1,8 +1,9 @@
 import { applyMiddleware, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
-// import { rootReducer } from "./root-reducer";
-// import { enableBatching } from "redux-batched-actions";
+import { enableBatching } from "redux-batched-actions";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { createRouterMiddleware } from "connected-next-router";
+import { rootReducer } from "./root-reducer";
 import { rootSaga } from "./root-saga";
 
 const bindMiddleware = middleware => {
@@ -13,12 +14,12 @@ const bindMiddleware = middleware => {
 	return applyMiddleware(...middleware);
 };
 
-export const configureStore = initialState => {
+export const configureStore = () => {
 	const sagaMiddleware = createSagaMiddleware();
+	const routerMiddleware = createRouterMiddleware();
 	const store = createStore(
-		// enableBatching(rootReducer),
-		initialState,
-		bindMiddleware([sagaMiddleware])
+		enableBatching(rootReducer),
+		bindMiddleware([routerMiddleware, sagaMiddleware])
 	);
 
 	store.sagaTask = sagaMiddleware.run(rootSaga);

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "connected-next-router": "^1.0.2",
     "isomorphic-unfetch": "^2.0.0",
     "next": "latest",
     "next-redux-saga": "4.0.0",
