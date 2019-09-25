@@ -10,6 +10,8 @@
     "stop": "taskkill /F /IM node.exe",
     "push": "git add . && git cz && git push",
     "server": "cd server && npm start",
+    "test:ci": "set CI=true && jest",
+    "test": "jest",
     "install:all": "npm i && cd server && npm i && cd .."
   },
   "dependencies": {
@@ -27,10 +29,14 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.2",
     "@commitlint/cli": "^8.2.0",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "cross-env": "^6.0.0",
     "cz-customizable": "^6.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.4.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.3.0",
@@ -42,6 +48,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.14.3",
     "husky": "^3.0.5",
+    "jest": "^24.9.0",
     "lint-staged": "^9.2.5",
     "nodemon": "^1.19.2",
     "prettier": "^1.18.2",
