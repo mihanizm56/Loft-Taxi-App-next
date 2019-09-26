@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./auth-page.css";
+
 export const AuthPageApp = () => {
-	return <div className="creds-page">AuthPageApp</div>;
+	return <div className="auth-page" />;
 };
