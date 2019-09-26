@@ -1,5 +1,6 @@
 import React from "react";
+import { AuthPageApp } from "../src/streams";
 
-const Auth = () => <div>Auth page</div>;
+const Login = () => <AuthPageApp />;
 
-export default Auth;
+export default AuthPageApp;

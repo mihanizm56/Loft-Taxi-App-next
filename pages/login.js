@@ -1,5 +1,6 @@
 import React from "react";
+import { LoginPageApp } from "../src/streams";
 
-const Login = () => <div>Login page</div>;
+const Login = () => <LoginPageApp />;
 
 export default Login;
