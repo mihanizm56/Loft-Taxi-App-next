@@ -5,21 +5,21 @@ import {
 	getOrdersEndpoint,
 } from "./endpoints";
 
-// /login post
+// /login login-user
 export const fetchLoginRequest = ({ username, password }) =>
 	postRequest({
 		endpoint: getAuthEndpoint(),
 		data: { username, password },
 	});
 
-// /login put
+// /login new user
 export const fetchNewUserRequest = ({ username, password }) =>
 	putRequest({
 		endpoint: getAuthEndpoint(),
 		data: { username, password },
 	});
 
-// /login/refresh post
+// /login/refresh
 export const fetchRefreshRequest = ({ token }) =>
 	postRequest({
 		endpoint: `${getAuthEndpoint()}/refresh`,
@@ -27,7 +27,7 @@ export const fetchRefreshRequest = ({ token }) =>
 		authorize: { token },
 	});
 
-// /login/token post
+// /login/token
 export const fetchAccessTokenRequest = ({ token }) =>
 	postRequest({
 		endpoint: `${getAuthEndpoint()}/token`,
@@ -35,7 +35,7 @@ export const fetchAccessTokenRequest = ({ token }) =>
 		authorize: { token },
 	});
 
-// /credentials-get post
+// /credentials-get
 export const fetchGetUserCreds = ({ token }) =>
 	postRequest({
 		endpoint: getCredentialsEndpoint(),
@@ -43,23 +43,35 @@ export const fetchGetUserCreds = ({ token }) =>
 		authorize: { token },
 	});
 
-// /credentials-upd patch
-export const fetchUpdUserCreds = ({ token, cardUser, expDate, cvv }) =>
+// /credentials-upd
+export const fetchUpdUserCreds = ({
+	token,
+	cardUser,
+	cardNumber,
+	expDate,
+	cvv,
+}) =>
 	patchRequest({
 		endpoint: getCredentialsEndpoint(),
-		data: { cardUser, expDate, cvv },
+		data: { cardUser, expDate, cvv, cardNumber },
 		authorize: { token },
 	});
 
-// /credentials-add put  //// not necessary
-export const fetchAddUserCreds = ({ token, cardUser, expDate, cvv }) =>
+// /credentials-add  //// not necessary
+export const fetchAddUserCreds = ({
+	token,
+	cardUser,
+	cardNumber,
+	expDate,
+	cvv,
+}) =>
 	putRequest({
 		endpoint: getCredentialsEndpoint(),
-		data: { cardUser, expDate, cvv },
+		data: { cardUser, expDate, cvv, cardNumber },
 		authorize: { token },
 	});
 
-// /orders-add put
+// /orders-add
 export const fetchAddNewOrder = ({ token, from, to }) =>
 	putRequest({
 		endpoint: getOrdersEndpoint(),
@@ -67,7 +79,7 @@ export const fetchAddNewOrder = ({ token, from, to }) =>
 		authorize: { token },
 	});
 
-// /orders-upd post
+// /orders-upd
 export const fetchUpdOrder = ({ orderId, token }) =>
 	putRequest({
 		endpoint: getOrdersEndpoint(),
