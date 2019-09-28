@@ -1,5 +1,3 @@
-// disable lint because of next.js =)
-/* eslint-disable */
 import App, { Container } from "next/app";
 import React from "react";
 import withRedux from "next-redux-wrapper";

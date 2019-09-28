@@ -1,5 +1,5 @@
 {
-    "extends": ["airbnb", "prettier", "prettier/react", "plugin:react/recommended"],
+    "extends": ["airbnb", "prettier", "prettier/react", "plugin:react/recommended", "eslint:recommended"],
     "root": true,
     "plugins": ["import", "babel", "react", "prettier"],
     "parser": "babel-eslint",
@@ -31,6 +31,8 @@
     },
     "rules": {
       "react/prop-types": 0,
+      "jsx-a11y/anchor-is-valid":0,
+      "react/jsx-props-no-spreading":0,
       "react/jsx-filename-extension": [
         1,
         {

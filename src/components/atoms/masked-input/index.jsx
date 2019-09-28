@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import InputMask from "react-input-mask";
 
-export const renderMaskedInput = ({
+export const MaskedInput = ({
 	input,
 	label,
 	meta: { touched, invalid, error },
