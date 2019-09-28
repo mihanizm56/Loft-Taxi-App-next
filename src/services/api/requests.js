@@ -6,18 +6,32 @@ import {
 } from "./endpoints";
 
 // /login login-user
-export const fetchLoginRequest = ({ username, password }) =>
-	postRequest({
-		endpoint: getAuthEndpoint(),
-		data: { username, password },
+export const fetchLoginRequest = () =>
+	Promise.resolve({
+		message: "success",
+		error: "",
+		access_token: "access_token",
+		refresh_token: "refresh_token",
 	});
+// export const fetchLoginRequest = ({ username, password }) =>
+// postRequest({
+// 	endpoint: getAuthEndpoint(),
+// 	data: { username, password },
+// });
 
 // /login new user
-export const fetchNewUserRequest = ({ username, password }) =>
-	putRequest({
-		endpoint: getAuthEndpoint(),
-		data: { username, password },
+export const fetchNewUserRequest = () =>
+	Promise.resolve({
+		message: "success",
+		error: "",
+		access_token: "access_token",
+		refresh_token: "refresh_token",
 	});
+// export const fetchNewUserRequest = ({ username, password }) =>
+// putRequest({
+// 	endpoint: getAuthEndpoint(),
+// 	data: { username, password },
+// });
 
 // /login/refresh
 export const fetchRefreshRequest = ({ token }) =>

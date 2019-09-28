@@ -1,3 +1,7 @@
 export const ADD_LOCK_TIMER = "ADD_LOCK_TIMER";
 export const SET_ORDER_DONE = "SET_ORDER_DONE";
 export const RESET_ORDER_DONE = "RESET_ORDER_DONE";
+export const SET_ORDER_ID = "SET_ORDER_ID";
+export const REMOVE_ORDER_ID = "REMOVE_ORDER_ID";
+export const SET_ORDER_ERROR = "SET_ORDER_ERROR";
+export const REMOVE_ORDER_ERROR = "REMOVE_ORDER_ERROR";
