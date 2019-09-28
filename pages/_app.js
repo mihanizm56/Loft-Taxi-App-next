@@ -6,6 +6,7 @@ import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
 import { ConnectedRouter } from "connected-next-router";
 import { Provider } from "react-redux";
+import "../static/global.css";
 import "../static/empty.css";
 
 import { configureStore } from "../src/redux/store/store";

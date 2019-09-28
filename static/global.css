@@ -21,3 +21,8 @@ body {
     flex-direction: column;
     justify-content: flex-start;
 }
+
+.page {
+    border: 1px solid red;
+    height: 100%;
+}

@@ -4,7 +4,7 @@ import "./main-page.css";
 
 export const MainPageApp = () => {
 	return (
-		<div className="main-page">
+		<div className="page">
 			<p>MainPageApp</p>
 		</div>
 	);

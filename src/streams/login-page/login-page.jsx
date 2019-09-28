@@ -4,7 +4,7 @@ import "./login-page.css";
 
 export const LoginPageApp = () => {
 	return (
-		<div className="login-page">
+		<div className="page">
 			<p>LoginPageApp</p>
 		</div>
 	);
