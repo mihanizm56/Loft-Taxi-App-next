@@ -20,7 +20,7 @@ class WrappedContainer extends React.Component {
 }
 
 // const mapStateToProps = store => {
-// 	return {
+// return {
 // loggedIn: getLoginState(store),
 // };
 // };
