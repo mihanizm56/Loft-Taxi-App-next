@@ -10,9 +10,9 @@ export const fetchLoginRequest = () =>
 	Promise.resolve({
 		message: "success",
 		error: "",
-		access_token: "access_token",
-		refresh_token: "refresh_token",
-	});
+		access_token: "access_token_test",
+		refresh_token: "refresh_token_test",
+	}).then(data => data);
 // export const fetchLoginRequest = ({ username, password }) =>
 // postRequest({
 // 	endpoint: getAuthEndpoint(),
@@ -42,11 +42,17 @@ export const fetchRefreshRequest = ({ token }) =>
 	});
 
 // /login/token
-export const fetchAccessTokenRequest = ({ token }) =>
-	postRequest({
-		endpoint: `${getAuthEndpoint()}/token`,
-		data: {},
-		authorize: { token },
+// export const fetchAccessTokenRequest = ({ token }) =>
+// 	postRequest({
+// 		endpoint: `${getAuthEndpoint()}/token`,
+// 		data: {},
+// 		authorize: { token },
+// 	});
+
+export const fetchAccessTokenRequest = () =>
+	Promise.resolve({
+		message: "success",
+		error: "",
 	});
 
 // /credentials-get

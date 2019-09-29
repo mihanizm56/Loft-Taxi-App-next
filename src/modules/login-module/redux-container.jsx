@@ -5,10 +5,11 @@ import { signInAction as signIn } from "../../redux/modules/auth";
 class WrappedContainer extends React.Component {
 	signInUser = ({ email, password }) => {
 		console.log("test signInUser", email, password);
+		const { signIn: signInAction } = this.props;
 
-		// if (email && password) {
-		// 	this.props.signIn(email, password);
-		// }
+		if (email && password) {
+			signInAction({ email, password });
+		}
 	};
 
 	render() {
@@ -22,7 +23,7 @@ class WrappedContainer extends React.Component {
 // const mapStateToProps = store => {
 // return {
 // loggedIn: getLoginState(store),
-// };
+// 	};
 // };
 
 const mapDispatchToProps = {
