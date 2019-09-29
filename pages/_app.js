@@ -2,6 +2,7 @@ import App, { Container } from "next/app";
 import React from "react";
 import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
+import Router from "next/router";
 import { ConnectedRouter } from "connected-next-router";
 import { Provider } from "react-redux";
 import "../static/global.css";
@@ -22,12 +23,30 @@ class MyApp extends App {
 		return { pageProps };
 	}
 
+	constructor() {
+		super();
+
+		this.state = {
+			isLoading: false,
+		};
+
+		Router.events.on("routeChangeStart", this.routeChangeStart);
+
+		Router.events.on("routeChangeComplete", this.routeChangeComplete);
+	}
+
+	routeChangeStart = () => this.setState({ isLoading: true });
+
+	routeChangeComplete = () => this.setState({ isLoading: false });
+
 	render() {
-		const { Component, pageProps, store } = this.props;
+		const { Component: Application, pageProps, store } = this.props;
+		const { isLoading } = this.state;
+
 		return (
 			<Provider store={store}>
 				<ConnectedRouter>
-					<Component {...pageProps} />
+					{isLoading ? <p>loading...</p> : <Application {...pageProps} />}
 				</ConnectedRouter>
 			</Provider>
 		);
