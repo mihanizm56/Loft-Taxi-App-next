@@ -7,20 +7,19 @@ import {
 	setLoginErrorAction,
 	startLoginLoadingAction,
 	stopLoginLoadingAction,
-} from "./actions";
-import { fetchLoginRequest } from "../../../services/api";
-import { sleep } from "../../../utils";
-import { INTERNAL_SERVER_ERROR } from "../../../constants";
-import { translatorLoginFormErrors } from "../../../services/translate/auth";
+} from "../actions";
+import { fetchLoginRequest } from "../../../../services/api";
+import { sleep } from "../../../../utils";
+import { INTERNAL_SERVER_ERROR } from "../../../../constants";
+import { translatorLoginFormErrors } from "../../../../services/translate/auth";
 
 const cookies = new Cookies();
 
-export function* loginUserSaga(action) {
-	console.log("CHECK SAGA", action);
+export function* loginUserSaga({ username, password }) {
+	console.log("CHECK SAGA", username, password);
 
 	try {
-		const { username, password } = action.payload;
-		yield put(startLoginLoadingAction()); // start spinner
+		yield put(startLoginLoadingAction()); // start loading animation
 		yield call(sleep, 1000); // wait for spinner
 
 		try {
@@ -54,7 +53,7 @@ export function* loginUserSaga(action) {
 				yield put(stopSubmit("login", translatorLoginFormErrors(error)));
 				yield put(setLoginErrorAction());
 
-				yield put(stopLoginLoadingAction());
+				yield put(stopLoginLoadingAction()); // stop loading animation
 			}
 		} catch (error) {
 			console.log("error in loginUserSaga", error);
@@ -62,7 +61,7 @@ export function* loginUserSaga(action) {
 			yield put(
 				stopSubmit("login", translatorLoginFormErrors(INTERNAL_SERVER_ERROR))
 			);
-			yield put(stopLoginLoadingAction());
+			yield put(stopLoginLoadingAction()); // stop loading animation
 		}
 	} catch (error) {
 		console.log("error in loginUserSaga", error);

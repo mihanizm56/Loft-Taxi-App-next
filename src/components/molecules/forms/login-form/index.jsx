@@ -20,7 +20,7 @@ export const LoginForm = props => {
 	return (
 		<div className="auth-form-container login-form">
 			{/* {isLoading ? (
-				<LoadingSpinner /> //// TODO some loading info
+				<LoadingSpinner /> //// TODO some loading info maybe animated text
 			) : ( */}
 			<form onSubmit={handleSubmit(signInUser)} className="auth-form">
 				<h1 className="form__title">Форма входа</h1>

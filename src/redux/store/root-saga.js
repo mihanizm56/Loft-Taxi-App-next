@@ -1,6 +1,12 @@
-import { takeEvery } from "redux-saga/effects";
-import { SIGN_IN, loginUserSaga } from "../modules/auth";
+import { fork, all } from "redux-saga/effects";
+import {
+	loginWatcherSaga,
+	// authWatcherSaga
+} from "../modules/auth/sagas";
 
 export function* rootSaga() {
-	yield takeEvery(SIGN_IN, loginUserSaga);
+	yield all([
+		fork(loginWatcherSaga),
+		//  fork(authWatcherSaga)
+	]);
 }
