@@ -1,0 +1,30 @@
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.loading-indicator__text {
+    font-size: 20px;
+    font-family: "OpenSans", "Verdana", "Arial", sans-serif;
+}
+
+.loading-indicator__dot {
+    font-size: 20px;
+    font-family: "OpenSans", "Verdana", "Arial", sans-serif;
+    padding-left: 5px;
+}
+
+.loading-indicator__dot--first {
+    animation: blinkingAnimation .7s linear infinite;
+}
+
+.loading-indicator__dot--second {
+    animation: blinkingAnimation .7s linear .15s infinite;
+}
+
+.loading-indicator__dot--third {
+    animation: blinkingAnimation .7s linear .3s infinite;
+}

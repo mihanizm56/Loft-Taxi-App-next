@@ -5,6 +5,8 @@ import { LoadingSpinner } from "../../components/atoms";
 import "./main-page.css";
 
 export const MainPageApp = ({ isLoading }) => {
+	console.log("MainPageApp isLoading", isLoading);
+
 	return (
 		<div className="page">
 			{isLoading ? (

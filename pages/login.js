@@ -10,6 +10,8 @@ export default class Login extends React.Component {
 	};
 
 	render() {
-		return <LoginPageApp />;
+		const { isLoading } = this.props;
+
+		return <LoginPageApp isLoading={isLoading} />;
 	}
 }
