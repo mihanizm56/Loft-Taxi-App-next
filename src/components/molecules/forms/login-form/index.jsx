@@ -6,6 +6,7 @@ import {
 	LinkButton,
 	// LoadingSpinner
 } from "../../../atoms";
+import "./login-form.css";
 
 export const LoginForm = props => {
 	const {
@@ -17,13 +18,13 @@ export const LoginForm = props => {
 	} = props;
 
 	return (
-		<div>
+		<div className="auth-form-container login-form">
 			{/* {isLoading ? (
 				<LoadingSpinner /> //// TODO some loading info
 			) : ( */}
 			<form onSubmit={handleSubmit(signInUser)} className="auth-form">
-				<div>
-					username
+				<h1 className="form__title">Форма входа</h1>
+				<div className="form__field">
 					<Field
 						name="username"
 						type="text"
@@ -32,8 +33,7 @@ export const LoginForm = props => {
 						label="Имя пользователя *"
 					/>
 				</div>
-				<div>
-					password
+				<div className="form__field">
 					<Field
 						name="password"
 						type="password"
@@ -42,12 +42,17 @@ export const LoginForm = props => {
 						label="Пароль *"
 					/>
 				</div>
-				<div className="auth-form__button">
-					<Button type="submit">Войти</Button>
+				<div className="form__button form__button--type-sign-in">
+					<Button type="submit" style={{ fontSize: "20px" }}>
+						Войти
+					</Button>
 				</div>
-				<div>
-					to auth
-					<LinkButton handleClick={() => {}} path="/auth" text="auth" />
+				<div className="form__button form__button--type-create-user">
+					<LinkButton
+						path="/auth"
+						text="Создать нового пользователя"
+						style={{ fontSize: "14px" }}
+					/>
 				</div>
 			</form>
 			{/* )} */}

@@ -7,12 +7,10 @@ import withReduxSaga from "next-redux-saga";
 import Router from "next/router";
 import { ConnectedRouter } from "connected-next-router";
 import { Provider } from "react-redux";
-import { LoadingSpinner } from "./components/loading-spinner";
+import { configureStore } from "../src/redux/store/store";
 import "../static/global.css";
 import "../static/empty.css";
 import "../static/keyframes.css";
-
-import { configureStore } from "../src/redux/store/store";
 
 const store = configureStore();
 
@@ -39,9 +37,17 @@ class MyApp extends App {
 		Router.events.on("routeChangeComplete", this.routeChangeComplete);
 	}
 
-	routeChangeStart = () => this.setState({ isLoading: true });
+	routeChangeStart = () => {
+		console.log("routeChangeStart");
 
-	routeChangeComplete = () => this.setState({ isLoading: false });
+		this.setState({ isLoading: true });
+	};
+
+	routeChangeComplete = () => {
+		console.log("routeChangeComplete");
+
+		this.setState({ isLoading: false });
+	};
 
 	render() {
 		const { Component: Application, pageProps, store } = this.props;
@@ -50,7 +56,7 @@ class MyApp extends App {
 		return (
 			<Provider store={store}>
 				<ConnectedRouter>
-					{isLoading ? <LoadingSpinner /> : <Application {...pageProps} />}
+					<Application {...pageProps} isLoading={isLoading} />
 				</ConnectedRouter>
 			</Provider>
 		);

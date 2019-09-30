@@ -23,6 +23,9 @@ body {
 }
 
 .page {
+    display: flex;
+    position: relative;
+    flex-direction: column;
     border: 1px solid red;
     height: 100%;
 }
