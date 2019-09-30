@@ -1,12 +1,16 @@
-import App, { Container } from "next/app";
+/* eslint-disable */
+
+import App from "next/app";
 import React from "react";
 import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
 import Router from "next/router";
 import { ConnectedRouter } from "connected-next-router";
 import { Provider } from "react-redux";
+import { LoadingSpinner } from "./components/loading-spinner";
 import "../static/global.css";
 import "../static/empty.css";
+import "../static/keyframes.css";
 
 import { configureStore } from "../src/redux/store/store";
 
@@ -46,7 +50,7 @@ class MyApp extends App {
 		return (
 			<Provider store={store}>
 				<ConnectedRouter>
-					{isLoading ? <p>loading...</p> : <Application {...pageProps} />}
+					{isLoading ? <LoadingSpinner /> : <Application {...pageProps} />}
 				</ConnectedRouter>
 			</Provider>
 		);

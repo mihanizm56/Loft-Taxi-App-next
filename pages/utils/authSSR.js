@@ -1,9 +1,8 @@
 import { fetchAccessTokenRequest } from "../../src/services/api/requests";
 
 export const handleAuthSSR = async ({ ctx }) => {
-	if (ctx.req) {
+	if (ctx.isServer && ctx.req && Boolean(ctx.req.headers.cookie)) {
 		/* eslint-disable */
-		// get token on the server
 		const token = ctx.req.headers.cookie.replace(
 			/(?:(?:^|.*;\s*)access_token\s*\=\s*([^;]*).*$)|^.*$/,
 			"$1"
@@ -11,16 +10,20 @@ export const handleAuthSSR = async ({ ctx }) => {
 		/* eslint-enable */
 
 		if (token) {
-			const { message, error } = await fetchAccessTokenRequest({ token });
-			console.log("resultOfTokenLogin", message, error);
+			try {
+				const { message, error } = await fetchAccessTokenRequest({ token });
+				console.log("resultOfTokenLogin", message, error);
 
-			if (message && !error) {
-				console.log("TOKEN VERIFIED FROM SERVER");
-				ctx.res.writeHead(302, {
-					Location: "/main",
-				});
+				if (message && !error) {
+					console.log("TOKEN VERIFIED FROM SERVER");
+					ctx.res.writeHead(302, {
+						Location: "/main",
+					});
 
-				ctx.res.end();
+					ctx.res.end();
+				}
+			} catch (error) {
+				console.log("error in prefetch auth with token", error);
 			}
 		}
 	}

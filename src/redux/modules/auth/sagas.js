@@ -1,17 +1,28 @@
 import { call, put } from "redux-saga/effects";
 import { push } from "connected-next-router";
 import { Cookies } from "react-cookie";
-import { loginAction, setLoginErrorAction } from "./actions";
+import { stopSubmit } from "redux-form";
+import {
+	loginAction,
+	setLoginErrorAction,
+	startLoginLoadingAction,
+	stopLoginLoadingAction,
+} from "./actions";
 import { fetchLoginRequest } from "../../../services/api";
 import { sleep } from "../../../utils";
+import { INTERNAL_SERVER_ERROR } from "../../../constants";
+import { translatorLoginFormErrors } from "../../../services/translate/auth";
 
 const cookies = new Cookies();
 
 export function* loginUserSaga(action) {
+	console.log("CHECK SAGA", action);
+
 	try {
 		const { username, password } = action.payload;
-		yield sleep(2000);
-		console.log("CHECK SAGA", action);
+		yield put(startLoginLoadingAction()); // start spinner
+		yield call(sleep, 1000); // wait for spinner
+
 		try {
 			// eslint-disable-next-line
 			const { access_token, refresh_token, message, error } = yield call(
@@ -21,7 +32,7 @@ export function* loginUserSaga(action) {
 
 			// eslint-disable-next-line
 			if (access_token && refresh_token && message && !error) {
-				console.log("result of the saga", {
+				console.log("result of the fetchLoginRequest", {
 					access_token,
 					refresh_token,
 					message,
@@ -36,13 +47,22 @@ export function* loginUserSaga(action) {
 				yield put(loginAction());
 
 				yield put(push("/main"));
+
+				yield put(stopLoginLoadingAction());
 			} else {
-				console.log("not valid response");
+				console.log("error in response", error);
+				yield put(stopSubmit("login", translatorLoginFormErrors(error)));
 				yield put(setLoginErrorAction());
+
+				yield put(stopLoginLoadingAction());
 			}
 		} catch (error) {
 			console.log("error in loginUserSaga", error);
-			// /// TODO обработка ошибок
+			yield put(setLoginErrorAction());
+			yield put(
+				stopSubmit("login", translatorLoginFormErrors(INTERNAL_SERVER_ERROR))
+			);
+			yield put(stopLoginLoadingAction());
 		}
 	} catch (error) {
 		console.log("error in loginUserSaga", error);

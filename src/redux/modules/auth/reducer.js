@@ -4,11 +4,14 @@ import {
 	LOGOUT,
 	SET_LOGIN_ERROR,
 	REMOVE_LOGIN_ERROR,
+	START_LOADING,
+	STOP_LOADING,
 } from "./constants";
 
 const initialState = {
 	isLogined: false,
 	error: null,
+	isLoading: false,
 };
 
 const loginStorage = handleActions(
@@ -32,6 +35,16 @@ const loginStorage = handleActions(
 		[REMOVE_LOGIN_ERROR]: state => ({
 			...state,
 			error: null,
+		}),
+
+		[START_LOADING]: state => ({
+			...state,
+			isLoading: true,
+		}),
+
+		[STOP_LOADING]: state => ({
+			...state,
+			isLoading: false,
 		}),
 	},
 	initialState

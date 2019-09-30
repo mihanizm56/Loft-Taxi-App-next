@@ -1,0 +1,9 @@
+@keyframes circleLoadingAnimation {
+    from {
+        transform: rotate3d(0, 0, 1, -180deg);
+    }
+
+    to {
+        transform: rotate3d(0, 0, 1, 180deg);
+    }
+}

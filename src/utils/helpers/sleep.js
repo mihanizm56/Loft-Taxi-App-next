@@ -1,4 +1,8 @@
 export const sleep = ms =>
 	new Promise(resolve => {
-		setTimeout(() => resolve(), ms);
+		console.log("SLEEP STARTED");
+		setTimeout(() => {
+			resolve();
+			console.log("SLEEP ENDED");
+		}, ms);
 	});

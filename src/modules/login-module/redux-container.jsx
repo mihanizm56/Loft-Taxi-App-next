@@ -1,36 +1,40 @@
 import React from "react";
 import { connect } from "react-redux";
-import { signInAction as signIn } from "../../redux/modules/auth";
+import {
+	signInAction as signIn,
+	isLoginLoading,
+} from "../../redux/modules/auth";
 
 class WrappedContainer extends React.Component {
-	signInUser = ({ email, password }) => {
-		console.log("test signInUser", email, password);
+	signInUser = ({ username, password }) => {
+		console.log("test signInUser", username, password);
 		const { signIn: signInAction } = this.props;
 
-		if (email && password) {
-			signInAction({ email, password });
+		if (username && password) {
+			signInAction({ username, password });
 		}
 	};
 
 	render() {
-		const { children } = this.props;
+		const { children, isLoading } = this.props;
 		const { signInUser } = this;
 
-		return children({ signInUser });
+		return children({ signInUser, isLoading });
 	}
 }
 
-// const mapStateToProps = store => {
-// return {
-// loggedIn: getLoginState(store),
-// 	};
-// };
+const mapStateToProps = store => {
+	return {
+		// loggedIn: getLoginState(store),
+		isLoading: isLoginLoading(store),
+	};
+};
 
 const mapDispatchToProps = {
 	signIn,
 };
 
 export const ReduxContainer = connect(
-	// mapStateToProps,
+	mapStateToProps,
 	mapDispatchToProps
 )(WrappedContainer);

@@ -1,18 +1,31 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { Field } from "redux-form";
-import { TextField, LinkButton } from "../../../atoms";
+import {
+	TextField,
+	LinkButton,
+	// LoadingSpinner
+} from "../../../atoms";
 
 export const LoginForm = props => {
-	const { signInUser, handleSubmit, normalizeEmail, normalizePassword } = props;
+	const {
+		signInUser,
+		handleSubmit,
+		normalizeEmail,
+		normalizePassword,
+		// isLoading,
+	} = props;
 
 	return (
 		<div>
+			{/* {isLoading ? (
+				<LoadingSpinner /> //// TODO some loading info
+			) : ( */}
 			<form onSubmit={handleSubmit(signInUser)} className="auth-form">
 				<div>
 					username
 					<Field
-						name="email"
+						name="username"
 						type="text"
 						component={TextField}
 						normalize={normalizeEmail}
@@ -37,6 +50,7 @@ export const LoginForm = props => {
 					<LinkButton handleClick={() => {}} path="/auth" text="auth" />
 				</div>
 			</form>
+			{/* )} */}
 		</div>
 	);
 };

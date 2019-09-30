@@ -8,11 +8,12 @@ export const FormLoginModule = () => {
 		<FormContainer>
 			{({ reduxFormProps }) => (
 				<ReduxContainer>
-					{({ signInUser }) => (
+					{({ signInUser, isLoading }) => (
 						<LoginForm
 							// normalizeEmail={normalizeEmail}
 							// normalizePassword={normalizePassword}
 							signInUser={signInUser}
+							isLoading={isLoading}
 							{...reduxFormProps}
 						/>
 					)}

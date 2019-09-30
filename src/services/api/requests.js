@@ -5,6 +5,14 @@ import {
 	getOrdersEndpoint,
 } from "./endpoints";
 
+// export const NOT_CORRECT_DATA = "not correct data";
+// export const FORBIDDEN = "forbidden";
+// export const INTERNAL_SERVER_ERROR = "internal server error";
+// export const EXPIRED = "jwt expired";
+// export const UNAUTHORIZED = "unauthorized";
+// export const NOT_FOUND = "not found";
+// export const SORRY_CLIENT_ERROR = "sorry, something goes wrong";
+
 // /login login-user
 export const fetchLoginRequest = () =>
 	Promise.resolve({
@@ -51,8 +59,8 @@ export const fetchRefreshRequest = ({ token }) =>
 
 export const fetchAccessTokenRequest = () =>
 	Promise.resolve({
-		message: "success",
-		error: "",
+		message: "failed",
+		error: "not valid data",
 	});
 
 // /credentials-get

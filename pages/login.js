@@ -1,14 +1,15 @@
 import React from "react";
-// import { handleAuthSSR } from "./utils/authSSR";
+import { handleAuthSSR } from "./utils/authSSR";
 import { LoginPageApp } from "../src/streams";
 
-const Login = () => <LoginPageApp />;
+export default class Login extends React.Component {
+	static getInitialProps = async ctx => {
+		await handleAuthSSR(ctx);
 
-export default Login;
+		return {};
+	};
 
-// static getInitialProps = async ctx => {
-// TODO enable when add redirect and normal service apis
-// await handleAuthSSR(ctx);
-
-// return {};
-// };
+	render() {
+		return <LoginPageApp />;
+	}
+}
