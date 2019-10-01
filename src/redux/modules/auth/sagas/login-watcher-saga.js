@@ -4,8 +4,8 @@ import { loginUserSaga } from "./login-user-worker-saga";
 
 export function* loginWatcherSaga() {
 	while (true) {
-		const { payload: signInPayload } = yield take(signInAction.toString());
+		const { payload } = yield take(signInAction.toString());
 
-		yield fork(loginUserSaga, signInPayload);
+		yield fork(loginUserSaga, payload);
 	}
 }

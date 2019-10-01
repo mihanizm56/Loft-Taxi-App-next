@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { Field } from "redux-form";
 import { TextField, LinkButton, LoadingTextIndicator } from "../../../atoms";
-import "./login-form.css";
+import "../../../../styles/shared.css";
 
 export const LoginForm = props => {
 	const {

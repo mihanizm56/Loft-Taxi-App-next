@@ -34,7 +34,7 @@ export const fetchNewUserRequest = () =>
 		error: "",
 		access_token: "access_token",
 		refresh_token: "refresh_token",
-	});
+	}).then(data => data);
 // export const fetchNewUserRequest = ({ username, password }) =>
 // putRequest({
 // 	endpoint: getAuthEndpoint(),
