@@ -2,15 +2,17 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { Field } from "redux-form";
 import { TextField, LinkButton, LoadingTextIndicator } from "../../../atoms";
+import { withTranslation } from "../../../../../i18n";
 import "../../../../styles/shared.css";
 
-export const LoginForm = props => {
+const FormComponent = props => {
 	const {
 		signInUser,
 		handleSubmit,
 		normalizeEmail,
 		normalizePassword,
 		isLoading,
+		t: translate,
 	} = props;
 
 	return (
@@ -19,14 +21,14 @@ export const LoginForm = props => {
 				<LoadingTextIndicator />
 			) : (
 				<form onSubmit={handleSubmit(signInUser)} className="auth-form">
-					<h1 className="form__title">Форма входа</h1>
+					<h1 className="form__title">{translate("login-form.title")}</h1>
 					<div className="form__field">
 						<Field
 							name="username"
 							type="text"
 							component={TextField}
 							normalize={normalizeEmail}
-							label="Имя пользователя *"
+							label={`${translate("login-form.username-label")}`}
 						/>
 					</div>
 					<div className="form__field">
@@ -35,18 +37,18 @@ export const LoginForm = props => {
 							type="password"
 							normalize={normalizePassword}
 							component={TextField}
-							label="Пароль *"
+							label={`${translate("login-form.password-label")}`}
 						/>
 					</div>
 					<div className="form__button form__button--type-sign-in">
 						<Button type="submit" style={{ fontSize: "20px" }}>
-							Войти
+							{translate("login-form.button-sign-in")}
 						</Button>
 					</div>
 					<div className="form__button form__button--type-create-user">
 						<LinkButton
 							path="/auth"
-							text="Создать нового пользователя"
+							text={`${translate("login-form.button-link-sign-up")}`}
 							style={{ fontSize: "14px" }}
 						/>
 					</div>
@@ -55,3 +57,5 @@ export const LoginForm = props => {
 		</div>
 	);
 };
+
+export const LoginForm = withTranslation("common")(FormComponent);
