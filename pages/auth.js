@@ -1,8 +1,9 @@
 import React from "react";
 import { handleAuthSSR } from "./utils/authSSR";
 import { AuthPageApp } from "../src/streams";
+import { withTranslation } from "../i18n";
 
-export default class Auth extends React.Component {
+class Auth extends React.Component {
 	static getInitialProps = async ctx => {
 		await handleAuthSSR(ctx);
 
@@ -15,3 +16,5 @@ export default class Auth extends React.Component {
 		return <AuthPageApp isLoading={isLoading} />;
 	}
 }
+
+export default withTranslation("common")(Auth);

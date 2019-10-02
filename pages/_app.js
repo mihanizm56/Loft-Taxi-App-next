@@ -8,9 +8,10 @@ import Router from "next/router";
 import { ConnectedRouter } from "connected-next-router";
 import { Provider } from "react-redux";
 import { configureStore } from "../src/redux/store/store";
-import "../static/global.css";
-import "../static/empty.css";
-import "../static/keyframes.css";
+import { appWithTranslation } from "../i18n";
+import "../static/styles/global.css";
+import "../static/styles/empty.css";
+import "../static/styles/keyframes.css";
 
 const store = configureStore();
 
@@ -63,4 +64,6 @@ class MyApp extends App {
 	}
 }
 
-export default withRedux(configureStore)(withReduxSaga(MyApp));
+export default withRedux(configureStore)(
+	withReduxSaga(appWithTranslation(MyApp))
+);

@@ -1,6 +1,7 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/styles";
+import { withTranslation } from "../i18n";
 
 class MyDocument extends Document {
 	static getInitialProps = async ctx => {
@@ -62,4 +63,4 @@ class MyDocument extends Document {
 	}
 }
 
-export default MyDocument;
+export default withTranslation("common")(MyDocument);

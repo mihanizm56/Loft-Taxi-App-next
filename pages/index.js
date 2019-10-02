@@ -1,15 +1,20 @@
 import React from "react";
+import { withTranslation } from "../i18n";
 
-const Index = () => <div>Index page</div>;
+class Index extends React.Component {
+	static getInitialProps = ({ ctx: { res } }) => {
+		res.writeHead(302, {
+			Location: "/login",
+		});
 
-Index.getInitialProps = ({ ctx: { res } }) => {
-	res.writeHead(302, {
-		Location: "/login",
-	});
+		res.end();
 
-	res.end();
+		return {};
+	};
 
-	return {};
-};
+	render() {
+		return <div>Index page</div>;
+	}
+}
 
-export default Index;
+export default withTranslation("common")(Index);
