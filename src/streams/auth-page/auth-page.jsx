@@ -1,6 +1,6 @@
 import React from "react";
 import { LoadingSpinner } from "../../components/atoms";
-import { FormAuthModule } from "../../modules";
+import { FormAuthModule, HeaderModule } from "../../modules";
 import "./auth-page.css";
 
 export const AuthPageApp = ({ isLoading }) => {
@@ -9,7 +9,8 @@ export const AuthPageApp = ({ isLoading }) => {
 	return isLoading ? (
 		<LoadingSpinner />
 	) : (
-		<div className="page login-page">
+		<div className="page auth-page">
+			<HeaderModule />
 			<FormAuthModule />
 		</div>
 	);

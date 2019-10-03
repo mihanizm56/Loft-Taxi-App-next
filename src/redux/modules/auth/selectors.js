@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 
 const isLoginedSelector = store => store.loginStorage.isLogined;
-const errorLoginSelector = store => store.loginStorage.isLogined;
+const errorLoginSelector = store => store.loginStorage.error;
 const loadingLoginSelector = store => store.loginStorage.isLoading;
 
 export const getLoginStatus = createSelector(

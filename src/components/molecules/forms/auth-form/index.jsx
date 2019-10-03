@@ -17,44 +17,46 @@ const FormComponent = props => {
 	} = props;
 
 	return (
-		<div className="auth-form-container auth-form">
-			{isLoading ? (
-				<LoadingTextIndicator />
-			) : (
-				<form onSubmit={handleSubmit(authInUser)} className="auth-form">
-					<h1 className="form__title">{translate("auth-form.title")}</h1>
-					<div className="form__field">
-						<Field
-							name="username"
-							type="text"
-							component={TextField}
-							// normalize={normalizeEmail}
-							label={`${translate("auth-form.username-label")}`}
-						/>
-					</div>
-					<div className="form__field">
-						<Field
-							name="password"
-							type="password"
-							component={TextField}
-							// normalize={normalizePassword}
-							label={`${translate("auth-form.password-label")}`}
-						/>
-					</div>
-					<div className="form__button form__button--type-auth-in">
-						<Button type="submit" style={{ fontSize: "20px" }}>
-							{translate("auth-form.button-sign-up")}
-						</Button>
-					</div>
-					<div className="form__button form__button--link-button form__button--type-login-user">
-						<LinkButton
-							path="/login"
-							text={`${translate("auth-form.button-link-sign-in")}`}
-							style={{ fontSize: "14px" }}
-						/>
-					</div>
-				</form>
-			)}
+		<div className="auth-form-wrapper">
+			<div className="auth-form-container auth-form">
+				{isLoading ? (
+					<LoadingTextIndicator />
+				) : (
+					<form onSubmit={handleSubmit(authInUser)} className="auth-form">
+						<h1 className="form__title">{translate("auth-form.title")}</h1>
+						<div className="form__field">
+							<Field
+								name="username"
+								type="text"
+								component={TextField}
+								// normalize={normalizeEmail}
+								label={`${translate("auth-form.username-label")}`}
+							/>
+						</div>
+						<div className="form__field">
+							<Field
+								name="password"
+								type="password"
+								component={TextField}
+								// normalize={normalizePassword}
+								label={`${translate("auth-form.password-label")}`}
+							/>
+						</div>
+						<div className="form__button form__button--type-auth-in">
+							<Button type="submit" style={{ fontSize: "20px" }}>
+								{translate("auth-form.button-sign-up")}
+							</Button>
+						</div>
+						<div className="form__button form__button--link-button form__button--type-login-user">
+							<LinkButton
+								path="/login"
+								text={`${translate("auth-form.button-link-sign-in")}`}
+								style={{ fontSize: "14px" }}
+							/>
+						</div>
+					</form>
+				)}
+			</div>
 		</div>
 	);
 };

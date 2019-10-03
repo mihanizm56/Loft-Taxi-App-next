@@ -1,6 +1,6 @@
 import React from "react";
 import { MainPageApp } from "../src/streams";
-import { i18n, withTranslation } from "../i18n";
+import { withTranslation } from "../i18n";
 
 class Main extends React.Component {
 	static async getInitialProps() {
@@ -16,19 +16,7 @@ class Main extends React.Component {
 	render() {
 		const { isLoading } = this.props;
 
-		return (
-			<div>
-				<MainPageApp isLoading={isLoading} />
-				<button
-					onClick={() =>
-						i18n.changeLanguage(i18n.language === "en" ? "ru" : "en")
-					}
-				>
-					Change locale
-				</button>
-				<h1>{this.props.t("title")}</h1>
-			</div>
-		);
+		return <MainPageApp isLoading={isLoading} />;
 	}
 }
 

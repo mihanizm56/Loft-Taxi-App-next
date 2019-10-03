@@ -1,6 +1,6 @@
 import React from "react";
 import { LoadingSpinner } from "../../components/atoms";
-import { FormLoginModule } from "../../modules";
+import { FormLoginModule, HeaderModule } from "../../modules";
 
 import "./login-page.css";
 
@@ -9,6 +9,7 @@ export const LoginPageApp = ({ isLoading }) => {
 		<LoadingSpinner />
 	) : (
 		<div className="page login-page">
+			<HeaderModule />
 			<FormLoginModule />
 		</div>
 	);
