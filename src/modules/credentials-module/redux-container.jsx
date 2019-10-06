@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-	saveCredentialsAction,
+	putCredentialsAction,
 	getCardNameState,
 	getExpDateState,
 	getCardNumberState,
@@ -12,8 +12,8 @@ import {
 class WrappedContainer extends React.Component {
 	saveUserCard = ({ cardName, expDate, cardNumber, cvv }) => {
 		console.log("saveUserCard action", cardName, expDate, cardNumber, cvv);
-		// const { saveCardData } = this.props;
-		// saveCardData(cardName, expDate, cardNumber, cvv);
+		const { saveCredentialsAction } = this.props;
+		saveCredentialsAction({ cardName, expDate, cardNumber, cvv });
 	};
 
 	render() {
@@ -36,5 +36,5 @@ const mapStateToProps = store => {
 
 export const ReduxContainer = connect(
 	mapStateToProps,
-	{ saveCredentialsAction }
+	{ saveCardData: putCredentialsAction }
 )(WrappedContainer);

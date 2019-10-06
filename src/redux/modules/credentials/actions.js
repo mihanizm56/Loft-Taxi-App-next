@@ -18,5 +18,5 @@ export const removeCredentialsErrorAction = createAction(
 	REMOVE_ERROR_CREDENTIALS
 );
 
-export const startCredentialsLoading = createAction(START_LOADING);
-export const stopCredentialsLoading = createAction(STOP_LOADING);
+export const startCredentialsLoadingAction = createAction(START_LOADING);
+export const stopCredentialsLoadingAction = createAction(STOP_LOADING);

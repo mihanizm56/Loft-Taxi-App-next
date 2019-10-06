@@ -1,6 +1,6 @@
 import { handleActions } from "redux-actions";
 import {
-	PUT_CREDENTIALS,
+	SAVE_CREDENTIALS,
 	REMOVE_CREDENTIALS,
 	SET_ERROR_CREDENTIALS,
 	REMOVE_ERROR_CREDENTIALS,
@@ -21,7 +21,7 @@ const initialState = {
 
 const сredentialsStorage = handleActions(
 	{
-		[PUT_CREDENTIALS]: (state, action) => ({
+		[SAVE_CREDENTIALS]: (state, action) => ({
 			...state,
 			card: { ...state.card, ...action.payload },
 		}),
