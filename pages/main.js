@@ -13,7 +13,7 @@ class Main extends React.Component {
 	}
 
 	componentDidUpdate() {
-		console.log("UPDATED");
+		console.log("UPDATED1");
 	}
 
 	render() {
