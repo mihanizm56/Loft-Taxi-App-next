@@ -10,4 +10,4 @@ export const UNAUTHORIZED = "unauthorized";
 export const NOT_FOUND = "not found";
 export const SORRY_CLIENT_ERROR = "sorry, something goes wrong";
 export const LOGIN_URL = "/login";
-export const AUTH_URL = "AUTH_URL";
+export const AUTH_URL = "/auth";
