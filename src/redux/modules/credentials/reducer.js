@@ -4,32 +4,31 @@ import {
 	REMOVE_CREDENTIALS,
 	SET_ERROR_CREDENTIALS,
 	REMOVE_ERROR_CREDENTIALS,
+	START_LOADING,
+	STOP_LOADING,
 } from "./constants";
 
 const initialState = {
-	cardUser: null,
-	expDate: null,
-	cvv: null,
-	cardNumber: null,
+	card: {
+		user: null,
+		expDate: null,
+		cvv: null,
+		number: null,
+	},
 	error: null,
+	isLoading: false,
 };
 
 const сredentialsStorage = handleActions(
 	{
 		[PUT_CREDENTIALS]: (state, action) => ({
 			...state,
-			cardUser: action.payload.cardUser,
-			expDate: action.payload.expDate,
-			cvv: action.payload.cvv,
-			cardNumber: action.payload.cardNumber,
+			card: { ...state.card, ...action.payload },
 		}),
 
 		[REMOVE_CREDENTIALS]: state => ({
 			...state,
-			cardUser: "",
-			expDate: "",
-			cvv: "",
-			cardNumber: "",
+			card: { user: null, expDate: null, cvv: null, number: null },
 		}),
 
 		[SET_ERROR_CREDENTIALS]: (state, action) => ({
@@ -40,6 +39,16 @@ const сredentialsStorage = handleActions(
 		[REMOVE_ERROR_CREDENTIALS]: state => ({
 			...state,
 			error: null,
+		}),
+
+		[START_LOADING]: state => ({
+			...state,
+			isLoading: true,
+		}),
+
+		[STOP_LOADING]: state => ({
+			...state,
+			isLoading: false,
 		}),
 	},
 	initialState

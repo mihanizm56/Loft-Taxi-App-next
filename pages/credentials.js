@@ -13,9 +13,9 @@ class Credentials extends React.Component {
 		const { isLoading, t } = this.props;
 
 		return (
-			<div>
-				<CredentialsPageApp isLoading={isLoading} />
-				<button
+			// <div>
+			<CredentialsPageApp isLoading={isLoading} />
+			/* <button
 					type="button"
 					onClick={() =>
 						i18n.changeLanguage(i18n.language === "en" ? "ru" : "en")
@@ -23,8 +23,8 @@ class Credentials extends React.Component {
 				>
 					Change locale
 				</button>
-				<h1>{t("title")}</h1>
-			</div>
+				<h1>{t("title")}</h1> */
+			// </div>
 		);
 	}
 }

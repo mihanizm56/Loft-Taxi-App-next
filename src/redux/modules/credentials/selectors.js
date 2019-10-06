@@ -4,7 +4,8 @@ const cardNameState = state => state.сredentialsStorage.card.cardName;
 const expDateState = state => state.сredentialsStorage.card.expDate;
 const cardNumberState = state => state.сredentialsStorage.card.cardNumber;
 const cvvState = state => state.сredentialsStorage.card.cvv;
-const errorState = state => state.сredentialsStorage.card.cvv;
+const errorState = state => state.сredentialsStorage.error;
+const loadingState = state => state.сredentialsStorage.isLoading;
 
 export const getCardNameState = createSelector(
 	[cardNameState],
@@ -29,4 +30,9 @@ export const getCvvState = createSelector(
 export const getErrorCredsState = createSelector(
 	[errorState],
 	error => error
+);
+
+export const getLoadingState = createSelector(
+	[loadingState],
+	isLoading => isLoading
 );
