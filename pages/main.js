@@ -5,7 +5,7 @@ import { withTranslation } from "../i18n";
 
 class Main extends React.Component {
 	static async getInitialProps() {
-		await handleAuthSSR(ctx);
+		await handleAuthSSR();
 
 		return {
 			namespacesRequired: ["common"],
