@@ -14,11 +14,12 @@ const bindMiddleware = middleware => {
 	return applyMiddleware(...middleware);
 };
 
-export const configureStore = () => {
+export const configureStore = initialState => {
 	const sagaMiddleware = createSagaMiddleware();
 	const routerMiddleware = createRouterMiddleware();
 	const store = createStore(
 		enableBatching(rootReducer),
+		initialState,
 		bindMiddleware([routerMiddleware, sagaMiddleware])
 	);
 

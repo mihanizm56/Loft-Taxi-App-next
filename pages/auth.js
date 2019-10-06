@@ -1,5 +1,5 @@
 import React from "react";
-import { handleAuthSSR } from "./utils/authSSR";
+import { handleAuthSSR } from "../src/utils/helpers";
 import { AuthPageApp } from "../src/streams";
 import { withTranslation } from "../i18n";
 

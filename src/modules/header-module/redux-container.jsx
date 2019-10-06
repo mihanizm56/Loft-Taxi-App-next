@@ -5,15 +5,17 @@ import {
 	getLoginStatus,
 	logoutAction as logout,
 } from "../../redux/modules/auth";
-
-const getHrefParam = hrefString => {
-	const arrayOfParams = hrefString.split("/");
-	const lastParam = arrayOfParams[arrayOfParams.length - 1];
-
-	return lastParam;
-};
+import { getHrefParam } from "../../utils/helpers";
 
 class WrappedContainer extends React.Component {
+	// componentDidMount() {
+	// 	console.log("HEADER componentDidMount logined", this.props.isLogined);
+	// }
+
+	// componentDidUpdate() {
+	// 	console.log("HEADER componentDidUpdate logined", this.props.isLogined);
+	// }
+
 	handleMainButtonClick = () => {
 		const lastCheckHrefParam = getHrefParam(window.location.href);
 

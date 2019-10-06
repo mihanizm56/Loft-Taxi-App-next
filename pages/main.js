@@ -1,11 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
 import { MainPageApp } from "../src/streams";
-import { handleAuthSSR } from "./utils/authSSR";
+import { handleAuthSSR } from "../src/utils/helpers";
 import { withTranslation } from "../i18n";
 
 class Main extends React.Component {
-	static async getInitialProps() {
-		await handleAuthSSR();
+	static async getInitialProps(ctx) {
+		console.log("AM ON THE MAIN PAGE");
+		// console.log("LOG STORE STATE", ctx.ctx.store.getState());
+
+		await handleAuthSSR(ctx);
+
+		// console.log("ctx");
+		// if(ctx.store.dispatch){
+
+		// ctx.ctx.store.dispatch({ type: "LOGIN" });
+		// }
 
 		return {
 			namespacesRequired: ["common"],
@@ -24,4 +34,5 @@ class Main extends React.Component {
 }
 
 // TODO make splitted dicts
-export default withTranslation("common")(Main);
+
+export default withTranslation("common")(connect()(Main));
