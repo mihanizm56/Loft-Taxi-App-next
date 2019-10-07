@@ -4,15 +4,15 @@ import { CredentialsModule, HeaderModule } from "../../modules";
 
 import "./credentials.css";
 
-export const CredentialsPageApp = ({ isLoading }) => {
-	return isLoading ? (
-		<LoadingSpinner />
-	) : (
-		<div className="page credentials-page">
-			<HeaderModule />
+export const CredentialsPageApp = ({ isLoading }) => (
+	<div className="page credentials-page">
+		<HeaderModule />
+		{isLoading ? (
+			<LoadingSpinner />
+		) : (
 			<div className="credentials-page__module-wrapper">
 				<CredentialsModule />
 			</div>
-		</div>
-	);
-};
+		)}
+	</div>
+);

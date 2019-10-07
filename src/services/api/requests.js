@@ -59,8 +59,8 @@ export const fetchRefreshRequest = ({ token }) =>
 
 export const fetchAccessTokenRequest = () =>
 	Promise.resolve({
-		message: "failed",
-		error: "not valid data",
+		message: "success",
+		error: "",
 	});
 
 // /credentials-get

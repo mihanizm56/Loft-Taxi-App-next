@@ -4,13 +4,15 @@ import { FormLoginModule, HeaderModule } from "../../modules";
 
 import "./login-page.css";
 
-export const LoginPageApp = ({ isLoading }) => {
-	return isLoading ? (
-		<LoadingSpinner />
-	) : (
-		<div className="page login-page">
-			<HeaderModule />
-			<FormLoginModule />
-		</div>
-	);
-};
+export const LoginPageApp = ({ isLoading }) => (
+	<div className="page login-page">
+		<HeaderModule />
+		{isLoading ? (
+			<LoadingSpinner />
+		) : (
+			<div className="page login-page">
+				<FormLoginModule />
+			</div>
+		)}
+	</div>
+);

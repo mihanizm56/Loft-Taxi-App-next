@@ -5,6 +5,7 @@ import InputMask from "react-input-mask";
 export const MaskedInput = ({
 	input,
 	label,
+	inputProps,
 	meta: { touched, invalid, error },
 }) => (
 	// eslint-disable-next-line
@@ -16,6 +17,7 @@ export const MaskedInput = ({
 				placeholder={label}
 				error={touched && invalid}
 				helperText={touched && error}
+				inputProps={inputProps}
 			/>
 		)}
 	</InputMask>
