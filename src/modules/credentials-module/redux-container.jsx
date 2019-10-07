@@ -11,9 +11,12 @@ import {
 
 class WrappedContainer extends React.Component {
 	saveUserCard = ({ cardName, expDate, cardNumber, cvv }) => {
-		console.log("saveUserCard action", cardName, expDate, cardNumber, cvv);
-		const { saveCredentialsAction } = this.props;
-		saveCredentialsAction({ cardName, expDate, cardNumber, cvv });
+		console.log("saveUserCard action cardName", cardName);
+		console.log("saveUserCard action expDate", expDate);
+		console.log("saveUserCard action cardNumber", cardNumber);
+		console.log("saveUserCard action cvv", cvv);
+		// const { saveCredentialsAction } = this.props;
+		// saveCredentialsAction({ cardName, expDate, cardNumber, cvv });
 	};
 
 	render() {

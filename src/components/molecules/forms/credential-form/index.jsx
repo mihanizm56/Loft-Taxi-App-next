@@ -5,7 +5,9 @@ import { TextField, MaskedInput, DatePicker } from "../../../atoms";
 import { withTranslation } from "../../../../../i18n";
 import "./credential-form.css";
 
-const FormComponent = ({ saveUserCard, handleSubmit }) => {
+const FormComponent = props => {
+	const { change, saveUserCard, handleSubmit } = props;
+
 	return (
 		<div className="credentials-form-wrapper">
 			<h1 className="credentials-form__title">Профиль</h1>
@@ -32,7 +34,6 @@ const FormComponent = ({ saveUserCard, handleSubmit }) => {
 								name="cardNumber"
 								type="text"
 								inputProps={{
-									maxLength: 16,
 									style: { fontSize: "20px" },
 								}}
 								component={MaskedInput}
@@ -52,6 +53,7 @@ const FormComponent = ({ saveUserCard, handleSubmit }) => {
 									style: { fontSize: "20px" },
 								}}
 								fullWidth
+								change={change}
 								// onDrop={preventDefault}
 							/>
 						</div>
@@ -83,12 +85,3 @@ const FormComponent = ({ saveUserCard, handleSubmit }) => {
 };
 
 export const CredentialsForm = withTranslation("common")(FormComponent);
-
-const nullFunc = () => {};
-
-CredentialsForm.defaultProps = {
-	saveUserCard: nullFunc,
-	normalizeCardUser: nullFunc,
-	normalizeCardNumber: nullFunc,
-	normalizeCardCVV: nullFunc,
-};
