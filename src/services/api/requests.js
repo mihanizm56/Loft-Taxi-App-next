@@ -5,7 +5,7 @@ import {
 } from "./rest";
 import {
 	getAuthEndpoint,
-	getCredentialsEndpoint,
+	// getCredentialsEndpoint,
 	getOrdersEndpoint,
 } from "./endpoints";
 
@@ -67,13 +67,13 @@ export const fetchAccessTokenRequest = () =>
 		error: "",
 	});
 
-// /credentials-get
-export const fetchGetUserCreds = ({ token }) =>
-	postRequest({
-		endpoint: getCredentialsEndpoint(),
-		data: {},
-		authorize: { token },
-	});
+// /credentials-get  // not necessary
+// export const fetchGetUserCreds = ({ token }) =>
+// 	postRequest({
+// 		endpoint: getCredentialsEndpoint(),
+// 		data: {},
+// 		authorize: { token },
+// 	});
 
 // /credentials-upd
 export const fetchUpdUserCreds = () =>
@@ -95,19 +95,19 @@ export const fetchUpdUserCreds = () =>
 // 	authorize: { token },
 // });
 
-// /credentials-add  //// not necessary
-export const fetchAddUserCreds = ({
-	token,
-	cardUser,
-	cardNumber,
-	expDate,
-	cvv,
-}) =>
-	putRequest({
-		endpoint: getCredentialsEndpoint(),
-		data: { cardUser, expDate, cvv, cardNumber },
-		authorize: { token },
-	});
+// /credentials-add  // not necessary
+// export const fetchAddUserCreds = ({
+// 	token,
+// 	cardUser,
+// 	cardNumber,
+// 	expDate,
+// 	cvv,
+// }) =>
+// 	putRequest({
+// 		endpoint: getCredentialsEndpoint(),
+// 		data: { cardUser, expDate, cvv, cardNumber },
+// 		authorize: { token },
+// 	});
 
 // /orders-add
 export const fetchAddNewOrder = ({ token, from, to }) =>
