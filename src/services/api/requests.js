@@ -88,20 +88,20 @@ const counter = 0;
 
 export const fetchUpdUserCreds = () => {
 	console.log("counter!!!!!!!!!!!!!!!!!!!!!!!!!", counter);
-	
-	// return !counter
-	// 	? Promise.resolve({
-	// 			message: "failed",
-	// 			error: "jwt expired",
-	// 	  }).then(data => {
-	// 			counter += 1;
 
-	// 			return data;
-	// 	  })
-	// 	: Promise.resolve({
-	// 			message: "success",
-	// 			error: "",
-	// 	  }).then(data => data);
+	// return !counter
+	// ? Promise.resolve({
+	// message: "failed",
+	// error: "jwt expired",
+	//   }).then(data => {
+	// counter += 1;
+	//
+	// return data;
+	//   })
+	// : Promise.resolve({
+	// message: "success",
+	// error: "",
+	//   }).then(data => data);
 };
 
 // export const fetchUpdUserCreds = ({

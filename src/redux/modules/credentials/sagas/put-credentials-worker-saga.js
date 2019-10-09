@@ -1,6 +1,5 @@
 import { put, call } from "redux-saga/effects";
 import { stopSubmit } from "redux-form";
-// import { push } from "connected-next-router";
 import { Cookies } from "react-cookie";
 import {
 	startCredentialsLoadingAction,
@@ -10,7 +9,10 @@ import {
 	putCredentialsAction,
 	removeCredentialsAction,
 } from "../actions";
-import { refreshSaga, logoutUserSaga } from "../../auth/sagas";
+import {
+	refreshSaga,
+	// logoutUserSaga
+} from "../../auth/sagas";
 import { fetchUpdUserCreds } from "../../../../services/api/requests";
 import { INTERNAL_SERVER_ERROR, EXPIRED } from "../../../../constants";
 import { sleep } from "../../../../utils";
@@ -73,8 +75,10 @@ export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
 					});
 				} catch (errorInRefreshing) {
 					console.log("error in fetchAddReviewSaga, logout", errorInRefreshing);
-					yield call(logoutUserSaga);
-					// yield put(push("/login"));
+					// handle errors from refresh token request
+					// if (errorInRefreshing === "")
+
+					// yield call(logoutUserSaga);
 				}
 			} else {
 				console.log("error in response", error);
