@@ -1,4 +1,8 @@
-import { putRequest, postRequest, patchRequest } from "./rest";
+import {
+	putRequest,
+	postRequest,
+	//  patchRequest
+} from "./rest";
 import {
 	getAuthEndpoint,
 	getCredentialsEndpoint,
@@ -72,18 +76,24 @@ export const fetchGetUserCreds = ({ token }) =>
 	});
 
 // /credentials-upd
-export const fetchUpdUserCreds = ({
-	token,
-	cardUser,
-	cardNumber,
-	expDate,
-	cvv,
-}) =>
-	patchRequest({
-		endpoint: getCredentialsEndpoint(),
-		data: { cardUser, expDate, cvv, cardNumber },
-		authorize: { token },
-	});
+export const fetchUpdUserCreds = () =>
+	Promise.resolve({
+		message: "failed",
+		error: "not valid data",
+	}).then(data => data);
+
+// export const fetchUpdUserCreds = ({
+// 	token,
+// 	cardUser,
+// 	cardNumber,
+// 	expDate,
+// 	cvv,
+// }) =>
+// patchRequest({
+// 	endpoint: getCredentialsEndpoint(),
+// 	data: { cardUser, expDate, cvv, cardNumber },
+// 	authorize: { token },
+// });
 
 // /credentials-add  //// not necessary
 export const fetchAddUserCreds = ({

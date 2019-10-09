@@ -36,3 +36,9 @@ export const getLoadingState = createSelector(
 	[loadingState],
 	isLoading => isLoading
 );
+
+export const getAllFormValues = createSelector(
+	[getCardNameState, getExpDateState, getCardNumberState, getCvvState],
+	(cardName, expDate, cardNumber, cvv) =>
+		Boolean(cardName && expDate && cardNumber && cvv)
+);

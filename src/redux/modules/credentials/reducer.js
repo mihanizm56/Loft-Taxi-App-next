@@ -10,10 +10,10 @@ import {
 
 const initialState = {
 	card: {
-		user: null,
-		expDate: null,
-		cvv: null,
-		number: null,
+		user: "",
+		expDate: "",
+		cvv: "",
+		number: "",
 	},
 	error: null,
 	isLoading: false,

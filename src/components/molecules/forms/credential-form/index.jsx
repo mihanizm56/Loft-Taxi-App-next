@@ -9,7 +9,7 @@ const FormComponent = props => {
 	const { change, saveUserCard, handleSubmit } = props;
 
 	return (
-		<div className="credentials-form-wrapper">
+		<>
 			<h1 className="credentials-form__title">Профиль</h1>
 			<h6 className="form-subtitle">Способ оплаты</h6>
 
@@ -43,14 +43,18 @@ const FormComponent = props => {
 						</div>
 					</div>
 					<div className="credentials-form__row-container">
-						<div className="credentials-form__item">
+						<div className="credentials-form__item credentials-form__item--datepicker">
 							<Field
 								name="expDate"
 								// normalize={normalizeToEmpty}
 								component={DatePicker}
 								label="Дата окончания действия *"
 								inputProps={{
-									style: { fontSize: "20px" },
+									style: {
+										fontSize: "20px",
+										display: "flex",
+										alignItems: "flex-end",
+									},
 								}}
 								fullWidth
 								change={change}
@@ -80,7 +84,7 @@ const FormComponent = props => {
 					</div>
 				</div>
 			</form>
-		</div>
+		</>
 	);
 };
 
