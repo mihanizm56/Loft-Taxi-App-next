@@ -1,13 +1,13 @@
 import { put, call } from "redux-saga/effects";
 import { stopSubmit } from "redux-form";
-import { push } from "connected-next-router";
+// import { push } from "connected-next-router";
 import { Cookies } from "react-cookie";
 import {
 	startCredentialsLoadingAction,
 	stopCredentialsLoadingAction,
 	setCredentialsErrorAction,
 	removeCredentialsErrorAction,
-	saveCredentialsAction,
+	putCredentialsAction,
 	removeCredentialsAction,
 } from "../actions";
 import { refreshSaga, logoutUserSaga } from "../../auth/sagas";
@@ -52,13 +52,16 @@ export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
 			});
 
 			if (message && !error) {
-				yield put(
-					saveCredentialsAction({ cardName, expDate, cardNumber, cvv })
-				);
+				console.log("CORRECT REQUEST, PUT CREDS IN STORE");
+
+				yield put(putCredentialsAction({ cardName, expDate, cardNumber, cvv }));
 
 				yield put(stopCredentialsLoadingAction()); // stop loading animation
-			} else if (error === EXPIRED) {
+				return;
+			}
+			if (message === "failed" && error === EXPIRED) {
 				console.log("token expired when saving credentials");
+				console.log("START MAKE REFRESH SAGA");
 				// TODO MAKE REFRESH TOKEN STRATEGY
 				try {
 					yield call(refreshSaga);
@@ -71,7 +74,7 @@ export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
 				} catch (errorInRefreshing) {
 					console.log("error in fetchAddReviewSaga, logout", errorInRefreshing);
 					yield call(logoutUserSaga);
-					yield put(push("/login"));
+					// yield put(push("/login"));
 				}
 			} else {
 				console.log("error in response", error);

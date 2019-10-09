@@ -1,6 +1,6 @@
 import { call, put } from "redux-saga/effects";
 import { Cookies } from "react-cookie";
-import { loginFailedAction } from "./actions";
+import { logoutAction } from "../actions";
 import {
 	// fetchLoginRequest,
 	// fetchAuthRequest,
@@ -14,7 +14,7 @@ import {
 const cookies = new Cookies();
 
 export function* refreshSaga() {
-	const refreshToken = cookies.get("access_token");
+	const refreshToken = cookies.get("refresh_token");
 	console.log("refreshSaga goes");
 
 	if (refreshToken) {
@@ -35,20 +35,20 @@ export function* refreshSaga() {
 			// else if (error === "token not valid") {
 			// 	console.log("error token not valid");
 			// 	yield call(logoutSaga);
-			// 	yield put(loginFailedAction());
+			// 	yield put(logoutAction());
 			// } else if (error === "internal server error") {
 			// 	console.log("error internal server error");
 			// 	yield call(logoutSaga);
-			// 	yield put(loginFailedAction());
+			// 	yield put(logoutAction());
 			// } else if (error === "token was used") {
 			// 	console.log("error internal server error");
 			// 	yield call(logoutSaga);
-			// 	yield put(loginFailedAction());
+			// 	yield put(logoutAction());
 			// }
 		} catch (error) {
-			yield put(loginFailedAction());
+			yield put(logoutAction());
 		}
 	} else {
-		console.log("no refresh_token in localStorage");
+		console.log("no refresh_token in cookies");
 	}
 }
