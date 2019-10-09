@@ -1,10 +1,10 @@
 import {
 	putRequest,
-	postRequest,
+	// postRequest,
 	//  patchRequest
 } from "./rest";
 import {
-	getAuthEndpoint,
+	// getAuthEndpoint,
 	// getCredentialsEndpoint,
 	getOrdersEndpoint,
 } from "./endpoints";
@@ -46,12 +46,20 @@ export const fetchNewUserRequest = () =>
 // });
 
 // /login/refresh
-export const fetchRefreshRequest = ({ token }) =>
-	postRequest({
-		endpoint: `${getAuthEndpoint()}/refresh`,
-		data: {},
-		authorize: { token },
-	});
+// export const fetchRefreshTokenRequest = ({ token }) =>
+// 	postRequest({
+// 		endpoint: `${getAuthEndpoint()}/refresh`,
+// 		// data: {},
+// 	// authorize: { token },
+// });
+
+export const fetchRefreshTokenRequest = () =>
+	Promise.resolve({
+		message: "success",
+		error: "",
+		access_token: "access_token_from_refresh_mock",
+		refresh_token: "refresh_token_from_refresh_mock",
+	}).then(data => data);
 
 // /login/token
 // export const fetchAccessTokenRequest = ({ token }) =>
@@ -79,7 +87,7 @@ export const fetchAccessTokenRequest = () =>
 export const fetchUpdUserCreds = () =>
 	Promise.resolve({
 		message: "failed",
-		error: "not valid data",
+		error: "jwt expired",
 	}).then(data => data);
 
 // export const fetchUpdUserCreds = ({
