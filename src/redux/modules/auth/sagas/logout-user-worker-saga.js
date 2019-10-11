@@ -1,14 +1,11 @@
 import { put } from "redux-saga/effects";
 import { push } from "connected-next-router";
-import { Cookies } from "react-cookie";
-
-const cookies = new Cookies();
+import { removeTokens } from "../../../../services/tokens";
 
 export function* logoutUserSaga() {
 	console.log("CHECK logoutUserSaga SAGA");
 
-	cookies.remove("access_token");
-	cookies.remove("refresh_token");
+	yield removeTokens();
 
 	yield put(push("/login"));
 }

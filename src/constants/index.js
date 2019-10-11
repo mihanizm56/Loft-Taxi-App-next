@@ -11,3 +11,8 @@ export const NOT_FOUND = "not found";
 export const SORRY_CLIENT_ERROR = "sorry, something goes wrong";
 export const LOGIN_URL = "/login";
 export const AUTH_URL = "/auth";
+
+// const NOT_CORRECT_DATA = "not correct data";
+// const FORBIDDEN = "forbidden";
+// const INTERNAL_SERVER_ERROR = "internal server error";
+// const EXPIRED = "jwt expired";

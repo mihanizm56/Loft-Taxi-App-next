@@ -9,10 +9,7 @@ import {
 	putCredentialsAction,
 	removeCredentialsAction,
 } from "../actions";
-import {
-	refreshSaga,
-	// logoutUserSaga
-} from "../../auth/sagas";
+import { refreshSaga } from "../../auth/sagas";
 import { fetchUpdUserCreds } from "../../../../services/api/requests";
 import { INTERNAL_SERVER_ERROR, EXPIRED } from "../../../../constants";
 import { sleep } from "../../../../utils";
@@ -65,21 +62,16 @@ export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
 				console.log("token expired when saving credentials");
 				console.log("START MAKE REFRESH SAGA");
 				// TODO MAKE REFRESH TOKEN STRATEGY
-				try {
-					yield call(refreshSaga);
-					yield call(credentialsWorkerSaga, {
-						cardName,
-						expDate,
-						cardNumber,
-						cvv,
-					});
-				} catch (errorInRefreshing) {
-					console.log("error in fetchAddReviewSaga, logout", errorInRefreshing);
-					// handle errors from refresh token request
-					// if (errorInRefreshing === "")
 
-					// yield call(logoutUserSaga);
-				}
+				yield call(refreshSaga);
+
+				// recursive call credentialsWorkerSaga
+				yield call(credentialsWorkerSaga, {
+					cardName,
+					expDate,
+					cardNumber,
+					cvv,
+				});
 			} else {
 				console.log("error in response", error);
 				yield put(removeCredentialsAction());

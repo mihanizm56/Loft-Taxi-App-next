@@ -1,18 +1,8 @@
-import {
-	call,
-	// put
-} from "redux-saga/effects";
+import { call } from "redux-saga/effects";
 import { Cookies } from "react-cookie";
-// import { logoutAction } from "../actions";
-import {
-	// fetchLoginRequest,
-	// fetchAuthRequest,
-	// deleteUser,
-	// deleteTokens,
-	// saveUser,
-	// saveTokens,
-	fetchRefreshTokenRequest,
-} from "../../../../services/api/requests";
+import { fetchRefreshTokenRequest } from "../../../../services/api/requests";
+import { saveTokens } from "../../../../services/tokens";
+import { logoutUserSaga } from "./logout-user-worker-saga";
 
 const cookies = new Cookies();
 
@@ -29,24 +19,14 @@ export function* refreshSaga() {
 		// eslint-disable-next-line
 		if (access_token && refresh_token && !error) {
 			console.log("tokens saved && refreshed");
-			// yield saveTokens(access_token, refresh_token, expiresIn);
+			yield saveTokens({ access_token, refresh_token });
+		} else if (error) {
+			console.log("error in fetchRefreshTokenRequest", error);
 
-			cookies.set("access_token", access_token);
-			cookies.set("refresh_token", refresh_token);
-		} else if (error === "token not valid") {
-			console.log("error token not valid");
-
-			throw new Error("token not valid");
-		} else if (error === "internal server error") {
-			console.log("error internal server error");
-
-			throw new Error("internal server error");
-		} else if (error === "token was used") {
-			console.log("error internal server error");
-
-			throw new Error("internal server error");
+			yield call(logoutUserSaga);
 		}
 	} else {
 		console.log("no refresh_token in cookies");
+		yield call(logoutUserSaga);
 	}
 }

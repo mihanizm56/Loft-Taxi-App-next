@@ -9,6 +9,7 @@ import {
 	stopLoginLoadingAction,
 } from "../actions";
 import { fetchLoginRequest } from "../../../../services/api";
+import { saveTokens } from "../../../../services/tokens";
 import { sleep } from "../../../../utils";
 import { INTERNAL_SERVER_ERROR } from "../../../../constants";
 import { translatorLoginFormErrors } from "../../../../services/translate/auth";
@@ -38,8 +39,7 @@ export function* loginUserSaga({ username, password }) {
 					error,
 				});
 
-				cookies.set("access_token", access_token);
-				cookies.set("refresh_token", refresh_token);
+				saveTokens({ access_token, refresh_token });
 
 				console.log("access_token in cookies", cookies.get("access_token"));
 
