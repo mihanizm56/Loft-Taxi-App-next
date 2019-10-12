@@ -16,17 +16,20 @@ const mapboxgl = __CLIENT__ ? require("mapbox-gl/dist/mapbox-gl") : {};
 const DEFAULT_CONSTANTS = [30.2656504, 59.8029126];
 
 export class MapBox extends Component {
-	static getDerivedStateFromProps(nextProps, prevState) {
-		return nextProps.arrayOfCoords && nextProps.arrayOfCoords.length
-			? { ...prevState, coords: nextProps.arrayOfCoords }
-			: { ...prevState, coords: EMPTY_ARRAY };
+	static getDerivedStateFromProps(nextProps) {
+		const { fromCoords, toCoords, coordsError } = nextProps;
+		if (fromCoords.length && toCoords.length && !coordsError) {
+			return { coordsToStart: EMPTY_ARRAY, coordsToFinish: EMPTY_ARRAY };
+		}
+		return { coordsToStart: EMPTY_ARRAY, coordsToFinish: EMPTY_ARRAY };
 	}
 
 	constructor() {
 		super();
 
 		this.state = {
-			coords: [],
+			coordsToStart: EMPTY_ARRAY,
+			coordsToFinish: EMPTY_ARRAY,
 		};
 
 		this.map = null;
@@ -47,14 +50,14 @@ export class MapBox extends Component {
 
 	componentDidUpdate(prevState) {
 		// TODO написать сравнение руками
-		if (!isEqual(prevState, this.state)) {
-			const { coords } = this.state;
+		const { coordsToStart, coordsToFinish } = this.state;
 
-			this.addTheLine(coords);
-			this.flyToPoint(coords[0]);
+		if (!isEqual(prevState, this.state)) {
+			this.addTheLine([coordsToStart, coordsToFinish]);
+			this.flyToPoint(coordsToFinish[0]);
 		}
 
-		if (!this.state.coords.length) {
+		if (!coordsToStart.length || coordsToFinish.length) {
 			this.removeLayer();
 		}
 	}
