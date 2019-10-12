@@ -10,7 +10,9 @@ class Login extends React.Component {
 
 		await handleAuthSSR(ctx);
 
-		return {};
+		return {
+			namespacesRequired: ["common"],
+		};
 	};
 
 	render() {
