@@ -1,6 +1,12 @@
 import React, { Component, createRef } from "react";
 // TODO написать сравнение руками
+import { connect } from "react-redux";
 import isEqual from "lodash/isEqual";
+import {
+	getFromCoords,
+	getToCoords,
+	getCoordsError,
+} from "../../redux/modules/addresses";
 import { EMPTY_ARRAY } from "../../constants";
 import "./styles/index.css";
 
@@ -9,7 +15,7 @@ const mapboxgl = __CLIENT__ ? require("mapbox-gl/dist/mapbox-gl") : {};
 
 const DEFAULT_CONSTANTS = [30.2656504, 59.8029126];
 
-export class MapBoxModule extends Component {
+export class MapBox extends Component {
 	static getDerivedStateFromProps(nextProps, prevState) {
 		return nextProps.arrayOfCoords && nextProps.arrayOfCoords.length
 			? { ...prevState, coords: nextProps.arrayOfCoords }
@@ -113,3 +119,14 @@ export class MapBoxModule extends Component {
 		return <div ref={this.mapContainer} className="map-container" />;
 	}
 }
+
+const mapStateToProps = store => ({
+	fromCoords: getFromCoords(store),
+	toCoords: getToCoords(store),
+	coordsError: getCoordsError(store),
+});
+
+export const MapBoxModule = connect(
+	mapStateToProps,
+	null
+)(MapBox);
