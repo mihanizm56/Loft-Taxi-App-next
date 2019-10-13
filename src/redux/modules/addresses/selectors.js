@@ -1,8 +1,8 @@
 import { createSelector } from "reselect";
 
-const fromCoordsSelector = state => state.addressesStorage.from;
-const toCoordsSelector = state => state.addressesStorage.to;
-const coordsErrorSelector = state => state.addressesStorage.error;
+const fromCoordsSelector = store => store.addressesStorage.fromCoords;
+const toCoordsSelector = store => store.addressesStorage.toCoords;
+const coordsErrorSelector = store => store.addressesStorage.error;
 
 export const getFromCoords = createSelector(
 	[fromCoordsSelector],

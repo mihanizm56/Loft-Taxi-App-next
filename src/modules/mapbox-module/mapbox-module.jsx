@@ -12,16 +12,17 @@ import "./styles/index.css";
 
 // eslint-disable-next-line
 const mapboxgl = __CLIENT__ ? require("mapbox-gl/dist/mapbox-gl") : {};
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const DEFAULT_CONSTANTS = [30.2656504, 59.8029126];
 
 export class MapBox extends Component {
 	static getDerivedStateFromProps(nextProps) {
 		const { fromCoords, toCoords, coordsError } = nextProps;
-		if (fromCoords.length && toCoords.length && !coordsError) {
-			return { coordsToStart: EMPTY_ARRAY, coordsToFinish: EMPTY_ARRAY };
-		}
-		return { coordsToStart: EMPTY_ARRAY, coordsToFinish: EMPTY_ARRAY };
+
+		return fromCoords.length && toCoords.length && !coordsError
+			? { coordsToStart: fromCoords, coordsToFinish: toCoords }
+			: { coordsToStart: EMPTY_ARRAY, coordsToFinish: EMPTY_ARRAY };
 	}
 
 	constructor() {
@@ -37,9 +38,6 @@ export class MapBox extends Component {
 	}
 
 	componentDidMount() {
-		console.log(process.env.REACT_APP_MAPBOX_ACCESS_TOKEN);
-
-		mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 		this.initializeMap(DEFAULT_CONSTANTS);
 	}
 
@@ -49,16 +47,19 @@ export class MapBox extends Component {
 	}
 
 	componentDidUpdate(prevState) {
+		console.log("UPDATED MAPBOX", this.state);
+
 		// TODO написать сравнение руками
 		const { coordsToStart, coordsToFinish } = this.state;
 
-		if (!isEqual(prevState, this.state)) {
-			this.addTheLine([coordsToStart, coordsToFinish]);
-			this.flyToPoint(coordsToFinish[0]);
+		if (!coordsToStart.length || !coordsToFinish.length) {
+			this.removeLayer();
+			return;
 		}
 
-		if (!coordsToStart.length || coordsToFinish.length) {
-			this.removeLayer();
+		if (!isEqual(prevState, this.state)) {
+			this.addTheLine([coordsToStart, coordsToFinish]);
+			this.flyToPoint(coordsToFinish);
 		}
 	}
 
@@ -69,8 +70,6 @@ export class MapBox extends Component {
 	}
 
 	initializeMap = centerCoords => {
-		console.log("mapboxgl.Map", mapboxgl);
-
 		this.map = new mapboxgl.Map({
 			container: this.mapContainer.current,
 			style: "mapbox://styles/mapbox/streets-v9",
@@ -79,7 +78,7 @@ export class MapBox extends Component {
 		});
 	};
 
-	addTheLine = arrayOfCoords =>
+	addTheLine = coordinates =>
 		this.map.addLayer({
 			id: "route",
 			type: "line",
@@ -90,7 +89,7 @@ export class MapBox extends Component {
 					properties: {},
 					geometry: {
 						type: "LineString",
-						coordinates: arrayOfCoords,
+						coordinates,
 					},
 				},
 			},
@@ -105,11 +104,13 @@ export class MapBox extends Component {
 		});
 
 	removeLayer = () => {
-		this.map.removeLayer("route");
-		this.map.removeSource("route");
-
-		if (this.map.getSource("route")) {
+		if (this.map) {
+			this.map.removeLayer("route");
 			this.map.removeSource("route");
+
+			if (this.map.getSource("route")) {
+				this.map.removeSource("route");
+			}
 		}
 	};
 
