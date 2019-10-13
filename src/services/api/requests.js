@@ -83,7 +83,7 @@ export const fetchAccessTokenRequest = () =>
 // 		authorize: { token },
 // 	});
 
-// /credentials-upd
+// /credentials-upd (post)
 const counter = 0;
 
 export const fetchUpdUserCreds = () => {

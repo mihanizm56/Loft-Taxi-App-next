@@ -2,4 +2,6 @@
     font-family: 'OpenSans-Bold';
     src: url("./OpenSans/OpenSans-Bold.ttf");
     font-weight: 500;
+    font-display: auto;
+    font-style: normal;
 }

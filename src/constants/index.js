@@ -1,5 +1,6 @@
 export const TIMEOUT_VALUE = 700;
 export const ITEM_SIZE = 35;
+export const EMPTY_ARRAY = [];
 
 // errors
 export const NOT_CORRECT_DATA = "not correct data";

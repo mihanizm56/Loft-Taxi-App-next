@@ -5,7 +5,7 @@ import {
 	CredentialsRedirectBox,
 	CredentialsOpenFormBox,
 } from "../../components";
-import "./styles/credentials-module.css";
+import "./styles/index.css";
 
 export class CredentialsViewSwitcher extends React.Component {
 	renderContent = () => {
