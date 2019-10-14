@@ -1,9 +1,9 @@
 import { Cookies } from "react-cookie";
 import Router from "next/router";
-import { fetchAccessTokenRequest } from "../../../services/api/requests";
-import { loginAction, logoutAction } from "../../../redux/modules/auth/actions";
-import { LOGIN_URL, AUTH_URL } from "../../../constants";
-import { isServerPlatform } from "../server-checker";
+import { fetchAccessTokenRequest } from "../api/requests";
+import { loginAction, logoutAction } from "../../redux/modules/auth/actions";
+import { LOGIN_URL, AUTH_URL } from "../../constants";
+import { isServerPlatform } from "../../utils/helpers/server-checker";
 
 export const handleAuthSSR = async ({ ctx }) => {
 	let token = null;

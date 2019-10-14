@@ -1,26 +1,45 @@
 import { createSelector } from "reselect";
 
-const orderIsDoneSelector = state => state.ordersStorage.orderIsDone;
-const timeToLockSelector = state => state.ordersStorage.timerToLock;
-const orderIdSelector = state => state.ordersStorage.orderId;
+const isLoadingSelector = state => state.ordersStorage.isLoading;
 const errorSelector = state => state.ordersStorage.error;
+const orderSelector = state => state.ordersStorage.order;
 
-export const getOrderIdIsDoneState = createSelector(
-	[orderIsDoneSelector],
-	isDone => isDone
+export const getLoadingOrderState = createSelector(
+	[isLoadingSelector],
+	isLoading => isLoading
 );
 
-export const getTimeToLockValue = createSelector(
-	[timeToLockSelector],
-	timeToLock => timeToLock
+export const getOrderError = createSelector(
+	[errorSelector],
+	error => error
+);
+
+export const getOrderData = createSelector(
+	[orderSelector],
+	data => data
+);
+
+export const getOrderFromInfo = createSelector(
+	[getOrderData],
+	order => order.from
+);
+
+export const getOrderToInfo = createSelector(
+	[getOrderData],
+	order => order.to
+);
+
+export const getOrderTimeout = createSelector(
+	[getOrderData],
+	order => order.timeOutOrder
+);
+
+export const getOrderIsDoneStatus = createSelector(
+	[getOrderData],
+	order => order.orderIsDone
 );
 
 export const getOrderId = createSelector(
-	[orderIdSelector],
-	orderId => orderId
-);
-
-export const getOrderErrorSelector = createSelector(
-	[errorSelector],
-	error => error
+	[getOrderData],
+	order => order.orderId
 );

@@ -1,6 +1,6 @@
 import React from "react";
 import { CredentialsPageApp } from "../src/streams";
-import { handleAuthSSR } from "../src/utils/helpers";
+import { handleAuthSSR } from "../src/services";
 import { withTranslation } from "../i18n";
 
 class Credentials extends React.Component {

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { handleAuthSSR } from "../src/utils/helpers";
+import { handleAuthSSR } from "../src/services";
 import { LoginPageApp } from "../src/streams";
 import { withTranslation } from "../i18n";
 

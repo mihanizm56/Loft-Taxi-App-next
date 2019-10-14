@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { MainPageApp } from "../src/streams";
-import { handleAuthSSR } from "../src/utils/helpers";
+import { handleAuthSSR, handleLastOrderStatus } from "../src/services";
 import { withTranslation } from "../i18n";
 
 class Main extends React.Component {
@@ -10,6 +10,7 @@ class Main extends React.Component {
 		console.log("AM ON THE MAIN PAGE");
 
 		await handleAuthSSR(ctx);
+		await handleLastOrderStatus();
 
 		return {
 			namespacesRequired: ["common"],
