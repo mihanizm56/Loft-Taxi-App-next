@@ -8,7 +8,7 @@ import "./index.css";
 export const AddOrderForm = ({ createOrder, handleSubmit, isLoading }) => {
 	return (
 		<form onSubmit={handleSubmit(createOrder)} className="order-form">
-			<h5 className="order-form__title ">Ваш заказ</h5>
+			<h5 className="order-form__title ">Новый заказ</h5>
 			{isLoading ? (
 				<LoadingTextIndicator />
 			) : (

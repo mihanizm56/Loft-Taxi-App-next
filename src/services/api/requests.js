@@ -1,14 +1,3 @@
-import {
-	putRequest,
-	// postRequest,
-	//  patchRequest
-} from "./rest";
-import {
-	// getAuthEndpoint,
-	// getCredentialsEndpoint,
-	getOrdersEndpoint,
-} from "./endpoints";
-
 // export const NOT_CORRECT_DATA = "not correct data";
 // export const FORBIDDEN = "forbidden";
 // export const INTERNAL_SERVER_ERROR = "internal server error";
@@ -75,34 +64,43 @@ export const fetchAccessTokenRequest = () =>
 		error: "",
 	});
 
-// /credentials-get  // not necessary
+// /credentials-get
 // export const fetchGetUserCreds = ({ token }) =>
 // 	postRequest({
 // 		endpoint: getCredentialsEndpoint(),
 // 		data: {},
 // 		authorize: { token },
 // 	});
+export const fetchGetUserCreds = () =>
+	Promise.resolve({
+		message: "success",
+		error: "",
+		empty: false,
+	});
 
 // /credentials-upd (post)
 const counter = 0;
 
+/* eslint-disable */
 export const fetchUpdUserCreds = () => {
 	console.log("counter!!!!!!!!!!!!!!!!!!!!!!!!!", counter);
 
-	// return !counter
-	// 	? Promise.resolve({
-	// 			message: "failed",
-	// 			error: "jwt expired",
-	// 	  }).then(data => {
-	// 			counter += 1;
+	return !counter
+		? Promise.resolve({
+				message: "failed",
+				error: "jwt expired",
+		  }).then(data => {
+				counter += 1;
 
-	// 			return data;
-	// 	  })
-	// 	: Promise.resolve({
-	// 			message: "success",
-	// 			error: "",
-	// 	  }).then(data => data);
+				return data;
+		  })
+		: Promise.resolve({
+				message: "success",
+				error: "",
+		  }).then(data => data);
 };
+
+/* eslint-enable */
 
 // export const fetchUpdUserCreds = ({
 // 	token,
@@ -132,17 +130,65 @@ export const fetchUpdUserCreds = () => {
 // 	});
 
 // /orders-add
-export const fetchAddNewOrder = ({ token, from, to }) =>
-	putRequest({
-		endpoint: getOrdersEndpoint(),
-		data: { from, to },
-		authorize: { token },
+// export const fetchGetLastOrder = ({ token, from, to }) =>
+// 	getRequest({
+// 		endpoint: getOrdersEndpoint(),
+// 		data: { from, to },
+// 		authorize: { token },
+// 	});
+export const fetchGetLastOrder = () =>
+	Promise.resolve({
+		message: "success",
+		error: "",
+		order: {
+			id: "5da4d2d894bd902daca9dba9",
+			is_done: false,
+			from_coords: {
+				Latitude: 55.75697,
+				Longitude: 37.61502,
+			},
+			to_coords: {
+				Latitude: 59.93318,
+				Longitude: 30.30605,
+			},
+			exp_time: 120000,
+		},
 	});
 
 // /orders-upd
-export const fetchUpdOrder = ({ orderId, token }) =>
-	putRequest({
-		endpoint: getOrdersEndpoint(),
-		data: { orderId },
-		authorize: { token },
+// export const fetchUpdOrder = ({ orderId, token }) =>
+// postRequest({
+// 	endpoint: getOrdersEndpoint(),
+// 	data: { orderId },
+// 	authorize: { token },
+// });
+export const fetchUpdOrder = () =>
+	Promise.resolve({
+		message: "success",
+		error: "",
+	});
+
+// export const fetchAddNewOrder = ({ token, from, to }) =>
+// 	putRequest({
+// 		endpoint: getOrdersEndpoint(),
+// 		data: { from, to },
+// 		authorize: { token },
+// 	});
+export const fetchAddNewOrder = () =>
+	Promise.resolve({
+		message: "success",
+		error: "",
+		order: {
+			order_id: "5da4d9dd40359b1928e52ba3",
+			is_done: false,
+			from_coords: {
+				Latitude: 55.75697,
+				Longitude: 37.61502,
+			},
+			to_coords: {
+				Latitude: 59.93318,
+				Longitude: 30.30605,
+			},
+			exp_time: 120000,
+		},
 	});
