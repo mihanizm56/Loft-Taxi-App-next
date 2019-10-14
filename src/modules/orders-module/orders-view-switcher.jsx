@@ -14,40 +14,28 @@ export const OrdersViewSwitcher = ({
 	handleSubmit,
 	createOrder,
 	isLoading,
-	error,
+	orderError,
 	orderFromText,
 	orderToText,
 	orderTimeout,
 	areCredsEmpty,
 	isFormOpened,
 	orderInfoBoxOpened,
-	makeNewOffer,
+	makeNewOrder,
 	handleRedirectToCredentials,
 	handleCancelOrder,
 }) => {
 	// typeof window !== "undefined" &&
 	// 	console.log("props in OrdersViewSwitcher", {
-	// 		handleSubmit,
-	// 		createOrder,
-	// 		isLoading,
-	// 		error,
-	// 		orderFrom,
-	// 		orderTo,
-	// 		orderTimeout,
-	// 		areCredsEmpty,
-	// 		isFormOpened,
-	// 		orderInfoBoxOpened,
-	// 		makeNewOffer,
-	// 		handleRedirectToCredentials,
-	// 		handleCancelOrder,
+	// 		orderError,
 	// 	});
 
 	let ComponentToShow;
 
 	if (isLoading) {
 		ComponentToShow = <LoadingTextIndicator text="Загрузка" />;
-	} else if (error) {
-		ComponentToShow = <OrderErrorBox handleMakeNewOrder={makeNewOffer} />;
+	} else if (orderError) {
+		ComponentToShow = <OrderErrorBox handleMakeNewOrder={makeNewOrder} />;
 	} else if (areCredsEmpty) {
 		ComponentToShow = (
 			<OrderRedirectBox handleRedirect={handleRedirectToCredentials} />
@@ -66,7 +54,7 @@ export const OrdersViewSwitcher = ({
 			/>
 		);
 	} else {
-		ComponentToShow = <NewOrderBox handleMakeNewOrder={makeNewOffer} />;
+		ComponentToShow = <NewOrderBox handleMakeNewOrder={makeNewOrder} />;
 	}
 
 	return <div className="order-container">{ComponentToShow}</div>;

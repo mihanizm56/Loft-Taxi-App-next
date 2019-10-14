@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import { connect } from "react-redux";
 
 import { MainPageApp } from "../src/streams";

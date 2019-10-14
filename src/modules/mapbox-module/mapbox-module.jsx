@@ -7,7 +7,6 @@ import {
 	getToCoords,
 	getCoordsError,
 } from "../../redux/modules/addresses";
-import { EMPTY_ARRAY } from "../../constants";
 import "./styles/index.css";
 
 // eslint-disable-next-line
@@ -19,18 +18,21 @@ const DEFAULT_CONSTANTS = [30.2656504, 59.8029126];
 export class MapBox extends Component {
 	static getDerivedStateFromProps(nextProps) {
 		const { fromCoords, toCoords, coordsError } = nextProps;
+		console.log("getDerivedStateFromProps nextProps", nextProps);
 
-		return fromCoords && toCoords && !coordsError
+		return Object.keys(fromCoords).length &&
+			Object.keys(toCoords).length &&
+			!coordsError
 			? { coordsToStart: fromCoords, coordsToFinish: toCoords }
-			: { coordsToStart: EMPTY_ARRAY, coordsToFinish: EMPTY_ARRAY };
+			: { coordsToStart: {}, coordsToFinish: {} };
 	}
 
 	constructor() {
 		super();
 
 		this.state = {
-			coordsToStart: EMPTY_ARRAY,
-			coordsToFinish: EMPTY_ARRAY,
+			coordsToStart: {},
+			coordsToFinish: {},
 		};
 
 		this.map = null;
@@ -42,7 +44,10 @@ export class MapBox extends Component {
 		console.log("state in mapbox", this.state);
 		this.initializeMap(DEFAULT_CONSTANTS);
 
-		if (coordsToStart && coordsToFinish) {
+		if (
+			Boolean(Object.keys(coordsToStart).length) &&
+			Boolean(Object.keys(coordsToFinish).length)
+		) {
 			this.map.on("load", () => {
 				this.addTheLine([
 					[coordsToStart.lng, coordsToStart.lat],
@@ -54,33 +59,37 @@ export class MapBox extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		console.log(
-			"props in shouldComponentUpdate",
-			isEqual(nextState, this.state)
-		);
+		// console.log(
+		// 	"props in shouldComponentUpdate",
+		// 	nextState,
+		// 	this.state
+		// );
 		// TODO написать сравнение руками
 		return !isEqual(nextState, this.state);
 	}
 
-	// componentDidUpdate(prevState) {
-	// 	console.log("UPDATED MAPBOX", this.state);
+	componentDidUpdate(prevProps, prevState) {
+		// TODO написать сравнение руками
+		const { coordsToStart, coordsToFinish } = this.state;
 
-	// 	// TODO написать сравнение руками
-	// 	const { coordsToStart, coordsToFinish } = this.state;
+		console.log("UPDATED MAPBOX");
 
-	// 	if (!coordsToStart || !coordsToFinish) {
-	// 		this.removeLayer();
-	// 		return;
-	// 	}
+		if (
+			!Object.keys(coordsToStart).length ||
+			!Object.keys(coordsToFinish).length
+		) {
+			this.removeLayer();
+			return;
+		}
 
-	// 	if (!isEqual(prevState, this.state)) {
-	// 		this.addTheLine([
-	// 			[coordsToStart.lat, coordsToStart.lng],
-	// 			[coordsToFinish.lat, coordsToFinish.lng],
-	// 		]);
-	// 		this.flyToPoint(coordsToFinish);
-	// 	}
-	// }
+		if (!isEqual(prevState, this.state)) {
+			this.addTheLine([
+				[coordsToStart.lng, coordsToStart.lat],
+				[coordsToFinish.lng, coordsToFinish.lat],
+			]);
+			this.flyToPoint(coordsToFinish);
+		}
+	}
 
 	componentWillUnmount() {
 		if (this.map) {
@@ -124,13 +133,12 @@ export class MapBox extends Component {
 		});
 
 	removeLayer = () => {
-		if (this.map) {
-			this.map.removeLayer("route");
+		if (this.map.getSource("route")) {
 			this.map.removeSource("route");
+		}
 
-			if (this.map.getSource("route")) {
-				this.map.removeSource("route");
-			}
+		if (this.map.getLayer("route")) {
+			this.map.removeLayer("route");
 		}
 	};
 

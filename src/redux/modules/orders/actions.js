@@ -1,6 +1,7 @@
 import { createAction } from "redux-actions";
 import {
 	SET_ORDER_DATA,
+	RESET_ORDER_DATA,
 	SET_ORDER_ERROR,
 	REMOVE_ORDER_ERROR,
 	SET_ORDER_LOADING_START,
@@ -11,6 +12,7 @@ import {
 } from "./constants";
 
 export const setOrderData = createAction(SET_ORDER_DATA);
+export const resetOrderData = createAction(RESET_ORDER_DATA);
 export const setOrderErrorAction = createAction(SET_ORDER_ERROR);
 export const removeOrderErrorAction = createAction(REMOVE_ORDER_ERROR);
 export const setOrderLoadingStart = createAction(SET_ORDER_LOADING_START);

@@ -8,11 +8,11 @@ import {
 } from "../../../constants";
 
 const makeError = error => ({
-	username: error || SORRY_CLIENT_ERROR,
-	password: error || SORRY_CLIENT_ERROR,
+	adressFrom: error || SORRY_CLIENT_ERROR,
+	adressTo: error || SORRY_CLIENT_ERROR,
 });
 
-export const translatorLoginFormErrors = errorFromBackend => {
+export const translatorOrderFormErrors = errorFromBackend => {
 	switch (errorFromBackend) {
 		case NOT_CORRECT_DATA:
 			return makeError(NOT_CORRECT_DATA);

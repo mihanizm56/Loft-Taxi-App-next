@@ -3,14 +3,15 @@ import { reduxForm } from "redux-form";
 
 class WrappedContainer extends React.Component {
 	render() {
-		const { children, ...restProps } = this.props;
+		const { children, reset, ...restProps } = this.props;
 
 		return children({
 			reduxFormProps: restProps,
+			reset,
 		});
 	}
 }
 
 export const FormContainer = reduxForm({
-	form: "credentials",
+	form: "order",
 })(WrappedContainer);

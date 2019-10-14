@@ -10,6 +10,9 @@ import {
 	getCredsEmptyStatus,
 	getOrderFromTextInfo,
 	getOrderToTextInfo,
+	addNewOrder,
+	removeOrderErrorAction,
+	resetOrderData,
 } from "../../redux/modules/orders";
 
 class WrappedContainer extends React.Component {
@@ -27,8 +30,15 @@ class WrappedContainer extends React.Component {
 
 	handleOpenInfoBox = () => this.setState({ orderInfoBoxOpened: true });
 
-	makeNewOffer = () => {
+	makeNewOrder = () => {
+		const { removeOrderError, resetData, reset } = this.props;
+		// reset form values
+		reset("order");
+		// resetOrderError
+		removeOrderError();
 		// resetOrderData
+		resetData();
+
 		this.setState({ isFormOpened: true });
 	};
 
@@ -38,8 +48,7 @@ class WrappedContainer extends React.Component {
 	};
 
 	createOrder = ({ adressFrom, adressTo }) => {
-		console.log("order create", adressFrom, adressTo);
-		// make action to send offer data
+		this.props.addNewOrder({ from: adressFrom, to: adressTo });
 	};
 
 	handleRedirectToCredentials = () => Router.push("/credentials");
@@ -48,7 +57,7 @@ class WrappedContainer extends React.Component {
 		const {
 			children,
 			isLoading,
-			error,
+			orderError,
 			orderTimeout,
 			orderIsDone,
 			areCredsEmpty,
@@ -57,7 +66,7 @@ class WrappedContainer extends React.Component {
 		} = this.props;
 		const {
 			createOrder,
-			makeNewOffer,
+			makeNewOrder,
 			handleRedirectToCredentials,
 			handleCancelOrder,
 		} = this;
@@ -66,7 +75,7 @@ class WrappedContainer extends React.Component {
 		return children({
 			createOrder,
 			isLoading,
-			error,
+			orderError,
 			orderFromText,
 			orderToText,
 			orderTimeout,
@@ -74,7 +83,7 @@ class WrappedContainer extends React.Component {
 			areCredsEmpty,
 			isFormOpened,
 			orderInfoBoxOpened,
-			makeNewOffer,
+			makeNewOrder,
 			handleRedirectToCredentials,
 			handleCancelOrder,
 		});
@@ -83,7 +92,7 @@ class WrappedContainer extends React.Component {
 
 const mapStateToProps = store => ({
 	isLoading: getLoadingOrderState(store),
-	error: getOrderError(store),
+	orderError: getOrderError(store),
 	orderTimeout: getOrderTimeout(store),
 	orderIsDone: getOrderIsDoneStatus(store),
 	orderId: getOrderId(store),
@@ -94,5 +103,9 @@ const mapStateToProps = store => ({
 
 export const ReduxContainer = connect(
 	mapStateToProps,
-	null
+	{
+		addNewOrder,
+		removeOrderError: removeOrderErrorAction,
+		resetData: resetOrderData,
+	}
 )(WrappedContainer);

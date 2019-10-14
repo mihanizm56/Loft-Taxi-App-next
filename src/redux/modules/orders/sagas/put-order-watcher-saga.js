@@ -1,11 +1,11 @@
-// import { take, fork } from "redux-saga/effects";
-// import { saveCredentialsAction } from "../actions";
-// import { credentialsWorkerSaga } from "./put-order-worker-saga";
+import { take, fork } from "redux-saga/effects";
+import { addNewOrder } from "../actions";
+import { putOrderWorkerSaga } from "./put-order-worker-saga";
 
-// export function* credentialsWatcherSaga() {
-// 	while (true) {
-// 		const { payload } = yield take(saveCredentialsAction.toString());
+export function* putOrderWatcherSaga() {
+	while (true) {
+		const { payload } = yield take(addNewOrder.toString());
 
-// 		yield fork(credentialsWorkerSaga, payload);
-// 	}
-// }
+		yield fork(putOrderWorkerSaga, payload);
+	}
+}

@@ -86,8 +86,6 @@ export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
 			}
 		} catch (error) {
 			console.log("error in credentialsWorkerSaga", error);
-			yield put(setCredentialsErrorAction(error));
-
 			yield put(
 				stopSubmit(
 					"credentials",
@@ -95,6 +93,7 @@ export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
 				)
 			);
 
+			yield put(setCredentialsErrorAction(error));
 			yield put(stopCredentialsLoadingAction()); // stop loading animation
 		}
 	} catch (error) {
@@ -105,6 +104,7 @@ export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
 				translatorCredentialsFormErrors(INTERNAL_SERVER_ERROR)
 			)
 		);
+
 		yield put(setCredentialsErrorAction(error));
 		yield put(stopCredentialsLoadingAction()); // stop loading animation
 	}

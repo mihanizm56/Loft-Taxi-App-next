@@ -7,21 +7,24 @@ import {
 	SET_ORDER_LOADING_STOP,
 	SET_CREDS_EMPTY,
 	SET_CREDS_FULL,
+	RESET_ORDER_DATA,
 } from "./constants";
+
+const defaultOrderValue = {
+	from_coords: null,
+	to_coords: null,
+	from_text: null,
+	to_text: null,
+	exp_time: null,
+	is_done: true,
+	id: null,
+};
 
 const initialState = {
 	error: null,
 	isLoading: false,
 	areCredsEmpty: false,
-	order: {
-		from_coords: null,
-		to_coords: null,
-		from_text: null,
-		to_text: null,
-		exp_time: null,
-		is_done: true,
-		id: null,
-	},
+	order: defaultOrderValue,
 };
 
 const ordersStorage = handleActions(
@@ -59,6 +62,11 @@ const ordersStorage = handleActions(
 		[SET_CREDS_FULL]: state => ({
 			...state,
 			areCredsEmpty: false,
+		}),
+
+		[RESET_ORDER_DATA]: state => ({
+			...state,
+			order: { ...state.order, ...defaultOrderValue },
 		}),
 	},
 	initialState

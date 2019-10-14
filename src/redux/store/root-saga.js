@@ -5,6 +5,7 @@ import {
 	logoutWatcherSaga,
 } from "../modules/auth/sagas";
 import { credentialsWatcherSaga } from "../modules/credentials/sagas";
+import { putOrderWatcherSaga } from "../modules/orders/sagas";
 
 export function* rootSaga() {
 	yield all([
@@ -12,5 +13,6 @@ export function* rootSaga() {
 		fork(authWatcherSaga),
 		fork(logoutWatcherSaga),
 		fork(credentialsWatcherSaga),
+		fork(putOrderWatcherSaga),
 	]);
 }

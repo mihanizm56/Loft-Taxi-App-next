@@ -7,8 +7,8 @@ import {
 } from "./constants";
 
 const initialState = {
-	fromCoords: [],
-	toCoords: [],
+	fromCoords: {},
+	toCoords: {},
 	error: null,
 };
 

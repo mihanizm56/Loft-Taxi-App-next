@@ -7,36 +7,36 @@ import "./styles/index.css";
 export const OrdersModule = () => {
 	return (
 		<FormContainer>
-			{({ reduxFormProps }) => (
-				<ReduxContainer>
+			{({ reduxFormProps, reset }) => (
+				<ReduxContainer reset={reset}>
 					{({
 						createOrder,
 						isLoading,
-						error,
+						orderError,
 						orderFromText,
 						orderToText,
 						orderTimeout,
 						areCredsEmpty,
 						isFormOpened,
 						orderInfoBoxOpened,
-						makeNewOffer,
+						makeNewOrder,
 						handleRedirectToCredentials,
 						handleCancelOrder,
 					}) => (
 						<OrdersViewSwitcher
-							{...reduxFormProps}
 							createOrder={createOrder}
 							isLoading={isLoading}
-							error={error}
+							orderError={orderError}
 							orderFromText={orderFromText}
 							orderToText={orderToText}
 							orderTimeout={orderTimeout}
 							isFormOpened={isFormOpened}
 							orderInfoBoxOpened={orderInfoBoxOpened}
-							makeNewOffer={makeNewOffer}
+							makeNewOrder={makeNewOrder}
 							handleRedirectToCredentials={handleRedirectToCredentials}
 							handleCancelOrder={handleCancelOrder}
 							areCredsEmpty={areCredsEmpty}
+							{...reduxFormProps}
 						/>
 					)}
 				</ReduxContainer>
