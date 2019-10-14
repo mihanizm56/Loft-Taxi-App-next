@@ -1,11 +1,19 @@
 import React from "react";
-import { OrderInfoBox } from "../../components/molecules";
+import { OrdersViewSwitcher } from "./orders-view-switcher";
+import { FormContainer } from "./form-container";
+import { ReduxContainer } from "./redux-container";
 import "./styles/index.css";
 
 export const OrdersModule = () => {
 	return (
-		<div className="order-container">
-			<OrderInfoBox />
-		</div>
+		<FormContainer>
+			{({ reduxFormProps }) => (
+				<ReduxContainer>
+					{({ createOrder }) => (
+						<OrdersViewSwitcher {...reduxFormProps} createOrder={createOrder} />
+					)}
+				</ReduxContainer>
+			)}
+		</FormContainer>
 	);
 };
