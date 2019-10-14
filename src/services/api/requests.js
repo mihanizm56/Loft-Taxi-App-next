@@ -144,12 +144,12 @@ export const fetchGetLastOrder = () =>
 			id: "5da4d2d894bd902daca9dba9",
 			is_done: false,
 			from_coords: {
-				Latitude: 55.75697,
-				Longitude: 37.61502,
+				lat: 55.75697,
+				lng: 37.61502,
 			},
 			to_coords: {
-				Latitude: 59.93318,
-				Longitude: 30.30605,
+				lat: 59.93318,
+				lng: 30.30605,
 			},
 			from_text: "Москва",
 			to_text: "Санкт-Петербург",

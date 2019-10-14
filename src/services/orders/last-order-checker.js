@@ -6,6 +6,7 @@ import {
 	setCredsEmpty,
 	setCredsFull,
 } from "../../redux/modules/orders";
+import { setCoordsActions } from "../../redux/modules/addresses";
 import { fetchGetUserCreds, fetchGetLastOrder, fetchUpdOrder } from "../api";
 import { isServerPlatform } from "../../utils/helpers/server-checker";
 import { INTERNAL_SERVER_ERROR } from "../../constants";
@@ -100,6 +101,9 @@ export const handleLastOrderStatus = async ({ ctx }) => {
 			// есть креды и есть заказ
 			if (order) {
 				console.log("есть креды и есть заказ");
+				dispatch(
+					setCoordsActions({ from: order.from_coords, to: order.to_coords })
+				);
 				dispatch(setOrderData(order));
 			}
 		} catch (error) {

@@ -20,7 +20,7 @@ export class MapBox extends Component {
 	static getDerivedStateFromProps(nextProps) {
 		const { fromCoords, toCoords, coordsError } = nextProps;
 
-		return fromCoords.length && toCoords.length && !coordsError
+		return fromCoords && toCoords && !coordsError
 			? { coordsToStart: fromCoords, coordsToFinish: toCoords }
 			: { coordsToStart: EMPTY_ARRAY, coordsToFinish: EMPTY_ARRAY };
 	}
@@ -38,30 +38,49 @@ export class MapBox extends Component {
 	}
 
 	componentDidMount() {
+		const { coordsToStart, coordsToFinish } = this.state;
+		console.log("state in mapbox", this.state);
 		this.initializeMap(DEFAULT_CONSTANTS);
+
+		if (coordsToStart && coordsToFinish) {
+			this.map.on("load", () => {
+				this.addTheLine([
+					[coordsToStart.lng, coordsToStart.lat],
+					[coordsToFinish.lng, coordsToFinish.lat],
+				]);
+				this.flyToPoint(coordsToFinish);
+			});
+		}
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
+		console.log(
+			"props in shouldComponentUpdate",
+			isEqual(nextState, this.state)
+		);
 		// TODO написать сравнение руками
 		return !isEqual(nextState, this.state);
 	}
 
-	componentDidUpdate(prevState) {
-		console.log("UPDATED MAPBOX", this.state);
+	// componentDidUpdate(prevState) {
+	// 	console.log("UPDATED MAPBOX", this.state);
 
-		// TODO написать сравнение руками
-		const { coordsToStart, coordsToFinish } = this.state;
+	// 	// TODO написать сравнение руками
+	// 	const { coordsToStart, coordsToFinish } = this.state;
 
-		if (!coordsToStart.length || !coordsToFinish.length) {
-			this.removeLayer();
-			return;
-		}
+	// 	if (!coordsToStart || !coordsToFinish) {
+	// 		this.removeLayer();
+	// 		return;
+	// 	}
 
-		if (!isEqual(prevState, this.state)) {
-			this.addTheLine([coordsToStart, coordsToFinish]);
-			this.flyToPoint(coordsToFinish);
-		}
-	}
+	// 	if (!isEqual(prevState, this.state)) {
+	// 		this.addTheLine([
+	// 			[coordsToStart.lat, coordsToStart.lng],
+	// 			[coordsToFinish.lat, coordsToFinish.lng],
+	// 		]);
+	// 		this.flyToPoint(coordsToFinish);
+	// 	}
+	// }
 
 	componentWillUnmount() {
 		if (this.map) {
@@ -79,6 +98,7 @@ export class MapBox extends Component {
 	};
 
 	addTheLine = coordinates =>
+		console.log("addTheLine coordinates", coordinates) ||
 		this.map.addLayer({
 			id: "route",
 			type: "line",

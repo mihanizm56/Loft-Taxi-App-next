@@ -7,6 +7,7 @@ import {
 	SET_ORDER_LOADING_STOP,
 	SET_CREDS_EMPTY,
 	SET_CREDS_FULL,
+	ADD_ORDER,
 } from "./constants";
 
 export const setOrderData = createAction(SET_ORDER_DATA);
@@ -16,3 +17,4 @@ export const setOrderLoadingStart = createAction(SET_ORDER_LOADING_START);
 export const setOrderLoadingStop = createAction(SET_ORDER_LOADING_STOP);
 export const setCredsEmpty = createAction(SET_CREDS_EMPTY);
 export const setCredsFull = createAction(SET_CREDS_FULL);
+export const addNewOrder = createAction(ADD_ORDER);
