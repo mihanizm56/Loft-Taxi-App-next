@@ -1,0 +1,21 @@
+.order-error-box {
+    /* border: 1px solid green; */
+}
+
+.order-error-box__button {
+    display: flex;
+    justify-content: center;
+}
+
+.order-error-box__title {
+    margin: 0;
+    padding: 30px 0 30px 0;
+    font-size: 20px;
+    font-family: "OpenSans", "Arial", sans-serif;
+    text-align: center;
+}
+
+.order-error-box__error-icon {
+    display: flex;
+    justify-content: center;
+}
