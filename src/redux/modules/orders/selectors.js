@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 const isLoadingSelector = state => state.ordersStorage.isLoading;
 const errorSelector = state => state.ordersStorage.error;
 const orderSelector = state => state.ordersStorage.order;
+const credsEmptySelector = state => state.ordersStorage.areCredsEmpty;
 
 export const getLoadingOrderState = createSelector(
 	[isLoadingSelector],
@@ -19,27 +20,42 @@ export const getOrderData = createSelector(
 	data => data
 );
 
-export const getOrderFromInfo = createSelector(
+export const getOrderFromCoordsInfo = createSelector(
 	[getOrderData],
-	order => order.from
+	order => order.from_coords
 );
 
-export const getOrderToInfo = createSelector(
+export const getOrderToCoordsInfo = createSelector(
 	[getOrderData],
-	order => order.to
+	order => order.to_coords
+);
+
+export const getOrderFromTextInfo = createSelector(
+	[getOrderData],
+	order => order.from_text
+);
+
+export const getOrderToTextInfo = createSelector(
+	[getOrderData],
+	order => order.to_text
 );
 
 export const getOrderTimeout = createSelector(
 	[getOrderData],
-	order => order.timeOutOrder
+	order => order.exp_time
 );
 
 export const getOrderIsDoneStatus = createSelector(
 	[getOrderData],
-	order => order.orderIsDone
+	order => order.is_done
 );
 
 export const getOrderId = createSelector(
 	[getOrderData],
-	order => order.orderId
+	order => order.id
+);
+
+export const getCredsEmptyStatus = createSelector(
+	[credsEmptySelector],
+	areEmpty => areEmpty
 );

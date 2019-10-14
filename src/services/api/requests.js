@@ -151,6 +151,8 @@ export const fetchGetLastOrder = () =>
 				Latitude: 59.93318,
 				Longitude: 30.30605,
 			},
+			from_text: "Москва",
+			to_text: "Санкт-Петербург",
 			exp_time: 120000,
 		},
 	});

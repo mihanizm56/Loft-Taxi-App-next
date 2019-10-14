@@ -5,17 +5,22 @@ import {
 	REMOVE_ORDER_ERROR,
 	SET_ORDER_LOADING_START,
 	SET_ORDER_LOADING_STOP,
+	SET_CREDS_EMPTY,
+	SET_CREDS_FULL,
 } from "./constants";
 
 const initialState = {
 	error: null,
 	isLoading: false,
+	areCredsEmpty: false,
 	order: {
-		from: null,
-		to: null,
-		timeOutOrder: null,
-		orderIsDone: false,
-		orderId: null,
+		from_coords: null,
+		to_coords: null,
+		from_text: null,
+		to_text: null,
+		exp_time: null,
+		is_done: true,
+		id: null,
 	},
 };
 
@@ -44,6 +49,16 @@ const ordersStorage = handleActions(
 		[SET_ORDER_LOADING_STOP]: state => ({
 			...state,
 			isLoading: false,
+		}),
+
+		[SET_CREDS_EMPTY]: state => ({
+			...state,
+			areCredsEmpty: true,
+		}),
+
+		[SET_CREDS_FULL]: state => ({
+			...state,
+			areCredsEmpty: false,
 		}),
 	},
 	initialState

@@ -10,7 +10,7 @@ class Main extends React.Component {
 		console.log("AM ON THE MAIN PAGE");
 
 		await handleAuthSSR(ctx);
-		await handleLastOrderStatus();
+		await handleLastOrderStatus(ctx);
 
 		return {
 			namespacesRequired: ["common"],

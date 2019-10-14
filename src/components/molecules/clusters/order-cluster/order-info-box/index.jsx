@@ -64,6 +64,7 @@ export class OrderInfoBox extends React.Component {
 						variant="outlined"
 						color="primary"
 						onClick={handleCancelOrder}
+						disabled={Boolean(timeToGetTaxi)}
 					>
 						Отменить заказ
 					</Button>
