@@ -43,12 +43,12 @@ export function* cancelOrderWorkerSaga(action) {
 			}
 
 			yield put(setOrderLoadingStop()); // stop loading animation
-			// resetOrderCoords // TODO fix the bug with the deleteing coords from the map
+			// resetOrderCoords
 			yield put(deleteCoordsAction());
 		} else {
 			// resetOrderData
 			yield put(resetOrderData());
-			// resetOrderCoords // TODO fix the bug with the deleteing coords from the map
+			// resetOrderCoords
 			yield put(deleteCoordsAction());
 		}
 	} catch (error) {
