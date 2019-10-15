@@ -133,12 +133,13 @@ export class MapBox extends Component {
 		});
 
 	removeLayer = () => {
-		if (this.map.getSource("route")) {
-			this.map.removeSource("route");
-		}
+		const { map } = this;
 
-		if (this.map.getLayer("route")) {
-			this.map.removeLayer("route");
+		map.removeLayer("route");
+		map.removeSource("route");
+
+		if (map.getSource("route")) {
+			map.removeSource("route");
 		}
 	};
 

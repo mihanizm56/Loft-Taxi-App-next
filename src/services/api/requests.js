@@ -79,7 +79,7 @@ export const fetchGetUserCreds = () =>
 	});
 
 // /credentials-upd (post)
-const counter = 0;
+let counter = 0;
 
 /* eslint-disable */
 export const fetchUpdUserCreds = () => {

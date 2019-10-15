@@ -7,7 +7,7 @@ import {
 } from "./constants";
 
 export const setCoordsActions = createAction(SET_COORDS);
-export const deleteCoordsActions = createAction(DELETE_COORDS);
+export const deleteCoordsAction = createAction(DELETE_COORDS);
 
 export const setAddressesErrorAction = createAction(SET_ADDRESSES_ERROR);
 export const removeAddressesErrorAction = createAction(REMOVE_ADDRESSES_ERROR);

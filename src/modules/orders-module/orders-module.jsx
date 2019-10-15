@@ -22,6 +22,7 @@ export const OrdersModule = () => {
 						makeNewOrder,
 						handleRedirectToCredentials,
 						handleCancelOrder,
+						cancelOrder,
 					}) => (
 						<OrdersViewSwitcher
 							createOrder={createOrder}
@@ -36,6 +37,7 @@ export const OrdersModule = () => {
 							handleRedirectToCredentials={handleRedirectToCredentials}
 							handleCancelOrder={handleCancelOrder}
 							areCredsEmpty={areCredsEmpty}
+							cancelOrder={cancelOrder}
 							{...reduxFormProps}
 						/>
 					)}

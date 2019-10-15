@@ -13,17 +13,18 @@ import {
 	addNewOrder,
 	removeOrderErrorAction,
 	resetOrderData,
+	cancelOrder as cancelOrderAction,
 } from "../../redux/modules/orders";
 
 class WrappedContainer extends React.Component {
-	static getDerivedStateFromProps(nextProps, prevState) {
+	static getDerivedStateFromProps(nextProps) {
 		const { orderIsDone } = nextProps;
 
 		if (!orderIsDone) {
 			return { orderInfoBoxOpened: true, isFormOpened: false };
 		}
 
-		return prevState;
+		return { orderInfoBoxOpened: false, isFormOpened: true };
 	}
 
 	state = { isFormOpened: false, orderInfoBoxOpened: false };
@@ -43,8 +44,11 @@ class WrappedContainer extends React.Component {
 	};
 
 	handleCancelOrder = () => {
-		// resetOrderData and fetch close order
+		const { cancelOrder, orderId } = this.props;
+
 		this.setState({ isFormOpened: true });
+		// call cancel order saga
+		cancelOrder({ orderId });
 	};
 
 	createOrder = ({ adressFrom, adressTo }) => {
@@ -107,5 +111,6 @@ export const ReduxContainer = connect(
 		addNewOrder,
 		removeOrderError: removeOrderErrorAction,
 		resetData: resetOrderData,
+		cancelOrder: cancelOrderAction,
 	}
 )(WrappedContainer);

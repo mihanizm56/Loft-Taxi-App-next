@@ -7,3 +7,4 @@ export const SET_CREDS_EMPTY = "SET_CREDS_EMPTY";
 export const SET_CREDS_FULL = "SET_CREDS_FULL";
 export const ADD_ORDER = "ADD_ORDER";
 export const RESET_ORDER_DATA = "RESET_ORDER_DATA";
+export const CANCEL_ORDER = 'CANCEL_ORDER';

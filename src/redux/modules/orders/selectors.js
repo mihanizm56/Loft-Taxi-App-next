@@ -52,7 +52,7 @@ export const getOrderIsDoneStatus = createSelector(
 
 export const getOrderId = createSelector(
 	[getOrderData],
-	order => order.id
+	order => order.order_id
 );
 
 export const getCredsEmptyStatus = createSelector(

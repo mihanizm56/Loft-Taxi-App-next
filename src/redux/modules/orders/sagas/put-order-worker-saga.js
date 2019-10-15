@@ -25,6 +25,7 @@ export function* putOrderWorkerSaga({ from, to }) {
 	yield call(sleep, 1000); // wait for spinner
 
 	try {
+		// TODO refactor mapping of the order data
 		const { error, order } = yield call(fetchAddNewOrder, { token, from, to });
 
 		if (error) {
