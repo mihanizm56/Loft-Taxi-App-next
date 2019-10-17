@@ -58,11 +58,19 @@ export const handleLastOrderStatus = async ({ ctx }) => {
 			} = await fetchGetUserCreds({
 				token,
 			});
+			console.log(
+				"результат запроса fetchGetUserCreds",
+				userCredsError,
+				areUserCredsEmpty
+			);
 
 			// ошибка
 			if (userCredsError) {
-				console.log("получил ошибку в запросе fetchGetUserCreds", error);
-				dispatch(setOrderErrorAction(error));
+				console.log(
+					"получил ошибку в запросе fetchGetUserCreds",
+					userCredsError
+				);
+				dispatch(setOrderErrorAction(userCredsError));
 				return;
 			}
 

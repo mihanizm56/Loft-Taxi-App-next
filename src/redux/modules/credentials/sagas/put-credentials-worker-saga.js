@@ -17,10 +17,10 @@ import { translatorCredentialsFormErrors } from "../../../../services/translate/
 
 const cookies = new Cookies();
 
-export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
+export function* credentialsWorkerSaga({ cardUser, expDate, cardNumber, cvv }) {
 	console.log(
-		"CHECK credentialsWorkerSaga SAGA",
-		cardName,
+		"CHECK credentialsWorkerSaga",
+		cardUser,
 		expDate,
 		cardNumber,
 		cvv
@@ -38,7 +38,7 @@ export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
 		try {
 			// eslint-disable-next-line
 			const { message, error } = yield call(fetchUpdUserCreds, {
-				cardName,
+				cardUser,
 				expDate,
 				cardNumber,
 				cvv,
@@ -53,7 +53,7 @@ export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
 			if (message && !error) {
 				console.log("CORRECT REQUEST, PUT CREDS IN STORE");
 
-				yield put(putCredentialsAction({ cardName, expDate, cardNumber, cvv }));
+				yield put(putCredentialsAction({ cardUser, expDate, cardNumber, cvv }));
 
 				yield put(stopCredentialsLoadingAction()); // stop loading animation
 				return;
@@ -67,7 +67,7 @@ export function* credentialsWorkerSaga({ cardName, expDate, cardNumber, cvv }) {
 
 				// recursive call credentialsWorkerSaga
 				yield call(credentialsWorkerSaga, {
-					cardName,
+					cardUser,
 					expDate,
 					cardNumber,
 					cvv,

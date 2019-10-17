@@ -1,14 +1,14 @@
 import { createSelector } from "reselect";
 
-const cardNameState = state => state.сredentialsStorage.card.cardName;
+const cardUserState = state => state.сredentialsStorage.card.cardUser;
 const expDateState = state => state.сredentialsStorage.card.expDate;
 const cardNumberState = state => state.сredentialsStorage.card.cardNumber;
 const cvvState = state => state.сredentialsStorage.card.cvv;
 const errorState = state => state.сredentialsStorage.error;
 const loadingState = state => state.сredentialsStorage.isLoading;
 
-export const getCardNameState = createSelector(
-	[cardNameState],
+export const getcardUserState = createSelector(
+	[cardUserState],
 	name => name
 );
 
@@ -38,7 +38,7 @@ export const getLoadingState = createSelector(
 );
 
 export const getAllFormValues = createSelector(
-	[getCardNameState, getExpDateState, getCardNumberState, getCvvState],
-	(cardName, expDate, cardNumber, cvv) =>
-		Boolean(cardName && expDate && cardNumber && cvv)
+	[getcardUserState, getExpDateState, getCardNumberState, getCvvState],
+	(cardUser, expDate, cardNumber, cvv) =>
+		Boolean(cardUser && expDate && cardNumber && cvv)
 );

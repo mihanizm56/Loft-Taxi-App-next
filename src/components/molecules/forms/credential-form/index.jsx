@@ -18,9 +18,9 @@ const FormComponent = props => {
 					<div className="credentials-form__row-container">
 						<div className="credentials-form__item">
 							<Field
-								name="cardName"
+								name="cardUser"
 								type="text"
-								// normalize={normalizeCardName}
+								// normalize={normalizecardUser}
 								component={TextField}
 								label="Имя владельца *"
 								// onDrop={preventDefault}

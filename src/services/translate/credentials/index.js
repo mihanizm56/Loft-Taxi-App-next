@@ -8,7 +8,7 @@ import {
 } from "../../../constants";
 
 const makeError = error => ({
-	cardName: error || SORRY_CLIENT_ERROR,
+	cardUser: error || SORRY_CLIENT_ERROR,
 	expDate: error || SORRY_CLIENT_ERROR,
 	cardNumber: error || SORRY_CLIENT_ERROR,
 	cvv: error || SORRY_CLIENT_ERROR,

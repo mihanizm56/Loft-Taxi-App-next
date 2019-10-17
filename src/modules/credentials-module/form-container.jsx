@@ -16,6 +16,6 @@ class WrappedContainer extends React.Component {
 
 export const FormContainer = reduxForm({
 	// asyncValidate: asyncValidateForCredentials,
-	// asyncBlurFields: ["cvv", "cardNumber", "cardName", "expDate"],
+	// asyncBlurFields: ["cvv", "cardNumber", "cardUser", "expDate"],
 	form: "orders",
 })(WrappedContainer);

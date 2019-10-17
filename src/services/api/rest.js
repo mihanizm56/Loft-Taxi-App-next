@@ -17,7 +17,7 @@ export const putRequest = ({ endpoint, data, authorize }) => {
 			// "Access-Control-Allow-Origin": "*",
 			"Content-Type": "application/json",
 			"Cache-Control": "no-cache",
-			Authorization: authorize && authorize.token,
+			Authorization: authorize && `Bearer ${authorize.token}`,
 		},
 		body: JSON.stringify(data),
 	};
@@ -37,7 +37,7 @@ export const postRequest = ({ endpoint, data, authorize }) => {
 			// "Access-Control-Allow-Origin": "*",
 			"Content-Type": "application/json",
 			"Cache-Control": "no-cache",
-			Authorization: authorize && authorize.token,
+			Authorization: authorize && `Bearer ${authorize.token}`,
 		},
 		body: JSON.stringify(data),
 	};
@@ -56,7 +56,7 @@ export const patchRequest = ({ endpoint, data, authorize }) => {
 			// "Access-Control-Allow-Origin": "*",
 			"Content-Type": "application/json",
 			"Cache-Control": "no-cache",
-			Authorization: authorize && authorize.token,
+			Authorization: authorize && `Bearer ${authorize.token}`,
 		},
 		body: JSON.stringify(data),
 	};
