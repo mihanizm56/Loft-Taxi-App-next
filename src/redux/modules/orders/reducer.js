@@ -17,7 +17,7 @@ const defaultOrderValue = {
 	to_text: null,
 	exp_time: null,
 	is_done: true,
-	id: null,
+	order_id: null,
 };
 
 const initialState = {

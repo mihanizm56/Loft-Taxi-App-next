@@ -7,6 +7,7 @@ import {
 	getToCoords,
 	getCoordsError,
 } from "../../redux/modules/addresses";
+import { getOrderIsDoneStatus } from "../../redux/modules/orders";
 import "./styles/index.css";
 
 // eslint-disable-next-line
@@ -17,14 +18,15 @@ const DEFAULT_CONSTANTS = [30.2656504, 59.8029126];
 
 export class MapBox extends Component {
 	static getDerivedStateFromProps(nextProps) {
-		const { fromCoords, toCoords, coordsError } = nextProps;
-		console.log("getDerivedStateFromProps nextProps", nextProps);
+		const { fromCoords, toCoords, coordsError, orderIsDone } = nextProps;
+		console.log(
+			"getDerivedStateFromProps nextProps in MapBox",
+			Boolean(orderIsDone || coordsError)
+		);
 
-		return Object.keys(fromCoords).length &&
-			Object.keys(toCoords).length &&
-			!coordsError
-			? { coordsToStart: fromCoords, coordsToFinish: toCoords }
-			: { coordsToStart: {}, coordsToFinish: {} };
+		return orderIsDone || coordsError
+			? { coordsToStart: {}, coordsToFinish: {} }
+			: { coordsToStart: fromCoords, coordsToFinish: toCoords };
 	}
 
 	constructor() {
@@ -58,31 +60,26 @@ export class MapBox extends Component {
 		}
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		// console.log(
-		// 	"props in shouldComponentUpdate",
-		// 	nextState,
-		// 	this.state
-		// );
-		// TODO написать сравнение руками
-		return !isEqual(nextState, this.state);
-	}
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	// console.log(
+	// 	// 	"props in shouldComponentUpdate",
+	// 	// 	nextState,
+	// 	// 	this.state
+	// 	// );
+	// 	// TODO написать сравнение руками
+	// 	return !isEqual(nextState, this.state);
+	// }
 
 	componentDidUpdate(prevProps, prevState) {
 		// TODO написать сравнение руками
 		const { coordsToStart, coordsToFinish } = this.state;
+		const { orderIsDone, coordsError } = this.props;
 
-		console.log("UPDATED MAPBOX");
+		console.log("UPDATED MAPBOX", this.state, this.props);
 
-		if (
-			!Object.keys(coordsToStart).length ||
-			!Object.keys(coordsToFinish).length
-		) {
+		if (orderIsDone || coordsError) {
 			this.removeLayer();
-			return;
-		}
-
-		if (!isEqual(prevState, this.state)) {
+		} else if (!isEqual(prevState, this.state)) {
 			this.addTheLine([
 				[coordsToStart.lng, coordsToStart.lat],
 				[coordsToFinish.lng, coordsToFinish.lat],
@@ -154,6 +151,7 @@ export class MapBox extends Component {
 }
 
 const mapStateToProps = store => ({
+	orderIsDone: getOrderIsDoneStatus(store),
 	fromCoords: getFromCoords(store),
 	toCoords: getToCoords(store),
 	coordsError: getCoordsError(store),

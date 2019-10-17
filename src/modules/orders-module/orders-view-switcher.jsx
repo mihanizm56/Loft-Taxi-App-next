@@ -27,7 +27,7 @@ export const OrdersViewSwitcher = ({
 }) => {
 	// typeof window !== "undefined" &&
 	// 	console.log("props in OrdersViewSwitcher", {
-	// 		orderError,
+	// 		isLoading,
 	// 	});
 
 	let ComponentToShow;

@@ -20,6 +20,8 @@ class WrappedContainer extends React.Component {
 	static getDerivedStateFromProps(nextProps) {
 		const { orderIsDone } = nextProps;
 
+		console.log('orderIsDone', orderIsDone);
+
 		if (!orderIsDone) {
 			return { orderInfoBoxOpened: true, isFormOpened: false };
 		}

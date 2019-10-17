@@ -8,7 +8,7 @@ import {
 	setOrderLoadingStop,
 } from "../actions";
 import { refreshSaga } from "../../auth/sagas/refresh-saga";
-import { setCoordsActions } from "../../addresses";
+import { setCoordsAction } from "../../addresses";
 import { fetchAddNewOrder } from "../../../../services/api/requests";
 import { INTERNAL_SERVER_ERROR, EXPIRED } from "../../../../constants";
 import { sleep } from "../../../../utils";
@@ -33,6 +33,7 @@ export function* putOrderWorkerSaga({ from, to }) {
 			to,
 			timestamp,
 		});
+		console.log("get API response in fetchAddNewOrder", { error, order });
 
 		if (error) {
 			console.log("get an error from request in putOrderWorkerSaga", error);
@@ -51,17 +52,15 @@ export function* putOrderWorkerSaga({ from, to }) {
 				});
 			} else {
 				yield put(stopSubmit("order", translatorOrderFormErrors(error)));
-				yield put(setOrderLoadingStop()); // stop loading animation
 			}
+		} else if (order) {
+			yield put(
+				setCoordsAction({ from: order.from_coords, to: order.to_coords }) // set coords
+			);
+			yield put(setOrderData(order)); // set order data
 		}
 
-		if (!error && order) {
-			yield put(setOrderData(order)); // set order data
-			yield put(
-				setCoordsActions({ from: order.from_coords, to: order.to_coords }) // set coords
-			);
-			yield put(setOrderLoadingStop()); // stop loading animation
-		}
+		yield put(setOrderLoadingStop()); // stop loading animation
 	} catch (error) {
 		console.log("error in credentialsWorkerSaga", error);
 

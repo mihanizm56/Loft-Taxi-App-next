@@ -41,16 +41,14 @@ export function* cancelOrderWorkerSaga(action) {
 			} else {
 				yield put(setOrderErrorAction(error));
 			}
-
-			yield put(setOrderLoadingStop()); // stop loading animation
-			// resetOrderCoords
-			yield put(deleteCoordsAction());
-		} else {
-			// resetOrderData
-			yield put(resetOrderData());
-			// resetOrderCoords
-			yield put(deleteCoordsAction());
 		}
+
+		// resetOrderData
+		yield put(resetOrderData());
+		// resetOrderCoords
+		yield put(deleteCoordsAction());
+		// stop loading animation
+		yield put(setOrderLoadingStop());
 	} catch (error) {
 		console.log("error in cancelOrderWorkerSaga", error);
 

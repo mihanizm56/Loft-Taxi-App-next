@@ -15,7 +15,8 @@ export const getRequest = ({ endpoint, authorize }) => {
 
 	const request = fetch(endpoint, paramsObject)
 		.then(data => data.json())
-		.catch(() => ({ error: "request-error", message: "" }));
+		.catch((error) => console.log('error in request',error)||
+			({ error: "request-error", message: "" }));
 
 	return requestRacer({ request });
 };
@@ -35,7 +36,8 @@ export const putRequest = ({ endpoint, data, authorize }) => {
 
 	const request = fetch(endpoint, paramsObject)
 		.then(fetchedData => fetchedData.json())
-		.catch(() => ({ error: "request-error", message: "" }));
+		.catch((error) => console.log('error in request',error)||
+			({ error: "request-error", message: "" }));
 
 	return requestRacer({ request });
 };
@@ -54,7 +56,8 @@ export const postRequest = ({ endpoint, data, authorize }) => {
 	};
 	const request = fetch(endpoint, paramsObject)
 		.then(fetchedData => fetchedData.json())
-		.catch(() => ({ error: "request-error", message: "" }));
+		.catch((error) => console.log('error in request',error)||
+			({ error: "request-error", message: "" }));
 
 	return requestRacer({ request });
 };
@@ -73,7 +76,8 @@ export const patchRequest = ({ endpoint, data, authorize }) => {
 	};
 	const request = fetch(endpoint, paramsObject)
 		.then(fetchedData => fetchedData.json())
-		.catch(() => ({ error: "request-error", message: "" }));
+		.catch((error) => console.log('error in request',error)||
+			({ error: "request-error", message: "" }));
 
 	return requestRacer({ request });
 };
