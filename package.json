@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "cross-env-shell NODE_ENV=production && node server.js",
     "stop": "taskkill /F /IM node.exe",
-    "push": "git add . && git cz && git push",
+    "push": "git add . && npm run lint && git cz && git push",
     "server": "cd server && npm start",
     "test:ci": "set CI=true && jest",
     "test": "jest",
