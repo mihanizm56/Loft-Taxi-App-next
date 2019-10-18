@@ -1,8 +1,19 @@
 import fetch from "isomorphic-unfetch";
 import { requestRacer } from "./utils/request-racer";
 
-export const getRequest = ({ endpoint }) => {
-	const request = fetch(endpoint)
+export const getRequest = ({ endpoint, authorize }) => {
+	const paramsObject = {
+		method: "GET",
+		headers: {
+			Accept: "application/json",
+			// "Access-Control-Allow-Origin": "*",
+			"Content-Type": "application/json",
+			"Cache-Control": "no-cache",
+			Authorization: authorize && `Bearer ${authorize.token}`,
+		},
+	};
+
+	const request = fetch(endpoint, paramsObject)
 		.then(data => data.json())
 		.catch(() => ({ error: "request-error", message: "" }));
 

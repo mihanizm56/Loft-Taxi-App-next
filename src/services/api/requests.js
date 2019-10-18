@@ -6,8 +6,12 @@
 // export const NOT_FOUND = "not found";
 // export const SORRY_CLIENT_ERROR = "sorry, something goes wrong";
 
-import { postRequest, putRequest, patchRequest } from "./rest";
-import { getAuthEndpoint, getCredentialsEndpoint } from "./endpoints";
+import { postRequest, putRequest, patchRequest, getRequest } from "./rest";
+import {
+	getAuthEndpoint,
+	getCredentialsEndpoint,
+	getOrdersEndpoint,
+} from "./endpoints";
 // /login login-user
 // export const fetchLoginRequest = () =>
 // 	Promise.resolve({
@@ -137,69 +141,70 @@ export const fetchUpdUserCreds = ({
 // 	});
 
 // /orders-add
-// export const fetchGetLastOrder = ({ token, from, to }) =>
-// 	getRequest({
-// 		endpoint: getOrdersEndpoint(),
-// 		data: { from, to },
-// 		authorize: { token },
-// 	});
-export const fetchGetLastOrder = () =>
-	Promise.resolve({
-		message: "success",
-		error: "",
-		// order: {
-		// 	id: "5da4d2d894bd902daca9dba9",
-		// 	is_done: false,
-		// 	from_coords: {
-		// 		lat: 55.75697,
-		// 		lng: 37.61502,
-		// 	},
-		// 	to_coords: {
-		// 		lat: 59.93318,
-		// 		lng: 30.30605,
-		// 	},
-		// 	from_text: "Москва",
-		// 	to_text: "Санкт-Петербург",
-		// 	exp_time: 120000,
-		// },
+export const fetchGetLastOrder = ({ token }) =>
+	getRequest({
+		endpoint: getOrdersEndpoint(),
+		data: {},
+		authorize: { token },
 	});
+// export const fetchGetLastOrder = () =>
+// 	Promise.resolve({
+// 		message: "success",
+// 		error: "",
+// order: {
+// 	id: "5da4d2d894bd902daca9dba9",
+// 	is_done: false,
+// 	from_coords: {
+// 		lat: 55.75697,
+// 		lng: 37.61502,
+// 	},
+// 	to_coords: {
+// 		lat: 59.93318,
+// 		lng: 30.30605,
+// 	},
+// 	from_text: "Москва",
+// 	to_text: "Санкт-Петербург",
+// 	exp_time: 120000,
+// },
+// });
 
 // /orders-upd
-// export const fetchUpdOrder = ({ orderId, token }) =>
-// postRequest({
-// 	endpoint: getOrdersEndpoint(),
-// 	data: { orderId },
-// 	authorize: { token },
-// });
-export const fetchUpdOrder = () =>
-	Promise.resolve({
-		message: "success",
-		error: "",
+export const fetchUpdOrder = ({ orderId, token }) =>
+	postRequest({
+		endpoint: getOrdersEndpoint(),
+		data: { orderId },
+		authorize: { token },
+	});
+// export const fetchUpdOrder = () =>
+// 	Promise.resolve({
+// 		message: "success",
+// 		error: "",
+// 	});
+
+export const fetchAddNewOrder = ({ token, from, to, timestamp }) =>
+	putRequest({
+		endpoint: getOrdersEndpoint(),
+		data: { from, to, timestamp },
+		authorize: { token },
 	});
 
-// export const fetchAddNewOrder = ({ token, from, to }) =>
-// 	putRequest({
-// 		endpoint: getOrdersEndpoint(),
-// 		data: { from, to },
-// 		authorize: { token },
+// export const fetchAddNewOrder = () =>
+// 	Promise.resolve({
+// 		message: "success",
+// 		error: "",
+// 		order: {
+// 			order_id: "5da4d9dd40359b1928e52ba3",
+// 			is_done: false,
+// 			from_coords: {
+// 				lat: 56.75222,
+// 				lng: 37.61556,
+// 			},
+// 			to_coords: {
+// 				lat: 56.89444,
+// 				lng: 30.26417,
+// 			},
+// 			from_text: "Москва",
+// 			to_text: "Санкт-Петербург",
+// 			exp_time: 120000,
+// 		},
 // 	});
-export const fetchAddNewOrder = () =>
-	Promise.resolve({
-		message: "success",
-		error: "",
-		order: {
-			order_id: "5da4d9dd40359b1928e52ba3",
-			is_done: false,
-			from_coords: {
-				lat: 56.75222,
-				lng: 37.61556,
-			},
-			to_coords: {
-				lat: 56.89444,
-				lng: 30.26417,
-			},
-			from_text: "Москва",
-			to_text: "Санкт-Петербург",
-			exp_time: 120000,
-		},
-	});

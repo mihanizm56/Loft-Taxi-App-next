@@ -19,14 +19,20 @@ const cookies = new Cookies();
 export function* putOrderWorkerSaga({ from, to }) {
 	console.log("CHECK putOrderWorkerSaga SAGA", from, to);
 
-	const token = cookies.get("access_token");
-
 	yield put(setOrderLoadingStart());
 	yield call(sleep, 1000); // wait for spinner
 
+	const token = cookies.get("access_token");
+	const timestamp = new Date();
+
 	try {
 		// TODO refactor mapping of the order data
-		const { error, order } = yield call(fetchAddNewOrder, { token, from, to });
+		const { error, order } = yield call(fetchAddNewOrder, {
+			token,
+			from,
+			to,
+			timestamp,
+		});
 
 		if (error) {
 			console.log("get an error from request in putOrderWorkerSaga", error);
