@@ -21,15 +21,25 @@ class WrappedContainer extends React.Component {
 	};
 
 	saveUserCard = ({ cardUser, expDate, cardNumber, cvv }) => {
-		console.log("saveUserCard action cardUser", cardUser);
-		console.log("saveUserCard action expDate", expDate);
-		console.log("saveUserCard action cardNumber", cardNumber);
-		console.log("saveUserCard action cvv", cvv);
+		const {
+			SubmissionError,
+			saveCardData,
+			submitValidateCredentialsFields,
+		} = this.props;
 
-		const { saveCardData } = this.props;
+		const { validationError } = submitValidateCredentialsFields({
+			cardUser,
+			expDate,
+			cardNumber,
+			cvv,
+		});
 
-		saveCardData({ cardUser, expDate, cardNumber, cvv });
-		this.setState({ isFormOpened: false });
+		if (validationError) {
+			throw new SubmissionError(validationError);
+		} else {
+			saveCardData({ cardUser, expDate, cardNumber, cvv });
+			this.setState({ isFormOpened: false });
+		}
 	};
 
 	render() {

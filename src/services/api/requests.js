@@ -85,7 +85,7 @@ export const fetchGetUserCreds = () =>
 	});
 
 // /credentials-upd (post)
-// let counter = 0;
+let counter = 0;
 
 /* eslint-disable */
 export const fetchUpdUserCreds = () => {
@@ -151,21 +151,21 @@ export const fetchGetLastOrder = () =>
 	Promise.resolve({
 		message: "success",
 		error: "",
-		order: {
-			id: "5da4d2d894bd902daca9dba9",
-			is_done: false,
-			from_coords: {
-				Latitude: 55.75697,
-				Longitude: 37.61502,
-			},
-			to_coords: {
-				Latitude: 59.93318,
-				Longitude: 30.30605,
-			},
-			from_text: "Москва",
-			to_text: "Санкт-Петербург",
-			exp_time: 120000,
-		},
+		// order: {
+		// 	id: "5da4d2d894bd902daca9dba9",
+		// 	is_done: false,
+		// 	from_coords: {
+		// 		Latitude: 55.75697,
+		// 		Longitude: 37.61502,
+		// 	},
+		// 	to_coords: {
+		// 		Latitude: 59.93318,
+		// 		Longitude: 30.30605,
+		// 	},
+		// 	from_text: "Москва",
+		// 	to_text: "Санкт-Петербург",
+		// 	exp_time: 120000,
+		// },
 	});
 
 // /orders-upd
@@ -191,20 +191,20 @@ export const fetchUpdOrder = () =>
 export const fetchAddNewOrder = () =>
 	Promise.resolve({
 		message: "success",
-		error: "",
+		error: "not correct data",
 		order: {
-			order_id: "5da4d9dd40359b1928e52ba3",
-			is_done: false,
-			from_coords: {
-				lat: 56.75222,
-				lng: 37.61556,
-			},
-			to_coords: {
-				lat: 56.89444,
-				lng: 30.26417,
-			},
-			from_text: "Москва",
-			to_text: "Санкт-Петербург",
-			exp_time: 120000,
+			// order_id: "5da4d9dd40359b1928e52ba3",
+			// is_done: false,
+			// from_coords: {
+			// 	Latitude: 56.75222,
+			// 	Longitude: 37.61556,
+			// },
+			// to_coords: {
+			// 	Latitude: 56.89444,
+			// 	Longitude: 30.26417,
+			// },
+			// from_text: "Москва",
+			// to_text: "Санкт-Петербург",
+			// exp_time: 120000,
 		},
 	});

@@ -29,7 +29,7 @@ const FormComponent = props => {
 								type="text"
 								normalize={normalizeCardUserValue}
 								component={TextField}
-								label="Имя владельца *"
+								label="Имя владельца"
 								// onDrop={preventDefault}
 								inputProps={{
 									style: { fontSize: "20px" },
@@ -54,7 +54,7 @@ const FormComponent = props => {
 							<Field
 								name="expDate"
 								component={DatePicker}
-								label="Дата окончания действия *"
+								label="Дата окончания действия"
 								inputProps={{
 									style: {
 										fontSize: "20px",
@@ -77,10 +77,8 @@ const FormComponent = props => {
 									maxLength: 3,
 									style: { fontSize: "20px" },
 								}}
-								// normalize={normalizeToEmpty}
 								component={TextField}
-								label="CVV *"
-
+								label="CVV"
 								// onDrop={preventDefault}
 							/>
 						</div>

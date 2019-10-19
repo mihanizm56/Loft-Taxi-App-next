@@ -24,6 +24,7 @@ export const OrdersViewSwitcher = ({
 	makeNewOrder,
 	handleRedirectToCredentials,
 	handleCancelOrder,
+	normalizeAddressInput,
 }) => {
 	// typeof window !== "undefined" &&
 	// 	console.log("props in OrdersViewSwitcher", {
@@ -31,6 +32,19 @@ export const OrdersViewSwitcher = ({
 	// 	});
 
 	let ComponentToShow;
+
+	const formProps = {
+		normalizeAddressInput,
+		handleSubmit,
+		createOrder,
+	};
+
+	const orderBoxProps = {
+		handleCancelOrder,
+		fromPlace: orderFromText,
+		toPlace: orderToText,
+		timeToGetTaxi: orderTimeout,
+	};
 
 	if (isLoading) {
 		ComponentToShow = <LoadingTextIndicator text="Загрузка" />;
@@ -41,18 +55,9 @@ export const OrdersViewSwitcher = ({
 			<OrderRedirectBox handleRedirect={handleRedirectToCredentials} />
 		);
 	} else if (isFormOpened) {
-		ComponentToShow = (
-			<AddOrderForm handleSubmit={handleSubmit} createOrder={createOrder} />
-		);
+		ComponentToShow = <AddOrderForm {...formProps} />;
 	} else if (orderInfoBoxOpened) {
-		ComponentToShow = (
-			<OrderInfoBox
-				handleCancelOrder={handleCancelOrder}
-				fromPlace={orderFromText}
-				toPlace={orderToText}
-				timeToGetTaxi={orderTimeout}
-			/>
-		);
+		ComponentToShow = <OrderInfoBox {...orderBoxProps} />;
 	} else {
 		ComponentToShow = <NewOrderBox handleMakeNewOrder={makeNewOrder} />;
 	}

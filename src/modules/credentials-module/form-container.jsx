@@ -1,6 +1,7 @@
 import React from "react";
-import { reduxForm } from "redux-form";
+import { reduxForm, SubmissionError } from "redux-form";
 import { asyncValidateCredentialsFields } from "../../services/validate";
+import { submitValidateCredentialsFields } from "../../services/validate/credentials";
 
 class WrappedContainer extends React.Component {
 	componentDidMount() {
@@ -32,13 +33,14 @@ class WrappedContainer extends React.Component {
 			normalizeCardUserValue,
 			normalizeCardCVVValue,
 			normalizeCardExpDateValue,
+			SubmissionError,
+			submitValidateCredentialsFields,
 		});
 	}
 }
 
 export const FormContainer = reduxForm({
 	asyncValidate: asyncValidateCredentialsFields,
-	// asyncValidate: asyncValidateForCredentials,
 	asyncBlurFields: ["cvv", "cardNumber", "cardUser", "expDate"],
-	form: "orders",
+	form: "credentials",
 })(WrappedContainer);

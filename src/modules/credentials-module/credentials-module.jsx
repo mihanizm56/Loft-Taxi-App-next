@@ -12,8 +12,13 @@ export const CredentialsModule = () => {
 				normalizeCardUserValue,
 				normalizeCardCVVValue,
 				normalizeCardExpDateValue,
+				submitValidateCredentialsFields,
+				SubmissionError,
 			}) => (
-				<ReduxContainer>
+				<ReduxContainer
+					submitValidateCredentialsFields={submitValidateCredentialsFields}
+					SubmissionError={SubmissionError}
+				>
 					{({
 						saveUserCard,
 						isLoading,
@@ -24,8 +29,6 @@ export const CredentialsModule = () => {
 					}) => (
 						<CredentialsViewSwitcher
 							allFormValues={allFormValues}
-							// normalizeEmail={normalizeEmail}
-							// normalizePassword={normalizePassword}
 							isFormOpened={isFormOpened}
 							openCredentialsForm={openCredentialsForm}
 							saveUserCard={saveUserCard}

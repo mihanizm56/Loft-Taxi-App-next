@@ -1,86 +1,10 @@
-const validateCardUserField = value => {
-	if (value) {
-		const result = value.match(/^[A-Z]{10,20}$/);
-		if (!result) {
-			return { userFieldError: "Введите корректное имя пользователя" };
-		}
-		return { userFieldError: null };
-	}
-
-	return { userFieldError: "Введите имя владельца карты" };
-};
-
-const validateCardNumberField = value => {
-	if (value) {
-		const result = value.replace(/\s+/g, "");
-		console.log("validateCardNumberField result", result);
-
-		if (!result) {
-			return {
-				numberFieldError: "Введите корректный номер карты",
-			};
-		}
-
-		if (result.length !== 16) {
-			return {
-				numberFieldError: "Номер карты должен быть не менее 16 символов",
-			};
-		}
-		return { numberFieldError: null };
-	}
-
-	return { numberFieldError: "Введите номер карты" };
-};
-
-const validateCardDateField = value => {
-	if (value) {
-		const isNaturalData = value.toString().length === 61;
-
-		if (isNaturalData) {
-			return {
-				dateFieldError: null,
-			};
-		}
-
-		const isExpDateNotFull = Boolean(value.indexOf("_") !== -1);
-
-		if (isExpDateNotFull) {
-			return {
-				dateFieldError: "Введите полную дату",
-			};
-		}
-
-		return { dateFieldError: null };
-	}
-
-	return { dateFieldError: "Введите дату окончания действия карты" };
-};
-
-const validateCardCVVField = value => {
-	if (value) {
-		const result = value.match(/^\d+$/);
-		console.log("validateCardCVVField result", result);
-
-		if (!result) {
-			return {
-				cvvFieldError: "Введите корректный секретный номер карты",
-			};
-		}
-
-		if (result.length !== 3) {
-			return {
-				cvvFieldError: "Введите полный секретный номер карты",
-			};
-		}
-
-		return { cvvFieldError: null };
-	}
-
-	return { cvvFieldError: "Введите секретный номер карты" };
-};
+import { validateCardUserField } from "./utils/name";
+import { validateCardNumberField } from "./utils/number";
+import { validateCardDateField } from "./utils/date";
+import { validateCardCVVField } from "./utils/cvv";
 
 export const asyncValidateCredentialsFields = inputs => {
-	console.log("inputs", inputs);
+	console.log("in the validateCredentialsFields inputs", inputs);
 	return Promise.resolve().then(() => {
 		const errors = {};
 		const { userFieldError } = validateCardUserField(inputs.cardUser);
@@ -107,10 +31,52 @@ export const asyncValidateCredentialsFields = inputs => {
 		const errorsExists = Boolean(
 			errors.cardName || errors.expDate || errors.cardNumber || errors.cvv
 		);
+
 		console.log("errorsExists", errorsExists, errors);
 
 		if (errorsExists) {
 			throw errors;
 		}
 	});
+};
+
+export const submitValidateCredentialsFields = inputs => {
+	console.log("in the submitValidateCredentialsFields inputs", inputs);
+	const validationError = {};
+
+	const { userFieldError } = validateCardUserField(inputs.cardUser);
+	const { numberFieldError } = validateCardNumberField(inputs.cardNumber);
+	const { dateFieldError } = validateCardDateField(inputs.expDate);
+	const { cvvFieldError } = validateCardCVVField(inputs.cvv);
+
+	if (userFieldError) {
+		validationError.cardUser = userFieldError;
+	}
+
+	if (numberFieldError) {
+		validationError.cardNumber = numberFieldError;
+	}
+
+	if (dateFieldError) {
+		validationError.expDate = dateFieldError;
+	}
+
+	if (cvvFieldError) {
+		validationError.cvv = cvvFieldError;
+	}
+
+	const errorsExists = Boolean(
+		validationError.cardName ||
+			validationError.expDate ||
+			validationError.cardNumber ||
+			validationError.cvv
+	);
+
+	console.log("errorsExists", errorsExists, validationError);
+
+	if (errorsExists) {
+		return { validationError };
+	}
+
+	return { validationError: null };
 };

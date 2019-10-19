@@ -10,7 +10,7 @@ import {
 	getCredsEmptyStatus,
 	getOrderFromTextInfo,
 	getOrderToTextInfo,
-	addNewOrder,
+	addNewOrder as addNewOrderAction,
 	removeOrderErrorAction,
 	resetOrderData,
 	cancelOrder as cancelOrderAction,
@@ -20,7 +20,7 @@ class WrappedContainer extends React.Component {
 	static getDerivedStateFromProps(nextProps) {
 		const { orderIsDone } = nextProps;
 
-		console.log('orderIsDone', orderIsDone);
+		console.log("orderIsDone", orderIsDone);
 
 		if (!orderIsDone) {
 			return { orderInfoBoxOpened: true, isFormOpened: false };
@@ -54,7 +54,21 @@ class WrappedContainer extends React.Component {
 	};
 
 	createOrder = ({ adressFrom, adressTo }) => {
-		this.props.addNewOrder({ from: adressFrom, to: adressTo });
+		const {
+			submitValidateOrderFields,
+			addNewOrder,
+			SubmissionError,
+		} = this.props;
+		const { validationError } = submitValidateOrderFields({
+			adressFrom,
+			adressTo,
+		});
+
+		if (validationError) {
+			throw new SubmissionError(validationError);
+		} else {
+			addNewOrder({ from: adressFrom, to: adressTo });
+		}
 	};
 
 	handleRedirectToCredentials = () => Router.push("/credentials");
@@ -110,7 +124,7 @@ const mapStateToProps = store => ({
 export const ReduxContainer = connect(
 	mapStateToProps,
 	{
-		addNewOrder,
+		addNewOrder: addNewOrderAction,
 		removeOrderError: removeOrderErrorAction,
 		resetData: resetOrderData,
 		cancelOrder: cancelOrderAction,

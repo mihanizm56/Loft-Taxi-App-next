@@ -7,8 +7,18 @@ import "./styles/index.css";
 export const OrdersModule = () => {
 	return (
 		<FormContainer>
-			{({ reduxFormProps, reset }) => (
-				<ReduxContainer reset={reset}>
+			{({
+				reduxFormProps,
+				reset,
+				normalizeAddressInput,
+				SubmissionError,
+				submitValidateOrderFields,
+			}) => (
+				<ReduxContainer
+					submitValidateOrderFields={submitValidateOrderFields}
+					reset={reset}
+					SubmissionError={SubmissionError}
+				>
 					{({
 						createOrder,
 						isLoading,
@@ -25,6 +35,7 @@ export const OrdersModule = () => {
 						cancelOrder,
 					}) => (
 						<OrdersViewSwitcher
+							normalizeAddressInput={normalizeAddressInput}
 							createOrder={createOrder}
 							isLoading={isLoading}
 							orderError={orderError}
