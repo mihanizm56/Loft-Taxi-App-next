@@ -1,4 +1,4 @@
-export const TIMEOUT_VALUE = 5000;
+export const TIMEOUT_VALUE = 60000;
 export const ITEM_SIZE = 35;
 
 // errors
