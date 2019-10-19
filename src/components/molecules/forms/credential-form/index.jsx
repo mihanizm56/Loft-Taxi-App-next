@@ -6,7 +6,14 @@ import { withTranslation } from "../../../../../i18n";
 import "./credential-form.css";
 
 const FormComponent = props => {
-	const { change, saveUserCard, handleSubmit } = props;
+	const {
+		change,
+		saveUserCard,
+		handleSubmit,
+		normalizeCardUserValue,
+		normalizeCardCVVValue,
+		normalizeCardExpDateValue,
+	} = props;
 
 	return (
 		<>
@@ -20,7 +27,7 @@ const FormComponent = props => {
 							<Field
 								name="cardUser"
 								type="text"
-								// normalize={normalizecardUser}
+								normalize={normalizeCardUserValue}
 								component={TextField}
 								label="Имя владельца *"
 								// onDrop={preventDefault}
@@ -46,7 +53,6 @@ const FormComponent = props => {
 						<div className="credentials-form__item credentials-form__item--datepicker">
 							<Field
 								name="expDate"
-								// normalize={normalizeToEmpty}
 								component={DatePicker}
 								label="Дата окончания действия *"
 								inputProps={{
@@ -58,6 +64,7 @@ const FormComponent = props => {
 								}}
 								fullWidth
 								change={change}
+								normalize={normalizeCardExpDateValue}
 								// onDrop={preventDefault}
 							/>
 						</div>
@@ -65,6 +72,7 @@ const FormComponent = props => {
 							<Field
 								name="cvv"
 								type="text"
+								normalize={normalizeCardCVVValue}
 								inputProps={{
 									maxLength: 3,
 									style: { fontSize: "20px" },

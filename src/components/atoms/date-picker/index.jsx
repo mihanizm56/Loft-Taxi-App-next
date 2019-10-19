@@ -12,15 +12,12 @@ export const DatePicker = ({
 	inputProps,
 	change,
 }) => {
-	const actualDate = new Intl.DateTimeFormat("en").format(new Date());
-
-	const handleChange = (e, value) => {
+	const handleChange = (event, value) => {
 		const initialDateValue = value.split("/");
 		const resultDateValue = `${initialDateValue[1]}/${initialDateValue[0]}/${initialDateValue[2]}`;
+		const pureValue = new Date(Date.parse(resultDateValue));
 
-		console.log("resultDateValue", resultDateValue);
-
-		change(input.name, resultDateValue);
+		change(input.name, pureValue);
 	};
 
 	return (
@@ -31,9 +28,9 @@ export const DatePicker = ({
 				disableToolbar
 				variant="inline"
 				format="dd/MM/yyyy"
+				disablePast
 				error={touched && error}
 				helperText={touched && error}
-				value={input.value || actualDate}
 				inputProps={inputProps}
 				onChange={handleChange}
 			/>

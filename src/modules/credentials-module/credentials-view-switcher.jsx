@@ -18,12 +18,18 @@ export class CredentialsViewSwitcher extends React.Component {
 			areCredsError,
 			allFormValues,
 			isLoading,
+			normalizeCardUserValue,
+			normalizeCardCVVValue,
+			normalizeCardExpDateValue,
 		} = this.props;
 
 		const formProps = {
+			normalizeCardUserValue,
 			change,
 			saveUserCard,
 			handleSubmit,
+			normalizeCardCVVValue,
+			normalizeCardExpDateValue,
 		};
 
 		if (isLoading) {

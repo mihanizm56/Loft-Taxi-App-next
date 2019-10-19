@@ -6,7 +6,13 @@ import { CredentialsViewSwitcher } from "./credentials-view-switcher";
 export const CredentialsModule = () => {
 	return (
 		<FormContainer>
-			{({ reduxFormProps }) => (
+			{({
+				change,
+				handleSubmit,
+				normalizeCardUserValue,
+				normalizeCardCVVValue,
+				normalizeCardExpDateValue,
+			}) => (
 				<ReduxContainer>
 					{({
 						saveUserCard,
@@ -25,7 +31,11 @@ export const CredentialsModule = () => {
 							saveUserCard={saveUserCard}
 							isLoading={isLoading}
 							areCredsError={areCredsError}
-							{...reduxFormProps}
+							change={change}
+							handleSubmit={handleSubmit}
+							normalizeCardUserValue={normalizeCardUserValue}
+							normalizeCardCVVValue={normalizeCardCVVValue}
+							normalizeCardExpDateValue={normalizeCardExpDateValue}
 						/>
 					)}
 				</ReduxContainer>
