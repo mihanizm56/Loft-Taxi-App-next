@@ -6,12 +6,7 @@ import { TextField, LoadingTextIndicator } from "../../../../atoms";
 
 import "./index.css";
 
-export const AddOrderForm = ({
-	createOrder,
-	handleSubmit,
-	isLoading,
-	normalizeAddressInput,
-}) => {
+export const AddOrderForm = ({ createOrder, handleSubmit, isLoading }) => {
 	return (
 		<form onSubmit={handleSubmit(createOrder)} className="order-form">
 			<h5 className="order-form__title ">Новый заказ</h5>
@@ -24,7 +19,6 @@ export const AddOrderForm = ({
 							name="adressFrom"
 							type="text"
 							component={TextField}
-							normalize={normalizeAddressInput}
 							onDrop={preventDefault}
 							label="Адрес отправления"
 						/>
@@ -34,7 +28,6 @@ export const AddOrderForm = ({
 							name="adressTo"
 							type="text"
 							component={TextField}
-							normalize={normalizeAddressInput}
 							onDrop={preventDefault}
 							label="Адрес прибытия"
 						/>

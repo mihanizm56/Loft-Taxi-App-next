@@ -15,6 +15,7 @@ import {
 	resetOrderData,
 	cancelOrder as cancelOrderAction,
 } from "../../redux/modules/orders";
+import { sanitizeAddressField } from "../../utils/sanitizers";
 
 class WrappedContainer extends React.Component {
 	static getDerivedStateFromProps(nextProps) {
@@ -67,7 +68,10 @@ class WrappedContainer extends React.Component {
 		if (validationError) {
 			throw new SubmissionError(validationError);
 		} else {
-			addNewOrder({ from: adressFrom, to: adressTo });
+			addNewOrder({
+				from: sanitizeAddressField(adressFrom),
+				to: sanitizeAddressField(adressTo),
+			});
 		}
 	};
 

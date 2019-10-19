@@ -10,7 +10,6 @@ export const OrdersModule = () => {
 			{({
 				reduxFormProps,
 				reset,
-				normalizeAddressInput,
 				SubmissionError,
 				submitValidateOrderFields,
 			}) => (
@@ -35,7 +34,6 @@ export const OrdersModule = () => {
 						cancelOrder,
 					}) => (
 						<OrdersViewSwitcher
-							normalizeAddressInput={normalizeAddressInput}
 							createOrder={createOrder}
 							isLoading={isLoading}
 							orderError={orderError}

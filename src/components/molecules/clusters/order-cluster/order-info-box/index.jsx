@@ -1,11 +1,49 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import { withTranslation } from "../../../../../../i18n";
 import "./index.css";
 
-export class OrderInfoBox extends React.Component {
-	state = {
-		isOpen: true,
-	};
+export class OrderBox extends React.Component {
+	constructor(props) {
+		super(props);
+
+		const { timeToGetTaxi } = props;
+
+		this.state = {
+			isOpen: true,
+			timeToFinishOrder: timeToGetTaxi || 0,
+		};
+	}
+
+	componentDidMount() {
+		const { timeToGetTaxi } = this.props;
+
+		const isTimeOverZero = this.checkTimeIsActive(timeToGetTaxi);
+
+		if (isTimeOverZero) {
+			this.interval = setInterval(() => {
+				this.setState(previousState => ({
+					timeToFinishOrder: previousState.timeToFinishOrder - 1,
+				}));
+			}, 1000);
+		}
+	}
+
+	componentDidUpdate() {
+		const { timeToFinishOrder } = this.state;
+
+		const isTimeOverZero = this.checkTimeIsActive(timeToFinishOrder);
+
+		if (!isTimeOverZero) {
+			clearInterval(this.interval);
+		}
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.interval);
+	}
+
+	checkTimeIsActive = time => Boolean(time !== 0 && time > 0);
 
 	toggleViewInfoBox = () =>
 		this.setState(prevState => ({
@@ -13,8 +51,17 @@ export class OrderInfoBox extends React.Component {
 		}));
 
 	render() {
-		const { handleCancelOrder, fromPlace, toPlace, timeToGetTaxi } = this.props;
-		const { isOpen } = this.state;
+		const {
+			handleCancelOrder,
+			fromPlace,
+			toPlace,
+			//  t: translate
+		} = this.props;
+		const { isOpen, timeToFinishOrder } = this.state;
+		const timeoutDoneText = "Вас ожидает такси!";
+		// const timeoutDoneText = translate('order.timeout-done-text')
+
+		const parsedTimeValue = timeToFinishOrder || timeoutDoneText;
 
 		return (
 			<div className="order-info-box">
@@ -53,7 +100,7 @@ export class OrderInfoBox extends React.Component {
 								</p>
 							</div>
 							<div className="info-container-second-col">
-								<p className="order-info-box__value">{timeToGetTaxi}</p>
+								<p className="order-info-box__value">{parsedTimeValue}</p>
 							</div>
 						</div>
 					</>
@@ -64,7 +111,7 @@ export class OrderInfoBox extends React.Component {
 						variant="outlined"
 						color="primary"
 						onClick={handleCancelOrder}
-						// disabled={Boolean(timeToGetTaxi)}
+						disabled={Boolean(timeToFinishOrder)}
 					>
 						Отменить заказ
 					</Button>
@@ -73,3 +120,5 @@ export class OrderInfoBox extends React.Component {
 		);
 	}
 }
+
+export const OrderInfoBox = withTranslation("common")(OrderBox);

@@ -1,6 +1,8 @@
+import { sanitizeAddressField } from "../../../../utils/sanitizers";
+
 export const validateAddressesField = value => {
 	if (value) {
-		const result = value.replace(/[^0-9a-zA-Zа-яА-Я]+/, "");
+		const result = sanitizeAddressField;
 		console.log("validateAddressesField result", result);
 
 		if (!result) {
@@ -9,7 +11,7 @@ export const validateAddressesField = value => {
 			};
 		}
 
-		return { addressesError: null };
+		return { addressesError: null, result };
 	}
 
 	return { addressesError: "Введите адрес" };

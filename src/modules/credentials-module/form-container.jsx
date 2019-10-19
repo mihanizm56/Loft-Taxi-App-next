@@ -9,7 +9,7 @@ class WrappedContainer extends React.Component {
 		initialize({ expDate: new Date() });
 	}
 
-	normalizeCardUserValue = value => value && value.toUpperCase().trim();
+	normalizeCardUserValue = value => value && value.toUpperCase();
 
 	normalizeCardExpDateValue = value => {
 		console.log("normalizeCardExpDateValue value", value);
