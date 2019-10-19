@@ -11,6 +11,8 @@ module.exports = withCSS({
 				: "none",
 	},
 	webpack: (config, { isServer }) => {
+		// process.env setup for react
+
 		// eslint-disable-next-line
 		config.node = {
 			fs: "empty",
@@ -27,6 +29,24 @@ module.exports = withCSS({
 				__CLIENT__: !isServer,
 			})
 		);
+
+		// polyfills setup
+
+		const originalEntry = config.entry;
+		// eslint-disable-next-line
+		config.entry = async () => {
+			const entries = await originalEntry();
+
+			if (
+				entries["main.js"] &&
+				!entries["main.js"].includes("./client/polyfills.js")
+			) {
+				entries["main.js"].unshift("./client/polyfills.js");
+			}
+
+			return entries;
+		};
+
 		return config;
 	},
 });
