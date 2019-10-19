@@ -6,14 +6,21 @@ import { LoginForm } from "../../components/molecules";
 export const FormLoginModule = () => {
 	return (
 		<FormContainer>
-			{({ reduxFormProps }) => (
-				<ReduxContainer>
+			{({
+				normalizeUserInput,
+				reduxFormProps,
+				submitValidateAuthFields,
+				SubmissionError,
+			}) => (
+				<ReduxContainer
+					submitValidateAuthFields={submitValidateAuthFields}
+					SubmissionError={SubmissionError}
+				>
 					{({ signInUser, isLoading }) => (
 						<LoginForm
-							// normalizeEmail={normalizeEmail}
-							// normalizePassword={normalizePassword}
 							signInUser={signInUser}
 							isLoading={isLoading}
+							normalizeUserInput={normalizeUserInput}
 							{...reduxFormProps}
 						/>
 					)}

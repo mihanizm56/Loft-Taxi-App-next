@@ -8,9 +8,20 @@ import {
 class WrappedContainer extends React.Component {
 	authInUser = ({ username, password }) => {
 		console.log("test authInUser", username, password);
-		const { authIn: authInAction } = this.props;
+		const {
+			authIn: authInAction,
+			SubmissionError,
+			submitValidateAuthFields,
+		} = this.props;
 
-		if (username && password) {
+		const { validationError } = submitValidateAuthFields({
+			username,
+			password,
+		});
+
+		if (validationError) {
+			throw new SubmissionError(validationError);
+		} else {
 			authInAction({ username, password });
 		}
 	};

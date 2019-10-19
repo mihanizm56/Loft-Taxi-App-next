@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { Field } from "redux-form";
+import { preventDefault } from "../../../../../utils/helpers/form-inputs";
 import { TextField, LoadingTextIndicator } from "../../../../atoms";
 
 import "./index.css";
@@ -24,6 +25,7 @@ export const AddOrderForm = ({
 							type="text"
 							component={TextField}
 							normalize={normalizeAddressInput}
+							onDrop={preventDefault}
 							label="Адрес отправления"
 						/>
 					</div>
@@ -33,6 +35,7 @@ export const AddOrderForm = ({
 							type="text"
 							component={TextField}
 							normalize={normalizeAddressInput}
+							onDrop={preventDefault}
 							label="Адрес прибытия"
 						/>
 					</div>

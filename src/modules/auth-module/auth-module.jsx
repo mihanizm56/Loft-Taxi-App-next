@@ -6,12 +6,19 @@ import { AuthForm } from "../../components/molecules";
 export const FormAuthModule = () => {
 	return (
 		<FormContainer>
-			{({ reduxFormProps }) => (
-				<ReduxContainer>
+			{({
+				reduxFormProps,
+				normalizeUserInput,
+				SubmissionError,
+				submitValidateAuthFields,
+			}) => (
+				<ReduxContainer
+					SubmissionError={SubmissionError}
+					submitValidateAuthFields={submitValidateAuthFields}
+				>
 					{({ authInUser, isLoading }) => (
 						<AuthForm
-							// normalizeEmail={normalizeEmail}
-							// normalizePassword={normalizePassword}
+							normalizeUserInput={normalizeUserInput}
 							authInUser={authInUser}
 							isLoading={isLoading}
 							{...reduxFormProps}

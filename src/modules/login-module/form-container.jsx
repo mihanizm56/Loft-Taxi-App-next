@@ -1,23 +1,29 @@
 import React from "react";
-import { reduxForm } from "redux-form";
+import { reduxForm, SubmissionError } from "redux-form";
+import {
+	asyncValidateAuthFields,
+	submitValidateAuthFields,
+} from "../../services/validate/auth";
 
 class WrappedContainer extends React.Component {
-	// normalizeEmail = value => value.replace(/^\s+/, "");
-
-	// normalizePassword = value => value.replace(/^\s+/, "");
+	normalizeUserInput = value =>
+		value && value.replace(/[^0-9a-zA-Zа-яА-Я@_]+/, "");
 
 	render() {
 		const { children, ...restProps } = this.props;
-		// const { normalizeEmail, normalizePassword } = this;
+		const { normalizeUserInput } = this;
 
 		return children({
-			// normalizeEmail,
-			// normalizePassword,
+			SubmissionError,
+			normalizeUserInput,
+			submitValidateAuthFields,
 			reduxFormProps: restProps,
 		});
 	}
 }
 
 export const FormContainer = reduxForm({
+	asyncValidate: asyncValidateAuthFields,
+	asyncBlurFields: ["username", "password"],
 	form: "login",
 })(WrappedContainer);

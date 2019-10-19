@@ -3,14 +3,14 @@ import Button from "@material-ui/core/Button";
 import { Field } from "redux-form";
 import { TextField, LinkButton, LoadingTextIndicator } from "../../../atoms";
 import { withTranslation } from "../../../../../i18n";
+import { preventDefault } from "../../../../utils/helpers/form-inputs";
 import "../../../../styles/shared.css";
 
 const FormComponent = props => {
 	const {
 		signInUser,
 		handleSubmit,
-		normalizeEmail,
-		normalizePassword,
+		normalizeUserInput,
 		isLoading,
 		t: translate,
 	} = props;
@@ -28,7 +28,8 @@ const FormComponent = props => {
 								name="username"
 								type="text"
 								component={TextField}
-								normalize={normalizeEmail}
+								normalize={normalizeUserInput}
+								onDrop={preventDefault}
 								label={`${translate("login-form.username-label")}`}
 							/>
 						</div>
@@ -36,8 +37,9 @@ const FormComponent = props => {
 							<Field
 								name="password"
 								type="password"
-								normalize={normalizePassword}
+								normalize={normalizeUserInput}
 								component={TextField}
+								onDrop={preventDefault}
 								label={`${translate("login-form.password-label")}`}
 							/>
 						</div>

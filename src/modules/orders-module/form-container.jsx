@@ -28,9 +28,3 @@ export const FormContainer = reduxForm({
 	asyncBlurFields: ["adressFrom", "adressTo"],
 	form: "orders",
 })(WrappedContainer);
-
-// export const FormContainer = reduxForm({
-// 	asyncValidate: asyncValidateCredentialsFields,
-// 	asyncBlurFields: ["cvv", "cardNumber", "cardUser", "expDate"],
-// 	form: "orders",
-// })(WrappedContainer);

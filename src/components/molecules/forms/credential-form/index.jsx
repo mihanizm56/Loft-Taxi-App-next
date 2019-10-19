@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { Field } from "redux-form";
 import { TextField, MaskedInput, DatePicker } from "../../../atoms";
+import { preventDefault } from "../../../../utils/helpers/form-inputs";
 import { withTranslation } from "../../../../../i18n";
 import "./credential-form.css";
 
@@ -30,7 +31,7 @@ const FormComponent = props => {
 								normalize={normalizeCardUserValue}
 								component={TextField}
 								label="Имя владельца"
-								// onDrop={preventDefault}
+								onDrop={preventDefault}
 								inputProps={{
 									style: { fontSize: "20px" },
 								}}
@@ -45,7 +46,7 @@ const FormComponent = props => {
 								}}
 								component={MaskedInput}
 								label="Номер карты *"
-								// onDrop={preventDefault}
+								onDrop={preventDefault}
 							/>
 						</div>
 					</div>
@@ -65,7 +66,7 @@ const FormComponent = props => {
 								fullWidth
 								change={change}
 								normalize={normalizeCardExpDateValue}
-								// onDrop={preventDefault}
+								onDrop={preventDefault}
 							/>
 						</div>
 						<div className="credentials-form__item">
@@ -79,7 +80,7 @@ const FormComponent = props => {
 								}}
 								component={TextField}
 								label="CVV"
-								// onDrop={preventDefault}
+								onDrop={preventDefault}
 							/>
 						</div>
 					</div>
