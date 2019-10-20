@@ -21,6 +21,7 @@ class WrappedContainer extends React.Component {
 	};
 
 	saveUserCard = ({ cardUser, expDate, cardNumber, cvv }) => {
+		const trimmedCardUser = cardUser && cardUser.trim();
 		const {
 			SubmissionError,
 			saveCardData,
@@ -28,7 +29,7 @@ class WrappedContainer extends React.Component {
 		} = this.props;
 
 		const { validationError } = submitValidateCredentialsFields({
-			cardUser,
+			cardUser: trimmedCardUser,
 			expDate,
 			cardNumber,
 			cvv,
@@ -38,7 +39,7 @@ class WrappedContainer extends React.Component {
 			throw new SubmissionError(validationError);
 		} else {
 			// trim card user value because cant do this when normalizing and in validation
-			saveCardData({ cardUser: cardUser.trim(), expDate, cardNumber, cvv });
+			saveCardData({ cardUser: trimmedCardUser, expDate, cardNumber, cvv });
 			this.setState({ isFormOpened: false });
 		}
 	};
