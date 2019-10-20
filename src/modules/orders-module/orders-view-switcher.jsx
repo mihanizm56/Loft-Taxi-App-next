@@ -24,7 +24,6 @@ export const OrdersViewSwitcher = ({
 	makeNewOrder,
 	handleRedirectToCredentials,
 	handleCancelOrder,
-	normalizeAddressInput,
 }) => {
 	// typeof window !== "undefined" &&
 	// 	console.log("props in OrdersViewSwitcher", {
@@ -34,7 +33,6 @@ export const OrdersViewSwitcher = ({
 	let ComponentToShow;
 
 	const formProps = {
-		normalizeAddressInput,
 		handleSubmit,
 		createOrder,
 	};

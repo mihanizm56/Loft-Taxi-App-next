@@ -37,7 +37,8 @@ class WrappedContainer extends React.Component {
 		if (validationError) {
 			throw new SubmissionError(validationError);
 		} else {
-			saveCardData({ cardUser, expDate, cardNumber, cvv });
+			// trim card user value because cant do this when normalizing and in validation
+			saveCardData({ cardUser: cardUser.trim(), expDate, cardNumber, cvv });
 			this.setState({ isFormOpened: false });
 		}
 	};
