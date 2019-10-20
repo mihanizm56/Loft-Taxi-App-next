@@ -56,10 +56,12 @@ export function* putOrderWorkerSaga({ from, to }) {
 				yield put(stopSubmit("orders", translatorOrderFormErrors(error)));
 			}
 		} else if (order) {
+			// set coords
 			yield put(
-				setCoordsAction({ from: order.from_coords, to: order.to_coords }) // set coords
+				setCoordsAction({ from: order.from_coords, to: order.to_coords })
 			);
-			yield put(setOrderData(order)); // set order data
+			// set order data
+			yield put(setOrderData(order));
 		}
 
 		yield put(setOrderLoadingStop()); // stop loading animation
