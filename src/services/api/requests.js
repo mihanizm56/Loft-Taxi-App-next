@@ -151,21 +151,21 @@ export const fetchGetLastOrder = () =>
 	Promise.resolve({
 		message: "success",
 		error: "",
-		// order: {
-		// 	id: "5da4d2d894bd902daca9dba9",
-		// 	is_done: false,
-		// 	from_coords: {
-		// 		Latitude: 55.75697,
-		// 		Longitude: 37.61502,
-		// 	},
-		// 	to_coords: {
-		// 		Latitude: 59.93318,
-		// 		Longitude: 30.30605,
-		// 	},
-		// 	from_text: "Москва",
-		// 	to_text: "Санкт-Петербург",
-		// 	exp_time: 120000,
-		// },
+		order: {
+			id: "5da4d2d894bd902daca9dba9",
+			is_done: false,
+			from_coords: {
+				Latitude: 55.75697,
+				Longitude: 37.61502,
+			},
+			to_coords: {
+				Latitude: 59.93318,
+				Longitude: 30.30605,
+			},
+			from_text: "Москва",
+			to_text: "Санкт-Петербург",
+			exp_time: 10,
+		},
 	});
 
 // /orders-upd
