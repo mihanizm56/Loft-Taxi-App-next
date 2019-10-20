@@ -2,6 +2,7 @@
     from {
         transform: rotate3d(0, 0, 1, -180deg);
     }
+
     to {
         transform: rotate3d(0, 0, 1, 180deg);
     }
@@ -11,10 +12,22 @@
     0% {
         opacity: 1;
     }
+
     50% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes fadeInHalf {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: .5;
     }
 }

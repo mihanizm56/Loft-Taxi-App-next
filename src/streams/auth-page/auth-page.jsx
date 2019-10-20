@@ -6,6 +6,13 @@ import "./auth-page.css";
 export const AuthPageApp = ({ isLoading }) => (
 	<div className="page auth-page">
 		<HeaderModule />
-		{isLoading ? <LoadingSpinner /> : <FormAuthModule />}
+		{isLoading ? (
+			<LoadingSpinner />
+		) : (
+			<>
+				<div className="dark-overlay dark-overlay--half-opacity" />
+				<FormAuthModule />
+			</>
+		)}
 	</div>
 );

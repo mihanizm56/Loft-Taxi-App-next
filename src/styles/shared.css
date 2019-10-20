@@ -48,3 +48,14 @@
     text-align: center;
     font-size: 14px;
 }
+
+.dark-overlay {
+    position: absolute;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+}
+
+.dark-overlay--half-opacity {
+    animation: fadeInHalf 1.5s linear forwards;
+}
