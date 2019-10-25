@@ -13,7 +13,19 @@
         "button-link-sign-up":"Создать нового пользователя",
         "button-sign-in":"Войти в систему"
     },
-    "title":"Форма авторизации"
+    "order":{
+        "order-info-box":{
+            "lock-time": "{{formattedTimeValue}}",
+            "timeout-done-text": "Вас ожидает такси!"
+        }
+        
+    },
+    "title":"Форма авторизации",
+    "time":{
+        "hours":"часов",
+        "minutes":"минут",
+        "seconds":"секунд"
+    }
 }
 
 

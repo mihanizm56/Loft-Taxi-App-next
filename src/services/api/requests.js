@@ -164,7 +164,7 @@ export const fetchGetLastOrder = () =>
 			},
 			from_text: "Москва",
 			to_text: "Санкт-Петербург",
-			exp_time: 10,
+			exp_time: 5,
 		},
 	});
 

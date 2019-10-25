@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { withTranslation } from "../../../../../../i18n";
+import { lockTimeMessage } from "../../../../../utils/helpers/time-divider";
 import "./index.css";
 
 export class OrderBox extends React.Component {
@@ -51,17 +52,15 @@ export class OrderBox extends React.Component {
 		}));
 
 	render() {
-		const {
-			handleCancelOrder,
-			fromPlace,
-			toPlace,
-			//  t: translate
-		} = this.props;
+		const { handleCancelOrder, fromPlace, toPlace, t: translate } = this.props;
 		const { isOpen, timeToFinishOrder } = this.state;
-		const timeoutDoneText = "Вас ожидает такси!";
-		// const timeoutDoneText = translate('order.timeout-done-text')
+		const timeoutDoneText = translate("order.order-info-box.timeout-done-text");
 
-		const parsedTimeValue = timeToFinishOrder || timeoutDoneText;
+		const parsedTimeValue = lockTimeMessage({
+			message: timeoutDoneText,
+			seconds: timeToFinishOrder,
+			i18n: translate,
+		});
 
 		return (
 			<div className="order-info-box">

@@ -13,5 +13,17 @@
         "button-link-sign-up":"Sign Up",
         "button-sign-in":"Sign In"
     },
-    "title":"Login form"
+    "order":{
+        "order-info-box":{
+            "lock-time": "{{formattedTimeValue}}",
+            "timeout-done-text": "The taxi is waiting for you!"
+        }
+        
+    },
+    "title":"Login form",
+    "time":{
+        "hours":"hours",
+        "minutes":"minutes",
+        "seconds":"seconds"
+    }
 }
