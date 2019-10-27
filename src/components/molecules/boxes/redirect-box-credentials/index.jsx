@@ -1,14 +1,15 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { LinkButton } from "../../../atoms";
+import { withTranslation } from "../../../../../i18n";
 import "./redirect-box-credentials.css";
 
-export const CredentialsRedirectBox = ({ openCredentialsForm }) => {
+export const WrappedComponent = ({ openCredentialsForm, t: translate }) => {
 	return (
 		<>
 			<h1 className="redirect-credentials-box__title">Профиль</h1>
 			<h6 className="redirect-credentials-box__subtitle">
-				Платёжные данные обновлены. Теперь вы можете заказывать такси.
+				{translate("updated-data")}
 			</h6>
 			<div className="redirect-credentials-box__buttons">
 				<Button
@@ -16,7 +17,7 @@ export const CredentialsRedirectBox = ({ openCredentialsForm }) => {
 					color="primary"
 					onClick={openCredentialsForm}
 				>
-					Изменить данные кредитной карты
+					{translate("change-card-data")}
 				</Button>
 				<LinkButton
 					path="/main"
@@ -28,3 +29,7 @@ export const CredentialsRedirectBox = ({ openCredentialsForm }) => {
 		</>
 	);
 };
+
+export const CredentialsRedirectBox = withTranslation(
+	"redirect-credentials-box"
+)(WrappedComponent);

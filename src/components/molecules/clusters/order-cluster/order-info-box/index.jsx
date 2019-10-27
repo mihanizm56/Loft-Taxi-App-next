@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { withTranslation } from "../../../../../../i18n";
+import { lockTimeMessage } from "../../../../../utils/helpers";
 import "./index.css";
 
 export class OrderBox extends React.Component {
@@ -51,17 +52,12 @@ export class OrderBox extends React.Component {
 		}));
 
 	render() {
-		const {
-			handleCancelOrder,
-			fromPlace,
-			toPlace,
-			//  t: translate
-		} = this.props;
+		const { handleCancelOrder, fromPlace, toPlace, t: translate } = this.props;
 		const { isOpen, timeToFinishOrder } = this.state;
-		const timeoutDoneText = "Вас ожидает такси!";
-		// const timeoutDoneText = translate('order.timeout-done-text')
-
-		const parsedTimeValue = timeToFinishOrder || timeoutDoneText;
+		const parsedTimeValue = lockTimeMessage({
+			seconds: timeToFinishOrder,
+			i18n: translate,
+		});
 
 		return (
 			<div className="order-info-box">
@@ -74,12 +70,12 @@ export class OrderBox extends React.Component {
 						{isOpen ? `Свернуть` : `Показать`}
 					</button>
 				</div>
-				<h5 className="order-info-box__title">Ваш заказ</h5>
+				<h5 className="order-info-box__title">{translate("your-order")}</h5>
 				{isOpen && (
 					<>
 						<div className="info-container-row">
 							<div className="info-container-first-col">
-								<p className="order-info-box__key">Откуда:&nbsp;</p>
+								<p className="order-info-box__key">{translate("from")}</p>
 							</div>
 							<div className="info-container-second-col">
 								<p className="order-info-box__value">{fromPlace}</p>
@@ -87,7 +83,7 @@ export class OrderBox extends React.Component {
 						</div>
 						<div className="info-container-row">
 							<div className="info-container-first-col">
-								<p className="order-info-box__key">Куда:&nbsp;</p>
+								<p className="order-info-box__key">{translate("to")}</p>
 							</div>
 							<div className="info-container-second-col">
 								<p className="order-info-box__value">{toPlace}</p>
@@ -96,7 +92,7 @@ export class OrderBox extends React.Component {
 						<div className="info-container-row">
 							<div className="info-container-first-col">
 								<p className="order-info-box__key">
-									Время прибытия такси:&nbsp;
+									{translate("time-to-arrive")}
 								</p>
 							</div>
 							<div className="info-container-second-col">
@@ -105,7 +101,6 @@ export class OrderBox extends React.Component {
 						</div>
 					</>
 				)}
-
 				<div className="order-info-box__button">
 					<Button
 						variant="outlined"
@@ -113,7 +108,7 @@ export class OrderBox extends React.Component {
 						onClick={handleCancelOrder}
 						disabled={Boolean(timeToFinishOrder)}
 					>
-						Отменить заказ
+						{translate("cancel-order")}
 					</Button>
 				</div>
 			</div>
@@ -121,4 +116,4 @@ export class OrderBox extends React.Component {
 	}
 }
 
-export const OrderInfoBox = withTranslation("common")(OrderBox);
+export const OrderInfoBox = withTranslation("order-info-box")(OrderBox);

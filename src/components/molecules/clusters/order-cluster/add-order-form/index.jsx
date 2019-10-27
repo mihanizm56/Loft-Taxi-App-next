@@ -1,15 +1,21 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { Field } from "redux-form";
-import { preventDefault } from "../../../../../utils/helpers/form-inputs";
+import { preventDefault } from "../../../../../utils/helpers";
 import { TextField, LoadingTextIndicator } from "../../../../atoms";
+import { withTranslation } from "../../../../../../i18n";
 
 import "./index.css";
 
-export const AddOrderForm = ({ createOrder, handleSubmit, isLoading }) => {
+export const FormComponent = ({
+	createOrder,
+	handleSubmit,
+	isLoading,
+	t: translate,
+}) => {
 	return (
 		<form onSubmit={handleSubmit(createOrder)} className="order-form">
-			<h5 className="order-form__title ">Новый заказ</h5>
+			<h5 className="order-form__title ">{translate("new-order")}</h5>
 			{isLoading ? (
 				<LoadingTextIndicator />
 			) : (
@@ -20,7 +26,7 @@ export const AddOrderForm = ({ createOrder, handleSubmit, isLoading }) => {
 							type="text"
 							component={TextField}
 							onDrop={preventDefault}
-							label="Адрес отправления"
+							label={translate("address-from-label")}
 						/>
 					</div>
 					<div className="form__field">
@@ -29,12 +35,12 @@ export const AddOrderForm = ({ createOrder, handleSubmit, isLoading }) => {
 							type="text"
 							component={TextField}
 							onDrop={preventDefault}
-							label="Адрес прибытия"
+							label={translate("address-to-label")}
 						/>
 					</div>
 					<div className="order-form__button">
 						<Button type="submit" variant="outlined">
-							Вызвать такси
+							{translate("button-make-order")}
 						</Button>
 					</div>
 				</>
@@ -42,3 +48,5 @@ export const AddOrderForm = ({ createOrder, handleSubmit, isLoading }) => {
 		</form>
 	);
 };
+
+export const AddOrderForm = withTranslation("form-order")(FormComponent);

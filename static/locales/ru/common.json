@@ -1,19 +1,2 @@
 {
-    "auth-form":{
-        "title":"Форма создания нового пользователя",
-        "username-label":"Имя пользователя *",
-        "password-label":"Пароль *",
-        "button-link-sign-in":"Войти под существующим пользователем",
-        "button-sign-up":"Зарегистрироваться"
-    },
-    "login-form":{
-        "title":"Форма входа",
-        "username-label":"Имя пользователя *",
-        "password-label":"Пароль *",
-        "button-link-sign-up":"Создать нового пользователя",
-        "button-sign-in":"Войти в систему"
-    },
-    "title":"Форма авторизации"
 }
-
-

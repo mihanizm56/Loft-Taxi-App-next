@@ -1,17 +1,15 @@
 {    
-    "auth-form":{
-        "title":"Auth Form",
-        "username-label":"Username *",
-        "password-label":"Password *",
-        "button-link-sign-in":"Sign In",
-        "button-sign-up":"Sign Up"
+    "order":{
+        "order-info-box":{
+            "lock-time": "{{formattedTimeValue}}",
+            "timeout-done-text": "The taxi is waiting for you!"
+        }
+        
     },
-    "login-form":{
-        "title":"Login Form",
-        "username-label":"Username *",
-        "password-label":"Password *",
-        "button-link-sign-up":"Sign Up",
-        "button-sign-in":"Sign In"
-    },
-    "title":"Login form"
+    "title":"Login form",
+    "time":{
+        "hours":"hours",
+        "minutes":"minutes",
+        "seconds":"seconds"
+    }
 }

@@ -1,0 +1,7 @@
+{
+    "title":"Форма входа",
+    "username-label":"Имя пользователя *",
+    "password-label":"Пароль *",
+    "button-link-sign-up":"Создать нового пользователя",
+    "button-sign-in":"Войти в систему"
+}

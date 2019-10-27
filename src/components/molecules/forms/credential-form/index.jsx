@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { Field } from "redux-form";
 import { TextField, MaskedInput, DatePicker } from "../../../atoms";
-import { preventDefault } from "../../../../utils/helpers/form-inputs";
+import { preventDefault } from "../../../../utils/helpers";
 import { withTranslation } from "../../../../../i18n";
 import "./credential-form.css";
 
@@ -14,13 +14,13 @@ const FormComponent = props => {
 		normalizeCardUserValue,
 		normalizeCardCVVValue,
 		normalizeCardExpDateValue,
+		t: translate,
 	} = props;
 
 	return (
 		<>
-			<h1 className="credentials-form__title">Профиль</h1>
-			<h6 className="form-subtitle">Способ оплаты</h6>
-
+			<h1 className="credentials-form__title">{translate("profile")}</h1>
+			<h6 className="form-subtitle">{translate("payment method")}</h6>
 			<form onSubmit={handleSubmit(saveUserCard)}>
 				<div className="credentials-form-container">
 					<div className="credentials-form__row-container">
@@ -30,7 +30,7 @@ const FormComponent = props => {
 								type="text"
 								normalize={normalizeCardUserValue}
 								component={TextField}
-								label="Имя владельца"
+								label={translate("customer-name")}
 								onDrop={preventDefault}
 								inputProps={{
 									style: { fontSize: "20px" },
@@ -45,7 +45,7 @@ const FormComponent = props => {
 									style: { fontSize: "20px" },
 								}}
 								component={MaskedInput}
-								label="Номер карты *"
+								label={translate("card-number")}
 								onDrop={preventDefault}
 							/>
 						</div>
@@ -55,7 +55,7 @@ const FormComponent = props => {
 							<Field
 								name="expDate"
 								component={DatePicker}
-								label="Дата окончания действия"
+								label={translate("exp-date")}
 								inputProps={{
 									style: {
 										fontSize: "20px",
@@ -79,14 +79,14 @@ const FormComponent = props => {
 									style: { fontSize: "20px" },
 								}}
 								component={TextField}
-								label="CVV"
+								label={translate("cvv")}
 								onDrop={preventDefault}
 							/>
 						</div>
 					</div>
 					<div className="credentials-form__row-container button-submit-container">
 						<Button type="submit" color="primary" variant="contained">
-							Сохранить
+							{translate("button-save")}
 						</Button>
 					</div>
 				</div>
@@ -95,4 +95,6 @@ const FormComponent = props => {
 	);
 };
 
-export const CredentialsForm = withTranslation("common")(FormComponent);
+export const CredentialsForm = withTranslation("form-credentials")(
+	FormComponent
+);
