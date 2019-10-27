@@ -3,7 +3,7 @@ import Router from "next/router";
 import { fetchAccessTokenRequest } from "../api/requests";
 import { loginAction, logoutAction } from "../../redux/modules/auth/actions";
 import { LOGIN_URL, AUTH_URL } from "../../constants";
-import { isServerPlatform } from "../../utils/helpers/server-checker";
+import { isServerPlatform } from "../../utils/helpers";
 
 export const handleAuthSSR = async ({ ctx }) => {
 	let token = null;

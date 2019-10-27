@@ -1,0 +1,15 @@
+{
+    
+    "your-order":"Your order",
+    "from":"From: ",
+    "to":"To: ",
+    "time-to-arrive":"Arrival time of the taxi: ",
+    "cancel-order":"Cancel the order",
+    "timeout-done-text":"The taxi is waiting for you!",
+    "lock-time": "{{formattedTimeValue}}",
+    "time":{
+        "hours":"hours",
+        "minutes":"minutes",
+        "seconds":"seconds"
+    }
+}

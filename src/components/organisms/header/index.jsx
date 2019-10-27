@@ -1,12 +1,28 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import { withTranslation } from "../../../../i18n";
+
 import "./header.css";
 
-export const HeaderView = ({
+const changeLang = i18n => ({ target: { innerText: langValue } }) => {
+	if (langValue === "ENG") {
+		console.log("change to eng");
+		i18n.changeLanguage("en");
+	}
+
+	if (langValue === "RU") {
+		console.log("change to ru");
+		i18n.changeLanguage("ru");
+	}
+};
+
+export const WrappedComponent = ({
 	handleMainButtonClick,
 	handleCredentialsButtonClick,
 	handleLogoutButtonClick,
 	isLogined,
+	t: translate,
+	i18n,
 }) => {
 	return (
 		<header className="header">
@@ -14,25 +30,27 @@ export const HeaderView = ({
 			{isLogined && (
 				<ul className="header__buttons-list">
 					<li className="header__buttons-button">
+						<Button onClick={changeLang(i18n)}>eng</Button>
+					</li>
+					<li className="header__buttons-button">
+						<Button onClick={changeLang(i18n)}>ru</Button>
+					</li>
+					<li className="header__buttons-button">
 						<Button
 							onClick={handleMainButtonClick}
 							className="header__buttons-button"
 						>
-							{/* {translate("auth-form.button-sign-up")} */}
-							Главная
+							{translate("header-to-main")}
 						</Button>
 					</li>
 					<li className="header__buttons-button">
 						<Button onClick={handleCredentialsButtonClick}>
-							{/* {translate("auth-form.button-sign-up")} */}
-							Профиль
+							{translate("header-to-credentials")}
 						</Button>
 					</li>
-
 					<li className="header__buttons-button">
 						<Button onClick={handleLogoutButtonClick}>
-							{/* {translate("auth-form.button-sign-up")} */}
-							Выйти
+							{translate("header-to-logout")}
 						</Button>
 					</li>
 				</ul>
@@ -40,3 +58,5 @@ export const HeaderView = ({
 		</header>
 	);
 };
+
+export const HeaderView = withTranslation("header")(WrappedComponent);

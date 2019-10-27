@@ -1,18 +1,4 @@
 {    
-    "auth-form":{
-        "title":"Auth Form",
-        "username-label":"Username *",
-        "password-label":"Password *",
-        "button-link-sign-in":"Sign In",
-        "button-sign-up":"Sign Up"
-    },
-    "login-form":{
-        "title":"Login Form",
-        "username-label":"Username *",
-        "password-label":"Password *",
-        "button-link-sign-up":"Sign Up",
-        "button-sign-in":"Sign In"
-    },
     "order":{
         "order-info-box":{
             "lock-time": "{{formattedTimeValue}}",

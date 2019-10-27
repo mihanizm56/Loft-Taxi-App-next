@@ -9,10 +9,3 @@ export const timeDivider = ({ timeValue, i18n }) => {
 
 	return (hoursMessage + minutesMessage + secondsMessage).trim();
 };
-
-export const lockTimeMessage = ({ message, seconds, i18n }) =>
-	seconds
-		? `${i18n("order.order-info-box.lock-time", {
-				formattedTimeValue: timeDivider({ timeValue: seconds, i18n }),
-		  })}` // eslint-disable-line
-		: message;

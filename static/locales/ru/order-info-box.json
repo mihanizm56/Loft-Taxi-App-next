@@ -1,0 +1,15 @@
+{
+    
+    "your-order":"Ваш заказ",
+    "from":"Откуда: ",
+    "to":"Куда: ",
+    "time-to-arrive":"Время прибытия такси: ",
+    "cancel-order":"Отменить заказ",
+    "timeout-done-text":"Вас ожидает такси!",
+    "lock-time": "{{formattedTimeValue}}",
+    "time":{
+        "hours":"часов",
+        "minutes":"минут",
+        "seconds":"секунд"
+    }
+}

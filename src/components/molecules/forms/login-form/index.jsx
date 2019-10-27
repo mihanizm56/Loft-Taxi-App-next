@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import { Field } from "redux-form";
 import { TextField, LinkButton, LoadingTextIndicator } from "../../../atoms";
 import { withTranslation } from "../../../../../i18n";
-import { preventDefault } from "../../../../utils/helpers/form-inputs";
+import { preventDefault } from "../../../../utils/helpers";
 import "../../../../styles/shared.css";
 
 const FormComponent = props => {
@@ -22,7 +22,7 @@ const FormComponent = props => {
 					<LoadingTextIndicator />
 				) : (
 					<form onSubmit={handleSubmit(signInUser)} className="auth-form">
-						<h1 className="form__title">{translate("login-form.title")}</h1>
+						<h1 className="form__title">{translate("title")}</h1>
 						<div className="form__field">
 							<Field
 								name="username"
@@ -30,7 +30,7 @@ const FormComponent = props => {
 								component={TextField}
 								normalize={normalizeUserInput}
 								onDrop={preventDefault}
-								label={`${translate("login-form.username-label")}`}
+								label={`${translate("username-label")}`}
 							/>
 						</div>
 						<div className="form__field">
@@ -40,18 +40,18 @@ const FormComponent = props => {
 								normalize={normalizeUserInput}
 								component={TextField}
 								onDrop={preventDefault}
-								label={`${translate("login-form.password-label")}`}
+								label={`${translate("password-label")}`}
 							/>
 						</div>
 						<div className="form__button form__button--type-sign-in">
 							<Button type="submit" style={{ fontSize: "20px" }}>
-								{translate("login-form.button-sign-in")}
+								{translate("button-sign-in")}
 							</Button>
 						</div>
 						<div className="form__button form__button--type-create-user">
 							<LinkButton
 								path="/auth"
-								text={`${translate("login-form.button-link-sign-up")}`}
+								text={`${translate("button-link-sign-up")}`}
 								style={{ fontSize: "14px" }}
 							/>
 						</div>
@@ -62,4 +62,4 @@ const FormComponent = props => {
 	);
 };
 
-export const LoginForm = withTranslation("common")(FormComponent);
+export const LoginForm = withTranslation("form-login")(FormComponent);
