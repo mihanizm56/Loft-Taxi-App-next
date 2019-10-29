@@ -4,7 +4,7 @@ import { withTranslation } from "../../../../../i18n";
 
 import "./open-box-credentials.css";
 
-export const WrappedComponent = ({ openCredentialsForm, t: translate }) => {
+const WrappedComponent = ({ openCredentialsForm, t: translate }) => {
 	return (
 		<>
 			<h1 className="open-form-box__title">

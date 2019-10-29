@@ -9,6 +9,7 @@ import { ConnectedRouter } from "connected-next-router";
 import { Provider } from "react-redux";
 import { configureStore } from "../src/redux/store/store";
 import { appWithTranslation } from "../i18n";
+import { isServerPlatform } from "../src/utils/helpers";
 import "../static/styles/global.css";
 import "../static/styles/empty.css";
 import "../static/styles/keyframes.css";

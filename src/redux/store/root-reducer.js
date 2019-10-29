@@ -5,6 +5,7 @@ import addressesStorage from "../modules/addresses";
 import loginStorage from "../modules/auth";
 import сredentialsStorage from "../modules/credentials";
 import ordersStorage from "../modules/orders";
+import placesDialogStatusStorage from "../modules/places-dialog";
 
 export const rootReducer = combineReducers({
 	form: formReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
 	loginStorage,
 	сredentialsStorage,
 	ordersStorage,
+	placesDialogStatusStorage,
 });

@@ -9,7 +9,6 @@
   ],
   "scripts": {
     "lint": "lint-staged",
-    "dev": "nodemon server.js",
     "build": "next build",
     "start": "cross-env-shell NODE_ENV=production && node server.js",
     "stop": "taskkill /F /IM node.exe",

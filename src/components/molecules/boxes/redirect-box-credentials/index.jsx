@@ -4,7 +4,7 @@ import { LinkButton } from "../../../atoms";
 import { withTranslation } from "../../../../../i18n";
 import "./redirect-box-credentials.css";
 
-export const WrappedComponent = ({ openCredentialsForm, t: translate }) => {
+const WrappedComponent = ({ openCredentialsForm, t: translate }) => {
 	return (
 		<>
 			<h1 className="redirect-credentials-box__title">Профиль</h1>
