@@ -11,6 +11,7 @@
     "lint": "lint-staged",
     "build": "next build",
     "start": "cross-env-shell NODE_ENV=production node server.js",
+    "dev": "cross-env-shell NODE_ENV=development node server.js",
     "stop": "taskkill /F /IM node.exe",
     "push": "git add . && npm run lint && git cz && git push",
     "server": "cd server && npm start",

@@ -1,5 +1,5 @@
 {
     "notification-title":"Notification",
-    "notification-content-text":"The search for the place will only work if this place is located in Russian Federation. If you will try to locate in another country, the search will be empty.",
+    "notification-content-text":"The search for the place will correctly work only if this place is located in Russian Federation. If you will try to locate to the another country, the search may have mistakes.",
     "notification-button-text":"Close"
 }
