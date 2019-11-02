@@ -106,7 +106,6 @@ export class OrderBox extends React.Component {
 						variant="outlined"
 						color="primary"
 						onClick={handleCancelOrder}
-						disabled={Boolean(timeToFinishOrder)}
 					>
 						{translate("cancel-order")}
 					</Button>
