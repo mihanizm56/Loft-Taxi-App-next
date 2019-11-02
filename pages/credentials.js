@@ -1,6 +1,6 @@
 import React from "react";
 import { CredentialsPageApp } from "../src/streams";
-import { handleAuthSSR } from "../src/services";
+import { handleAuthSSR, showDialogAboutPlaces } from "../src/services";
 import { withTranslation } from "../i18n";
 
 class Credentials extends React.Component {
@@ -8,6 +8,7 @@ class Credentials extends React.Component {
 		console.log("AM ON THE CREDENTIALS PAGE");
 
 		await handleAuthSSR(ctx);
+		await showDialogAboutPlaces(ctx);
 
 		return {
 			namespacesRequired: ["common"],
@@ -23,16 +24,3 @@ class Credentials extends React.Component {
 
 // TODO make splitted dicts
 export default withTranslation("common")(Credentials);
-
-// const { isLoading, t } = this.props;
-// <div>
-/* <button
-					type="button"
-					onClick={() =>
-						i18n.changeLanguage(i18n.language === "en" ? "ru" : "en")
-					}
-				>
-					Change locale
-				</button>
-				<h1>{t("title")}</h1> */
-// </div>

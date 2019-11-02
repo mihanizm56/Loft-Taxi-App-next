@@ -1,8 +1,8 @@
-import { call } from "redux-saga/effects";
+import { put, call } from "redux-saga/effects";
 import { Cookies } from "react-cookie";
 import { fetchRefreshTokenRequest } from "../../../../services/api/requests";
 import { saveTokens } from "../../../../services/tokens";
-import { logoutUserSaga } from "./logout-user-worker-saga";
+import { logoutAction } from "../actions";
 
 const cookies = new Cookies();
 
@@ -23,10 +23,10 @@ export function* refreshSaga() {
 		} else if (error) {
 			console.log("error in fetchRefreshTokenRequest", error);
 
-			yield call(logoutUserSaga);
+			yield put(logoutAction());
 		}
 	} else {
 		console.log("no refresh_token in cookies");
-		yield call(logoutUserSaga);
+		yield put(logoutAction());
 	}
 }

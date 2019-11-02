@@ -9,14 +9,16 @@ import {
 	putOrderWatcherSaga,
 	cancelOrderWatcherSaga,
 } from "../modules/orders/sagas";
+import { closePlaceDialogWatcherSaga } from "../modules/places-dialog/sagas";
 
 export function* rootSaga() {
 	yield all([
-		fork(loginWatcherSaga),
+		fork(loginWatcherSaga), // TODO login and auth to the one listener
 		fork(authWatcherSaga),
 		fork(logoutWatcherSaga),
 		fork(credentialsWatcherSaga),
-		fork(putOrderWatcherSaga),
+		fork(putOrderWatcherSaga), // TODO orders in one listener
 		fork(cancelOrderWatcherSaga),
+		fork(closePlaceDialogWatcherSaga),
 	]);
 }

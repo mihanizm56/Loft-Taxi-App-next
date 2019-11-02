@@ -5,7 +5,7 @@ import {
 	removeOrderErrorAction,
 	setCredsEmpty,
 	setCredsFull,
-} from "../../redux/modules/orders";
+} from "../../redux/modules/orders/actions";
 import { setCoordsAction } from "../../redux/modules/addresses";
 import { fetchGetUserCreds, fetchGetLastOrder, fetchUpdOrder } from "../api";
 import { isServerPlatform } from "../../utils/helpers";

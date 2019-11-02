@@ -1,9 +1,12 @@
 import React from "react";
-import Head from "next/head";
 import { connect } from "react-redux";
 
 import { MainPageApp } from "../src/streams";
-import { handleAuthSSR, handleLastOrderStatus } from "../src/services";
+import {
+	handleAuthSSR,
+	handleLastOrderStatus,
+	showDialogAboutPlaces,
+} from "../src/services";
 import { withTranslation } from "../i18n";
 
 class Main extends React.Component {
@@ -12,6 +15,7 @@ class Main extends React.Component {
 
 		await handleAuthSSR(ctx);
 		await handleLastOrderStatus(ctx);
+		await showDialogAboutPlaces(ctx);
 
 		return {
 			namespacesRequired: ["common"],

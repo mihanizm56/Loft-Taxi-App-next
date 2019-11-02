@@ -7,7 +7,7 @@ import {
 	setOrderLoadingStart,
 	setOrderLoadingStop,
 } from "../actions";
-import { refreshSaga } from "../../auth/sagas/refresh-saga";
+import { refreshSaga } from "../../auth/sagas";
 import { setCoordsAction } from "../../addresses";
 import { fetchAddNewOrder } from "../../../../services/api/requests";
 import { INTERNAL_SERVER_ERROR, EXPIRED } from "../../../../constants";
@@ -51,8 +51,6 @@ export function* putOrderWorkerSaga({ from, to }) {
 					to,
 				});
 			} else {
-				console.log("///////////////", translatorOrderFormErrors(error));
-
 				yield put(stopSubmit("orders", translatorOrderFormErrors(error)));
 			}
 		} else if (order) {

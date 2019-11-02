@@ -7,7 +7,7 @@ import {
 	resetOrderData,
 } from "../actions";
 import { deleteCoordsAction } from "../../addresses";
-import { refreshSaga } from "../../auth/sagas/refresh-saga";
+import { refreshSaga } from "../../auth/sagas";
 import { fetchUpdOrder } from "../../../../services/api/requests";
 import { sleep } from "../../../../utils";
 import { INTERNAL_SERVER_ERROR, EXPIRED } from "../../../../constants";
