@@ -50,7 +50,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
-    "@babel/runtime-corejs2": "^7.6.3",
     "@commitlint/cli": "^8.2.0",
     "autoprefixer": "^9.6.5",
     "babel-eslint": "^10.0.3",
