@@ -32,8 +32,10 @@ export const OrdersModule = () => {
 						handleRedirectToCredentials,
 						handleCancelOrder,
 						cancelOrder,
+						translate,
 					}) => (
 						<OrdersViewSwitcher
+							translate={translate}
 							createOrder={createOrder}
 							isLoading={isLoading}
 							orderError={orderError}

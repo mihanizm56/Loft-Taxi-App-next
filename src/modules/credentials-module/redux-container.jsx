@@ -1,4 +1,5 @@
 import React from "react";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import {
 	getcardUserState,
@@ -10,6 +11,7 @@ import {
 	getAllFormValues,
 	saveCredentialsAction,
 } from "../../redux/modules/credentials";
+import { withTranslation } from "../../../i18n";
 
 class WrappedContainer extends React.Component {
 	state = {
@@ -46,7 +48,13 @@ class WrappedContainer extends React.Component {
 
 	render() {
 		const { isFormOpened } = this.state;
-		const { children, isLoading, areCredsError, allFormValues } = this.props;
+		const {
+			children,
+			isLoading,
+			areCredsError,
+			allFormValues,
+			t: translate,
+		} = this.props;
 		const { saveUserCard, openCredentialsForm } = this;
 
 		return children({
@@ -56,6 +64,7 @@ class WrappedContainer extends React.Component {
 			openCredentialsForm,
 			areCredsError,
 			allFormValues,
+			translate,
 		});
 	}
 }
@@ -72,9 +81,12 @@ const mapStateToProps = store => {
 	};
 };
 
-export const ReduxContainer = connect(
-	mapStateToProps,
-	{
-		saveCardData: saveCredentialsAction,
-	}
+export const ReduxContainer = compose(
+	withTranslation(["additional-text"]),
+	connect(
+		mapStateToProps,
+		{
+			saveCardData: saveCredentialsAction,
+		}
+	)
 )(WrappedContainer);

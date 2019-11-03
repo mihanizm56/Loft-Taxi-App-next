@@ -17,7 +17,9 @@ export const FormComponent = ({
 		<form onSubmit={handleSubmit(createOrder)} className="order-form">
 			<h5 className="order-form__title ">{translate("new-order")}</h5>
 			{isLoading ? (
-				<LoadingTextIndicator />
+				<LoadingTextIndicator
+					text={translate("additional-text:loading-indicator-text")}
+				/>
 			) : (
 				<>
 					<div className="form__field">
@@ -49,4 +51,6 @@ export const FormComponent = ({
 	);
 };
 
-export const AddOrderForm = withTranslation("form-order")(FormComponent);
+export const AddOrderForm = withTranslation(["form-order", "additional-text"])(
+	FormComponent
+);

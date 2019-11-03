@@ -13,11 +13,17 @@ import { refreshSaga } from "../../auth/sagas";
 import { fetchUpdUserCreds } from "../../../../services/api/requests";
 import { INTERNAL_SERVER_ERROR, EXPIRED } from "../../../../constants";
 import { sleep } from "../../../../utils";
-import { translatorCredentialsFormErrors } from "../../../../services/translate/credentials";
+import { translatorCredentialsFormErrors } from "../../../../utils/helpers/errors/translate-errors/credentials";
 
 const cookies = new Cookies();
 
-export function* credentialsWorkerSaga({ cardUser, expDate, cardNumber, cvv }) {
+export function* credentialsWorkerSaga({
+	cardUser,
+	expDate,
+	cardNumber,
+	cvv,
+	i18n,
+}) {
 	console.log(
 		"CHECK credentialsWorkerSaga",
 		cardUser,
@@ -79,7 +85,10 @@ export function* credentialsWorkerSaga({ cardUser, expDate, cardNumber, cvv }) {
 				yield put(setCredentialsErrorAction(error));
 
 				yield put(
-					stopSubmit("credentials", translatorCredentialsFormErrors(error))
+					stopSubmit(
+						"credentials",
+						translatorCredentialsFormErrors({ errorFromBackend: error, i18n })
+					)
 				);
 
 				yield put(stopCredentialsLoadingAction()); // stop loading animation
@@ -89,7 +98,10 @@ export function* credentialsWorkerSaga({ cardUser, expDate, cardNumber, cvv }) {
 			yield put(
 				stopSubmit(
 					"credentials",
-					translatorCredentialsFormErrors(INTERNAL_SERVER_ERROR)
+					translatorCredentialsFormErrors({
+						errorFromBackend: INTERNAL_SERVER_ERROR,
+						i18n,
+					})
 				)
 			);
 

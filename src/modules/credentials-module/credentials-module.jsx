@@ -26,6 +26,7 @@ export const CredentialsModule = () => {
 						openCredentialsForm,
 						areCredsError,
 						allFormValues,
+						translate,
 					}) => (
 						<CredentialsViewSwitcher
 							allFormValues={allFormValues}
@@ -35,6 +36,7 @@ export const CredentialsModule = () => {
 							isLoading={isLoading}
 							areCredsError={areCredsError}
 							change={change}
+							translate={translate}
 							handleSubmit={handleSubmit}
 							normalizeCardUserValue={normalizeCardUserValue}
 							normalizeCardCVVValue={normalizeCardCVVValue}

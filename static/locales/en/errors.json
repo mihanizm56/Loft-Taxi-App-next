@@ -1,23 +1,27 @@
 {
-   "auth":{
-        "not correct data":"Not correct user data",
-        "forbidden":"Not correct user data",
-        "internal server error":"The service temporary unavailiable",
-        "unauthorized":"Not correct user data",
-        "default-client-error":"Извините, что-то пошло не так"
-   },
-   "credentials":{
-        "not correct data":"Not correct user data",
-        "forbidden":"Not correct user data",
-        "internal server error":"The service temporary unavailiable",
-        "unauthorized":"Not correct user data",
-        "default-client-error":"Извините, что-то пошло не так"
-   },
-   "orders":{
-        "not correct data":"Not correct user data",
-        "forbidden":"Not correct user data",
-        "internal server error":"The service temporary unavailiable",
-        "unauthorized":"Not correct user data",
-        "default-client-error":"Извините, что-то пошло не так"
-    }
+     "login":{
+          "not correct data":"Not correct user data",
+          "forbidden":"Not correct user data",
+          "internal server error":"The service temporary unavailiable",
+          "unauthorized":"Not correct user data",
+          "default-client-error":"Извините, что-то пошло не так"
+     },
+     "credentials":{
+          "not correct data":"Not correct user data",
+          "forbidden":"Not correct user data",
+          "internal server error":"The service temporary unavailiable",
+          "unauthorized":"Not correct user data",
+          "default-client-error":"Извините, что-то пошло не так"
+     },
+     "orders":{
+          "not correct data":"Not correct user data",
+          "forbidden":"Not correct user data",
+          "not found":"The coords about this places are unavailiable",
+          "internal server error":"The service temporary unavailiable",
+          "unauthorized":"Not correct user data",
+          "default-client-error":"Извините, что-то пошло не так"
+     },
+     "shared":{
+          "sorry, something goes wrong":"Sorry, something goes wrong"
+     }
 }

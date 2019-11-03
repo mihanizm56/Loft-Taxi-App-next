@@ -12,11 +12,11 @@ import { setCoordsAction } from "../../addresses";
 import { fetchAddNewOrder } from "../../../../services/api/requests";
 import { INTERNAL_SERVER_ERROR, EXPIRED } from "../../../../constants";
 import { sleep } from "../../../../utils";
-import { translatorOrderFormErrors } from "../../../../services/translate/orders";
+import { translatorOrderFormErrors } from "../../../../utils/helpers/errors/translate-errors/orders";
 
 const cookies = new Cookies();
 
-export function* putOrderWorkerSaga({ from, to }) {
+export function* putOrderWorkerSaga({ from, to, i18n }) {
 	console.log("CHECK putOrderWorkerSaga SAGA", from, to);
 
 	yield put(setOrderLoadingStart());
@@ -51,7 +51,12 @@ export function* putOrderWorkerSaga({ from, to }) {
 					to,
 				});
 			} else {
-				yield put(stopSubmit("orders", translatorOrderFormErrors(error)));
+				yield put(
+					stopSubmit(
+						"orders",
+						translatorOrderFormErrors({ errorFromBackend: error, i18n })
+					)
+				);
 			}
 		} else if (order) {
 			// set coords

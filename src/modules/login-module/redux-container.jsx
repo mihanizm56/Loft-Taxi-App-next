@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import {
 	signInAction as signIn,
 	isLoginLoading,
 } from "../../redux/modules/auth";
+import { withTranslation } from "../../../i18n";
 
 class WrappedContainer extends React.Component {
 	signInUser = ({ username, password }) => {
@@ -13,6 +15,7 @@ class WrappedContainer extends React.Component {
 			SubmissionError,
 			submitValidateAuthFields,
 			signIn: signInAction,
+			t: translate,
 		} = this.props;
 
 		const { validationError } = submitValidateAuthFields({
@@ -23,7 +26,7 @@ class WrappedContainer extends React.Component {
 		if (validationError) {
 			throw new SubmissionError(validationError);
 		} else {
-			signInAction({ username, password });
+			signInAction({ username, password, i18n: translate });
 		}
 	};
 
@@ -45,7 +48,10 @@ const mapDispatchToProps = {
 	signIn,
 };
 
-export const ReduxContainer = connect(
-	mapStateToProps,
-	mapDispatchToProps
+export const ReduxContainer = compose(
+	withTranslation("errors"),
+	connect(
+		mapStateToProps,
+		mapDispatchToProps
+	)
 )(WrappedContainer);

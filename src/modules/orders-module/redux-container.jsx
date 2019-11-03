@@ -1,6 +1,7 @@
 import React from "react";
+import { compose } from "redux";
 import { connect } from "react-redux";
-import { Router } from "../../../i18n";
+import { Router, withTranslation } from "../../../i18n";
 import {
 	getLoadingOrderState,
 	getOrderError,
@@ -59,6 +60,7 @@ class WrappedContainer extends React.Component {
 			submitValidateOrderFields,
 			addNewOrder,
 			SubmissionError,
+			t: i18n,
 		} = this.props;
 		const { validationError } = submitValidateOrderFields({
 			adressFrom,
@@ -71,6 +73,7 @@ class WrappedContainer extends React.Component {
 			addNewOrder({
 				from: sanitizeAddressField(adressFrom),
 				to: sanitizeAddressField(adressTo),
+				i18n,
 			});
 		}
 	};
@@ -87,6 +90,7 @@ class WrappedContainer extends React.Component {
 			areCredsEmpty,
 			orderFromText,
 			orderToText,
+			t: translate,
 		} = this.props;
 		const {
 			createOrder,
@@ -97,6 +101,7 @@ class WrappedContainer extends React.Component {
 		const { isFormOpened, orderInfoBoxOpened } = this.state;
 
 		return children({
+			translate,
 			createOrder,
 			isLoading,
 			orderError,
@@ -125,12 +130,15 @@ const mapStateToProps = store => ({
 	orderToText: getOrderToTextInfo(store),
 });
 
-export const ReduxContainer = connect(
-	mapStateToProps,
-	{
-		addNewOrder: addNewOrderAction,
-		removeOrderError: removeOrderErrorAction,
-		resetData: resetOrderData,
-		cancelOrder: cancelOrderAction,
-	}
+export const ReduxContainer = compose(
+	withTranslation(["form-order", "errors", "additional-text"]),
+	connect(
+		mapStateToProps,
+		{
+			addNewOrder: addNewOrderAction,
+			removeOrderError: removeOrderErrorAction,
+			resetData: resetOrderData,
+			cancelOrder: cancelOrderAction,
+		}
+	)
 )(WrappedContainer);

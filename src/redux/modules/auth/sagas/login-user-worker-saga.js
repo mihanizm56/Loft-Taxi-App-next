@@ -12,11 +12,11 @@ import { fetchLoginRequest } from "../../../../services/api";
 import { saveTokens } from "../../../../services/tokens";
 import { sleep } from "../../../../utils";
 import { INTERNAL_SERVER_ERROR } from "../../../../constants";
-import { translatorLoginFormErrors } from "../../../../services/translate/auth";
+import { translatorLoginFormErrors } from "../../../../utils/helpers/errors/translate-errors/auth";
 
 const cookies = new Cookies();
 
-export function* loginUserSaga({ username, password }) {
+export function* loginUserSaga({ username, password, i18n }) {
 	console.log("CHECK SAGA", username, password);
 
 	try {
@@ -50,7 +50,12 @@ export function* loginUserSaga({ username, password }) {
 				yield put(stopLoginLoadingAction());
 			} else {
 				console.log("error in response", error);
-				yield put(stopSubmit("login", translatorLoginFormErrors(error)));
+				yield put(
+					stopSubmit(
+						"login",
+						translatorLoginFormErrors({ errorFromBackend: error, i18n })
+					)
+				);
 				yield put(setLoginErrorAction());
 
 				yield put(stopLoginLoadingAction()); // stop loading animation
@@ -59,7 +64,13 @@ export function* loginUserSaga({ username, password }) {
 			console.log("error in loginUserSaga", error);
 			yield put(setLoginErrorAction());
 			yield put(
-				stopSubmit("login", translatorLoginFormErrors(INTERNAL_SERVER_ERROR))
+				stopSubmit(
+					"login",
+					translatorLoginFormErrors({
+						errorFromBackend: INTERNAL_SERVER_ERROR,
+						i18n,
+					})
+				)
 			);
 			yield put(stopLoginLoadingAction()); // stop loading animation
 		}

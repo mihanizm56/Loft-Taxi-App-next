@@ -21,6 +21,7 @@ export class CredentialsViewSwitcher extends React.Component {
 			normalizeCardUserValue,
 			normalizeCardCVVValue,
 			normalizeCardExpDateValue,
+			translate,
 		} = this.props;
 
 		const formProps = {
@@ -35,7 +36,9 @@ export class CredentialsViewSwitcher extends React.Component {
 		if (isLoading) {
 			return (
 				<div className="loading-indicator-wrapper">
-					<LoadingTextIndicator />
+					<LoadingTextIndicator
+						text={translate("additional-text:loading-indicator-text")}
+					/>
 				</div>
 			);
 		}
