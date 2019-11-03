@@ -24,6 +24,7 @@ export const OrdersViewSwitcher = ({
 	makeNewOrder,
 	handleRedirectToCredentials,
 	handleCancelOrder,
+	translate,
 }) => {
 	// typeof window !== "undefined" &&
 	// 	console.log("props in OrdersViewSwitcher", {
@@ -45,7 +46,11 @@ export const OrdersViewSwitcher = ({
 	};
 
 	if (isLoading) {
-		ComponentToShow = <LoadingTextIndicator text="Загрузка" />;
+		ComponentToShow = (
+			<LoadingTextIndicator
+				text={translate("additional-text:loading-indicator-text")}
+			/>
+		);
 	} else if (orderError) {
 		ComponentToShow = <OrderErrorBox handleMakeNewOrder={makeNewOrder} />;
 	} else if (areCredsEmpty) {

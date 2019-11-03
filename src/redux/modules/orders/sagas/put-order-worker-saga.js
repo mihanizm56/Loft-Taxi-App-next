@@ -16,7 +16,7 @@ import { translatorOrderFormErrors } from "../../../../services/translate/orders
 
 const cookies = new Cookies();
 
-export function* putOrderWorkerSaga({ from, to }) {
+export function* putOrderWorkerSaga({ from, to, i18n }) {
 	console.log("CHECK putOrderWorkerSaga SAGA", from, to);
 
 	yield put(setOrderLoadingStart());
@@ -51,7 +51,12 @@ export function* putOrderWorkerSaga({ from, to }) {
 					to,
 				});
 			} else {
-				yield put(stopSubmit("orders", translatorOrderFormErrors(error)));
+				yield put(
+					stopSubmit(
+						"orders",
+						translatorOrderFormErrors({ errorFromBackend: error, i18n })
+					)
+				);
 			}
 		} else if (order) {
 			yield put(

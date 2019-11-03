@@ -20,7 +20,9 @@ const FormComponent = props => {
 		<div className="auth-form-wrapper">
 			<div className="auth-form-container auth-form">
 				{isLoading ? (
-					<LoadingTextIndicator />
+					<LoadingTextIndicator
+						text={translate("additional-text:loading-indicator-text")}
+					/>
 				) : (
 					<form onSubmit={handleSubmit(authInUser)} className="auth-form">
 						<h1 className="form__title">{translate("title")}</h1>
@@ -63,4 +65,6 @@ const FormComponent = props => {
 	);
 };
 
-export const AuthForm = withTranslation("form-auth")(FormComponent);
+export const AuthForm = withTranslation(["form-auth", "additional-text"])(
+	FormComponent
+);

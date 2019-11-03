@@ -8,24 +8,24 @@ import {
 } from "../../../constants";
 
 const makeError = error => ({
-	adressFrom: error || SORRY_CLIENT_ERROR,
-	adressTo: error || SORRY_CLIENT_ERROR,
+	adressFrom: error,
+	adressTo: error,
 });
 
-export const translatorOrderFormErrors = errorFromBackend => {
+export const translatorOrderFormErrors = ({ errorFromBackend, i18n }) => {
 	switch (errorFromBackend) {
 		case NOT_CORRECT_DATA:
-			return makeError(NOT_CORRECT_DATA);
+			return makeError(i18n(`errors:orders.${NOT_CORRECT_DATA}`));
 		case FORBIDDEN:
-			return makeError(FORBIDDEN);
+			return makeError(i18n(`errors:orders.${FORBIDDEN}`));
 		case INTERNAL_SERVER_ERROR:
-			return makeError(INTERNAL_SERVER_ERROR);
+			return makeError(i18n(`errors:orders.${INTERNAL_SERVER_ERROR}`));
 		case UNAUTHORIZED:
-			return makeError(UNAUTHORIZED);
+			return makeError(i18n(`errors:orders.${UNAUTHORIZED}`));
 		case NOT_FOUND:
-			return makeError(NOT_FOUND);
+			return makeError(i18n(`errors:orders.${NOT_FOUND}`));
 
 		default:
-			return makeError();
+			return makeError(i18n(`errors:shared.${SORRY_CLIENT_ERROR}`));
 	}
 };

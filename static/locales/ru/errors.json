@@ -1,23 +1,27 @@
 {
-   "auth":{
-        "not correct data":"Некорректные данные",
-        "forbidden":"Некорректные данные",
-        "internal server error":"Сервис временно недоступен",
-        "unauthorized":"Некорректные данные",
-        "default-client-error":"Извините, что-то пошло не так"
-   },
-   "credentials":{
-        "not correct data":"Некорректные данные",
-        "forbidden":"Некорректные данные",
-        "internal server error":"Сервис временно недоступен",
-        "unauthorized":"Некорректные данные",
-        "default-client-error":"Извините, что-то пошло не так"
-   },
-   "orders":{
-        "not correct data":"Некорректные данные",
-        "forbidden":"Некорректные данные",
-        "internal server error":"Сервис временно недоступен",
-        "unauthorized":"Некорректные данные",
-        "default-client-error":"Извините, что-то пошло не так"
-    }
+     "auth":{
+          "not correct data":"Некорректные данные",
+          "forbidden":"Некорректные данные",
+          "internal server error":"Сервис временно недоступен",
+          "unauthorized":"Некорректные данные",
+          "default-client-error":"Извините, что-то пошло не так"
+     },
+     "credentials":{
+          "not correct data":"Некорректные данные",
+          "forbidden":"Некорректные данные",
+          "internal server error":"Сервис временно недоступен",
+          "unauthorized":"Некорректные данные",
+          "default-client-error":"Извините, что-то пошло не так"
+     },
+     "orders":{
+          "not correct data":"Некорректные данные",
+          "forbidden":"Некорректные данные",
+          "not found":"Координаты данных мест не доступны",
+          "internal server error":"Сервис временно недоступен",
+          "unauthorized":"Некорректные данные",
+          "default-client-error":"Извините, что-то пошло не так"
+     },
+     "shared":{
+          "sorry, something goes wrong":"Извините, что-то пошло не так"
+     }
 }
