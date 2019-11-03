@@ -16,8 +16,6 @@ const { PHASE_PRODUCTION_SERVER } =
 		? require("next/constants")
 		: require("next-server/constants");
 
-require("dotenv").config();
-
 const myConfig = {
 	publicRuntimeConfig: {
 		localeSubpaths:
