@@ -12,7 +12,7 @@ import { setCoordsAction } from "../../addresses";
 import { fetchAddNewOrder } from "../../../../services/api/requests";
 import { INTERNAL_SERVER_ERROR, EXPIRED } from "../../../../constants";
 import { sleep } from "../../../../utils";
-import { translatorOrderFormErrors } from "../../../../services/translate/orders";
+import { translatorOrderFormErrors } from "../../../../utils/helpers/errors/translate-errors/orders";
 
 const cookies = new Cookies();
 

@@ -1,5 +1,5 @@
 {
-     "auth":{
+     "login":{
           "not correct data":"Not correct user data",
           "forbidden":"Not correct user data",
           "internal server error":"The service temporary unavailiable",

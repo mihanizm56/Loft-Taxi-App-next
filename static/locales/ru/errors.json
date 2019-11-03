@@ -1,5 +1,5 @@
 {
-     "auth":{
+     "login":{
           "not correct data":"Некорректные данные",
           "forbidden":"Некорректные данные",
           "internal server error":"Сервис временно недоступен",

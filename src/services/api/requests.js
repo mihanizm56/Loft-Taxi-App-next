@@ -1,7 +1,16 @@
+// errors
+// export const NOT_CORRECT_DATA = "not correct data";
+// export const FORBIDDEN = "forbidden";
+// export const INTERNAL_SERVER_ERROR = "internal server error";
+// export const EXPIRED = "jwt expired";
+// export const UNAUTHORIZED = "unauthorized";
+// export const NOT_FOUND = "not found";
+// export const SORRY_CLIENT_ERROR = "sorry, something goes wrong";
+
 export const fetchLoginRequest = () =>
 	Promise.resolve({
-		message: "success",
-		error: "",
+		message: "failed",
+		error: "internal server error",
 		access_token: "access_token_test",
 		refresh_token: "refresh_token_test",
 	}).then(data => data);
@@ -9,8 +18,8 @@ export const fetchLoginRequest = () =>
 // /login new user
 export const fetchNewUserRequest = () =>
 	Promise.resolve({
-		message: "success",
-		error: "",
+		message: "failed",
+		error: "internal server error",
 		access_token: "access_token",
 		refresh_token: "refresh_token",
 	}).then(data => data);
