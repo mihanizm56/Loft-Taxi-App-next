@@ -1,9 +1,17 @@
-const withCSS = require("@zeit/next-css");
+/* eslint-disable */
+
 const webpack = require("webpack");
+
+const { PHASE_PRODUCTION_SERVER } =
+	process.env.NODE_ENV === "development"
+		? {}
+		: !process.env.NOW
+		? require("next/constants")
+		: require("next-server/constants");
 
 require("dotenv").config();
 
-module.exports = withCSS({
+const myConfig = {
 	publicRuntimeConfig: {
 		localeSubpaths:
 			typeof process.env.LOCALE_SUBPATHS === "string"
@@ -31,7 +39,6 @@ module.exports = withCSS({
 		);
 
 		// polyfills setup
-
 		const originalEntry = config.entry;
 		// eslint-disable-next-line
 		config.entry = async () => {
@@ -49,4 +56,15 @@ module.exports = withCSS({
 
 		return config;
 	},
-});
+};
+
+module.exports = phase => {
+	if (phase === PHASE_PRODUCTION_SERVER) {
+		// Config used to run in production.
+		return myConfig;
+	}
+
+	const withCSS = require("@zeit/next-css"); // eslint-disable-line
+
+	return withCSS(myConfig);
+};
