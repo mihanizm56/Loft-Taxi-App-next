@@ -46,7 +46,8 @@
     "redux-batched-actions": "^0.4.1",
     "redux-form": "^8.2.6",
     "redux-saga": "^1.1.1",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "cross-env": "^6.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -54,7 +55,6 @@
     "autoprefixer": "^9.6.5",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
-    "cross-env": "^6.0.3",
     "cz-customizable": "^6.2.0",
     "dotenv": "^8.1.0",
     "enzyme": "^3.10.0",
