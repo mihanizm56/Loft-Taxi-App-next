@@ -15,14 +15,14 @@ export const translatorOrderFormErrors = ({ errorFromBackend, i18n }) => {
 		case UNAUTHORIZED:
 		case NOT_FOUND:
 			return {
-				adressFrom: i18n(`errors:credentials.${errorFromBackend}`),
-				adressTo: i18n(`errors:credentials.${errorFromBackend}`),
+				adressFrom: i18n(`errors:orders.${errorFromBackend}`),
+				adressTo: i18n(`errors:orders.${errorFromBackend}`),
 			};
 
 		default:
 			return {
-				adressFrom: i18n(`errors:credentials.${SORRY_CLIENT_ERROR}`),
-				adressTo: i18n(`errors:credentials.${SORRY_CLIENT_ERROR}`),
+				adressFrom: i18n(`errors:orders.${SORRY_CLIENT_ERROR}`),
+				adressTo: i18n(`errors:orders.${SORRY_CLIENT_ERROR}`),
 			};
 	}
 };
