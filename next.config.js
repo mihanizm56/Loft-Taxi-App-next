@@ -2,6 +2,13 @@
 
 const webpack = require("webpack");
 
+if (!process.env.NOW_REGION) {
+	// if deploying with now-ci env values are taken not from .env but from now.json
+	// https://zeit.co/docs/v2/deployments/environment-variables-and-secrets/
+	// now deployment breaks if dotenv used
+	require("dotenv").config();
+}
+
 const { PHASE_PRODUCTION_SERVER } =
 	process.env.NODE_ENV === "development"
 		? {}
