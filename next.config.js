@@ -23,6 +23,7 @@ const myConfig = {
 				? process.env.LOCALE_SUBPATHS
 				: "none",
 	},
+
 	webpack: (config, { isServer }) => {
 		// process.env setup for react
 

@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "builds": [{ "src": "next.config.js", "use": "@now/next" }],
+    "builds": [{ "src": "next.config.js", "use": "@now/node-server" }],
     "env": {
       "REACT_APP_MAPBOX_ACCESS_TOKEN": "pk.eyJ1IjoibWloYW5pem01NiIsImEiOiJjanZyM3Iydm0yaXEyNDRtZzM1aTk2dGpxIn0.RYXao7e68b3EB-m6zdLK6w"
     }

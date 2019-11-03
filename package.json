@@ -10,6 +10,7 @@
   "scripts": {
     "lint": "lint-staged",
     "build": "next build",
+    "now-build": "next build",
     "start": "cross-env-shell NODE_ENV=production node server.js",
     "dev": "cross-env-shell NODE_ENV=development node server.js",
     "stop": "taskkill /F /IM node.exe",
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
+    "@babel/runtime-corejs2": "^7.6.3",
     "@commitlint/cli": "^8.2.0",
     "autoprefixer": "^9.6.5",
     "babel-eslint": "^10.0.3",
