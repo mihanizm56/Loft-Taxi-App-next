@@ -9,8 +9,8 @@
 
 export const fetchLoginRequest = () =>
 	Promise.resolve({
-		message: "failed",
-		error: "internal server error",
+		message: "success",
+		error: "",
 		access_token: "access_token_test",
 		refresh_token: "refresh_token_test",
 	}).then(data => data);

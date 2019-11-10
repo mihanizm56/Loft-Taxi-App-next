@@ -18,7 +18,7 @@ module.exports = withCSS({
 			fs: "empty",
 		};
 
-		const env = Object.keys(process.env).reduce((acc, curr) => {
+		const env = Object.keys(process.env).reduce((acc, curr) => {			
 			acc[`process.env.${curr}`] = JSON.stringify(process.env[curr]);
 			return acc;
 		}, {});
@@ -26,7 +26,7 @@ module.exports = withCSS({
 		config.plugins.push(new webpack.DefinePlugin(env));
 		config.plugins.push(
 			new webpack.DefinePlugin({
-				__CLIENT__: !isServer,
+				__CLIENT__: !isServer
 			})
 		);
 

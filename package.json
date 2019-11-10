@@ -10,14 +10,15 @@
   "scripts": {
     "lint": "lint-staged",
     "build": "next build",
-    "start": "cross-env-shell NODE_ENV=production && node server.js",
-    "dev": "cross-env-shell NODE_ENV=development && node server.js",
+    "start": "cross-env-shell NODE_ENV=production node server.js",
+    "dev": "cross-env-shell NODE_ENV=development node server.js",
     "stop": "taskkill /F /IM node.exe",
     "push": "git add . && npm run lint && git cz && git push",
     "server": "cd server && npm start",
     "test:ci": "set CI=true && jest",
     "test": "jest",
-    "install:all": "npm i && cd server && npm i && cd .."
+    "install:all": "npm i && cd server && npm i && cd ..",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@date-io/date-fns": "^1.3.11",

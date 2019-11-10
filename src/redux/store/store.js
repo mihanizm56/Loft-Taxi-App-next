@@ -6,7 +6,7 @@ import { createRouterMiddleware } from "connected-next-router";
 import { rootReducer } from "./root-reducer";
 import { rootSaga } from "./root-saga";
 
-const bindMiddleware = middleware => {
+const bindMiddleware = middleware => {	
 	if (process.env.NODE_ENV !== "production") {
 		return composeWithDevTools(applyMiddleware(...middleware));
 	}
